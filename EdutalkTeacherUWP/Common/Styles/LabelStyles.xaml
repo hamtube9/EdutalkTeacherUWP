@@ -1,0 +1,179 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+    <Style
+        x:Key="LabelBase"
+        TargetType="TextBlock">
+        <Setter
+            Property="Foreground"
+            Value="{StaticResource OnBackgroundColor}" />
+    </Style>
+    <!--font size large-->
+    <Style
+        x:Key="LabelLarge"
+        TargetType="TextBlock"
+        BasedOn="{StaticResource LabelBase}">
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource FontSizeLarge}" />
+    </Style>
+    <Style
+        x:Key="LabelLargeBold"
+        TargetType="TextBlock"
+        BasedOn="{StaticResource LabelLarge}">
+        <Setter
+            Property="FontStyle"
+            Value="Oblique" />
+    </Style>
+    <!--font size semi large-->
+    <Style
+        x:Key="LabelSemiLarge"
+        TargetType="TextBlock"
+        BasedOn="{StaticResource LabelBase}">
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource FontSizeSemiLarge}" />
+    </Style>
+    <Style
+        x:Key="LabelSemiLargeBold"
+        TargetType="TextBlock"
+        BasedOn="{StaticResource LabelSemiLarge}">
+        <Setter
+            Property="FontStyle"
+            Value="Oblique" />
+    </Style>
+    <!--font size title-->
+    <Style
+        x:Key="LabelTitle"
+        TargetType="TextBlock"
+        BasedOn="{StaticResource LabelBase}">
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource FontSizeTitle}" />
+    </Style>
+    <Style
+        x:Key="LabelTitleBold"
+        TargetType="TextBlock"
+        BasedOn="{StaticResource LabelTitle}">
+        <Setter
+            Property="FontStyle"
+            Value="Oblique" />
+    </Style>
+    <Style
+        x:Key="Title"
+        TargetType="TextBlock"
+        BasedOn="{StaticResource LabelLargeBold}">
+        <Setter
+            Property="Foreground"
+            Value="{StaticResource OnSurfaceColor}" />
+        <Setter
+            Property="HorizontalTextAlignment"
+            Value="Center" />
+    </Style>
+    <!--font size normal-->
+    <Style
+        x:Key="LabelNormal"
+        TargetType="TextBlock"
+        BasedOn="{StaticResource LabelBase}">
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource FontSizeNormal}" />
+    </Style>
+    <Style
+        x:Key="LabelNormalBold"
+        TargetType="TextBlock"
+        BasedOn="{StaticResource LabelNormal}">
+        <Setter
+            Property="FontStyle"
+            Value="Oblique" />
+    </Style>
+    <!--font size small-->
+    <Style
+        x:Key="LabelSmall"
+        TargetType="TextBlock"
+        BasedOn="{StaticResource LabelBase}">
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource FontSizeSmall}" />
+    </Style>
+    <Style
+        x:Key="LabelSmallWhite"
+        TargetType="TextBlock"
+        BasedOn="{StaticResource LabelBase}">
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource FontSizeSmall}" />
+        <Setter
+            Property="Foreground"
+            Value="White" />
+    </Style>
+    <Style
+        x:Key="LabelSmallBold"
+        TargetType="TextBlock"
+        BasedOn="{StaticResource LabelSmall}">
+        <Setter
+            Property="FontStyle"
+            Value="Oblique" />
+    </Style>
+    <!--font size x small-->
+    <Style
+        x:Key="LabelXSmall"
+        TargetType="TextBlock"
+        BasedOn="{StaticResource LabelBase}">
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource FontSizeXSmall}" />
+    </Style>
+    <Style
+        x:Key="LabelTiny"
+        TargetType="TextBlock"
+        BasedOn="{StaticResource LabelBase}">
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource FontSizeTiny}" />
+    </Style>
+    <Style
+        x:Key="LabelXSmallWhite"
+        TargetType="TextBlock"
+        BasedOn="{StaticResource LabelBase}">
+        <Setter
+            Property="Foreground"
+            Value="White" />
+    </Style>
+    <Style
+        x:Key="LabelXSmallBold"
+        TargetType="TextBlock"
+        BasedOn="{StaticResource LabelBase}">
+        <Setter
+            Property="FontStyle"
+            Value="Oblique" />
+    </Style>
+
+    <!--label medium-->
+    <Style
+        x:Key="LabelMedium"
+        TargetType="TextBlock"
+        BasedOn="{StaticResource LabelBase}">
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource FontSizeMedium}" />
+    </Style>
+    <Style
+        x:Key="LabelMediumBold"
+        TargetType="TextBlock"
+        BasedOn="{StaticResource LabelMedium}">
+        <Setter
+            Property="FontStyle"
+            Value="Oblique" />
+    </Style>
+    <Style
+        x:Key="LabelIconBase"
+        TargetType="TextBlock"
+        BasedOn="{StaticResource LabelLarge}">
+        <Setter
+            Property="FontFamily"
+            Value="{StaticResource FontfamilyMaterialDesign}" />
+    </Style>
+</ResourceDictionary>

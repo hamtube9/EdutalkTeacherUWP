@@ -1,0 +1,140 @@
+﻿<Page
+    x:Class="EdutalkTeacherUWP.Authentication.Views.LoginPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EdutalkTeacherUWP.Authentication.Views"
+    xmlns:vm="using:EdutalkTeacherUWP.Authentication.ViewModels"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="#040927">
+    <Page.DataContext>
+        <vm:LoginViewModel />
+    </Page.DataContext>
+    <Page.Resources>
+        <SolidColorBrush
+            x:Key="OnColorBackground"
+            Color="#040927" />
+        <SolidColorBrush
+            x:Key="OnColorFrame"
+            Color="#252E69" />
+        <Style
+            TargetType="TextBlock"
+            x:Key="LabelBase">
+            <Setter
+                Property="Foreground"
+                Value="White" />
+        </Style>
+        <Style
+            TargetType="TextBlock"
+            x:Key="LabelBaseLarge">
+            <Setter
+                Property="Foreground"
+                Value="White" />
+            <Setter
+                Property="FontSize"
+                Value="18" />
+        </Style>
+        <Style
+            TargetType="TextBlock"
+            x:Key="LabelBaseLarger">
+            <Setter
+                Property="Foreground"
+                Value="White" />
+            <Setter
+                Property="FontSize"
+                Value="20" />
+        </Style>
+    </Page.Resources>
+    
+    <StackPanel
+        VerticalAlignment="Center">
+        <Image
+            HorizontalAlignment="Left"
+            Margin="16,8"
+            Height="120"
+            Width="80"
+            Source="/Assets/im_logo_splash.png" />
+
+        <StackPanel
+            Margin="16,8"
+            Orientation="Horizontal">
+            <TextBlock
+                Padding="4"
+                Style="{StaticResource LabelBaseLarge}"
+                Text="Welcome to" />
+            <TextBlock
+                Padding="4"
+                Style="{StaticResource LabelBaseLarger}"
+                Text="Edutalk"
+                FontWeight="Bold" />
+        </StackPanel>
+
+        <Border
+            Margin="16,0"
+            BorderThickness="1"
+            Background="{StaticResource OnColorFrame}"
+            CornerRadius="12">
+            <StackPanel>
+                <StackPanel
+                    Margin="16,8">
+                    <TextBlock
+                        Style="{StaticResource LabelBase}"
+                        Padding="0"
+                        Text="Email" />
+                    <TextBox
+                        SelectionHighlightColor="{StaticResource OnColorFrame}"
+                        Text="{Binding Email}"
+                        Foreground="White"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        InputScope="EmailSmtpAddress" />
+                    <Line
+                        Y2="8"
+                        X2="1960"
+                        Stroke="White"
+                        StrokeThickness="1" />
+                </StackPanel>
+                <StackPanel
+                    Margin="16,8">
+                    <TextBlock
+                        Style="{StaticResource LabelBase}"
+                        Padding="0"
+                        Text="Password" />
+                    <PasswordBox
+                        PasswordChar="-"
+                        PasswordChanged="PasswordBox_PasswordChanged"
+                        SelectionHighlightColor="{StaticResource OnColorFrame}"
+                        Foreground="White"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        InputScope="Password" />
+                    <Line
+                        X2="1960"
+                        Y2="8"
+                        Stroke="White"
+                        StrokeThickness="1" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+ 
+            <Button
+                BorderBrush="Transparent"
+                BorderThickness="0"
+                Content="Login"
+                Padding="16"
+                HorizontalAlignment="Stretch"
+                Margin="16"
+                HorizontalContentAlignment="Center"
+                CornerRadius="12"
+                Command="{Binding LoginAsyncCommand}"
+                Foreground="White"
+                Background="{StaticResource OnColorFrame}" />
+
+        <TextBlock
+            HorizontalAlignment="Center"
+            Style="{StaticResource LabelBase}"
+            Text="Forgot assword">
+        </TextBlock>
+    </StackPanel>
+</Page>
