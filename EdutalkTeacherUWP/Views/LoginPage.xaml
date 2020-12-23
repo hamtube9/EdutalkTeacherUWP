@@ -1,16 +1,15 @@
 ﻿<Page
-    x:Class="EdutalkTeacherUWP.Authentication.Views.LoginPage"
+    x:Class="EdutalkTeacherUWP.Views.LoginPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:EdutalkTeacherUWP.Authentication.Views"
-    xmlns:vm="using:EdutalkTeacherUWP.Authentication.ViewModels"
+    xmlns:local="using:EdutalkTeacherUWP.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="#040927">
-    <Page.DataContext>
-        <vm:LoginViewModel />
-    </Page.DataContext>
+    xmlns:prismMvvm="using:Prism.Windows.Mvvm"
+    prismMvvm:ViewModelLocator.AutoWireViewModel="True"
+    Background="#040927"
+>
     <Page.Resources>
         <SolidColorBrush
             x:Key="OnColorBackground"
@@ -46,7 +45,7 @@
                 Value="20" />
         </Style>
     </Page.Resources>
-    
+
     <StackPanel
         VerticalAlignment="Center">
         <Image
@@ -117,8 +116,8 @@
                 </StackPanel>
             </StackPanel>
         </Border>
- 
-            <Button
+
+        <Button
                 BorderBrush="Transparent"
                 BorderThickness="0"
                 Content="Login"

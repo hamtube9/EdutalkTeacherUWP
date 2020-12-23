@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace EdutalkTeacherUWP.Common.Base
 {
-    public class ViewModelBase 
+    public class ViewModelBase : Prism.Windows.Mvvm.ViewModelBase
     {
         public void Toast(string str)
         {
