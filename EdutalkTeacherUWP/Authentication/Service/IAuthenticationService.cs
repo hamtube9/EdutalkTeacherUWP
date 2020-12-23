@@ -1,14 +1,13 @@
 ﻿using EdutalkTeacherUWP.Api.Authorization;
 using EdutalkTeacherUWP.Api.Base;
+using EdutalkTeacherUWP.Api.Dtos.Authorizations;
 using EdutalkTeacherUWP.Api.Utils;
 using EdutalkTeacherUWP.Common.Base;
+using EdutalkTeacherUWP.Common.Extensions;
 using EdutalkTeacherUWP.Settings.Service;
 using Refit;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace EdutalkTeacherUWP.Authentication.Service
@@ -43,14 +42,14 @@ namespace EdutalkTeacherUWP.Authentication.Service
         {
             try
             {
-                var result = await api.SignIn(new Api.Dtos.SignInRequestDto()
+                var result = await api.SignIn(new SignInRequestDto()
                 {
                     Email = userName,
                     Password = password
                 });
                 if(result != null)
                 {
-                    return true;
+                    return await SetTokenAndUser(result);
                 }
             }
             catch(Exception e)
@@ -58,6 +57,27 @@ namespace EdutalkTeacherUWP.Authentication.Service
 
             }
             return false;
+        }
+
+        async Task<bool> SetTokenAndUser(SignInResultDto result)
+        {
+            if (string.IsNullOrEmpty(result?.Token))
+            {
+                return false;
+            }
+            var saveToken = await authHeader.SetAuthHeaderAsync(new Token { AccessToken = result.Token });
+            if (!saveToken)
+            {
+                return false;
+            }
+            if (result.User == null)
+            {
+                return true;
+            }
+
+            var user = result.User;
+            applicationSettings.CurrentUser = user.ToModel();
+            return true;
         }
     }
 }

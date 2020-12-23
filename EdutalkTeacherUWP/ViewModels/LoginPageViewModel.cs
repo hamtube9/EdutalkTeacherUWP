@@ -21,7 +21,7 @@ namespace EdutalkTeacherUWP.ViewModels
         {
             this._navigationService = _navigationService;
             service = new AuthenticationService();
-            Email = "edutalk.room5@gmail.com";
+            Email = "ngotriha02@gmail.com";
             Password = "123456";
         }
 

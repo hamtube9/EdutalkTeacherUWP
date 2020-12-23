@@ -1,4 +1,5 @@
 ﻿using Plugin.Toast;
+using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -75,5 +76,10 @@ namespace EdutalkTeacherUWP.Common.Base
                 this.CanExecuteChanged(this, EventArgs.Empty);
             }
         }
+    }
+
+    public class ModelBase : BindableBase
+    {
+
     }
 }

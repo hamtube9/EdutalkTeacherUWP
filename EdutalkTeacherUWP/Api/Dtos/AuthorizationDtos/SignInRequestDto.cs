@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EdutalkTeacherUWP.Api.Dtos
+namespace EdutalkTeacherUWP.Api.Dtos.Authorizations
 {
     public class SignInRequestDto
     {

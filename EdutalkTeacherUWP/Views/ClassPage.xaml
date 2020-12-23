@@ -6,11 +6,118 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:interact="using:Microsoft.Xaml.Interactivity"
+    xmlns:interactcore="using:Microsoft.Xaml.Interactions.Core"
     xmlns:prismMvvm="using:Prism.Windows.Mvvm"
-    prismMvvm:ViewModelLocator.AutoWireViewModel="True"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    prismMvvm:ViewModelLocator.AutoWireViewModel="True" >
+    <Page.Resources>
 
-    <Grid>
-        <TextBlock Text="{Binding Helokitti}"/>
-    </Grid>
+        <Style
+        x:Key="LabelBase"
+        TargetType="TextBlock">
+            <Setter
+            Property="Foreground"
+            Value="{StaticResource OnBackgroundColor}" />
+        </Style>
+
+        <Color
+        x:Key="PrimaryColor">#455EA9</Color>
+        <Color
+        x:Key="BackgroundColor">#040927</Color>
+        <Color
+        x:Key="PopupBackgroundColor">#B3040927</Color>
+        <Color
+        x:Key="OnBackgroundColor">#DEE5FF</Color>
+        <Color
+        x:Key="SurfaceColor">#252E69</Color>
+        <Color
+        x:Key="OnSurfaceColor">#DBDBDB</Color>
+        <Color
+        x:Key="TestColor">#982D2D</Color>
+        <Color
+        x:Key="OnTestColor">#FFEDED</Color>
+        <Color
+        x:Key="PassColor">#1EA218</Color>
+        <Color
+        x:Key="OnPassColor">#E4F2DF</Color>
+        <Color
+        x:Key="FutureColor">#585B69</Color>
+        <Color
+        x:Key="OnFutureColor">#C7C7C7</Color>
+        <Color
+        x:Key="PresentColor">#31428D</Color>
+        <Color
+        x:Key="OnPresentColor">#D1E3F2</Color>
+        <Color
+        x:Key="RedColor">#C34742</Color>
+        <Color
+        x:Key="GreenColor">#128D16</Color>
+        <Color
+        x:Key="AbsentColor">#454545</Color>
+        <Color
+        x:Key="HighLightColor">#364064</Color>
+        <Color
+        x:Key="OnLightColor">#191E3E</Color>
+        <Color
+        x:Key="OnBackgroundGreenColor">#DFF4C3</Color>
+
+    </Page.Resources>
+    <GridView
+        Padding="16"
+        ItemClick="GridView_ItemClick"
+        Background="{StaticResource BackgroundColor}"
+        IsItemClickEnabled="True"
+        ItemsSource="{Binding Classes}"
+          ScrollViewer.HorizontalScrollMode="Enabled" 
+          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+          ScrollViewer.VerticalScrollMode="Enabled"
+          ScrollViewer.VerticalScrollBarVisibility="Hidden">
+        <GridView.ItemsPanel>
+            <ItemsPanelTemplate>
+                <ItemsWrapGrid MaximumRowsOrColumns="3" Orientation="Horizontal" />
+            </ItemsPanelTemplate>
+        </GridView.ItemsPanel>
+        <GridView.ItemTemplate>
+            <DataTemplate >
+                <Border CornerRadius="12" Margin="16"  BorderBrush="{StaticResource SurfaceColor}" BorderThickness="1">
+                    <Grid  Background="{StaticResource SurfaceColor}" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="160"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                            <Image
+                                Stretch="Fill"
+                                     Source="{Binding Image}">
+                            </Image>
+                        <StackPanel Spacing="0" Grid.Row="1">
+
+                            <TextBlock
+                                Margin="8,0"
+                                Style="{StaticResource LabelBase}"
+                                Text="{Binding Name}">
+                            </TextBlock>
+                            <TextBlock
+                                Style="{StaticResource LabelBase}"
+                                   Margin="8,0"
+                                    VerticalAlignment="Top"
+                                            Text="{Binding CourseName}" />
+                            <TextBlock
+                                Style="{StaticResource LabelBase}"
+                                Margin="8,0,8,8"
+                                VerticalAlignment="Top"
+                                            Text="{Binding Time}" />
+                        </StackPanel>
+
+                </Grid>
+                </Border>
+
+            </DataTemplate>
+        </GridView.ItemTemplate>
+    </GridView>
 </Page>

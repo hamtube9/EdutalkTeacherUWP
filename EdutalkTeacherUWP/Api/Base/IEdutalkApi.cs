@@ -1,9 +1,7 @@
 ﻿using EdutalkTeacherUWP.Api.Dtos;
+using EdutalkTeacherUWP.Api.Dtos.Authorizations;
+using EdutalkTeacherUWP.Api.Dtos.ClassDtos;
 using Refit;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace EdutalkTeacherUWP.Api.Base
@@ -12,5 +10,9 @@ namespace EdutalkTeacherUWP.Api.Base
     {
         [Post("/api/v3/mobile/login")]
         Task<SignInResultDto> SignIn([Body] SignInRequestDto request);
+
+        //class 
+        [Get("/api/v3/mobile/teacher/get-classroom")]
+        Task<DataDto<ClassroomResultDto[]>> GetClassrooms();
     }
 }

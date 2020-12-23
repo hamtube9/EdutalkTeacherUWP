@@ -123,9 +123,11 @@
     <Compile Include="Api\Base\IApiProvider.cs" />
     <Compile Include="Api\Base\IEdutalkApi.cs" />
     <Compile Include="Api\Base\PageToken.cs" />
-    <Compile Include="Api\Dtos\SignInRequestDto.cs" />
-    <Compile Include="Api\Dtos\SignInResultDto.cs" />
-    <Compile Include="Api\Dtos\UserResultDto.cs" />
+    <Compile Include="Api\Dtos\AuthorizationDtos\SignInRequestDto.cs" />
+    <Compile Include="Api\Dtos\AuthorizationDtos\SignInResultDto.cs" />
+    <Compile Include="Api\Dtos\AuthorizationDtos\UserResultDto.cs" />
+    <Compile Include="Api\Dtos\ClassDtos\ClassroomResultDto.cs" />
+    <Compile Include="Api\Dtos\DataDtos.cs" />
     <Compile Include="Api\Extensions\StringExtensions.cs" />
     <Compile Include="Api\Extensions\TokenExtensions.cs" />
     <Compile Include="Api\Utils\RefitSetting.cs" />
@@ -135,6 +137,11 @@
     <Compile Include="Authentication\Models\UserModel.cs" />
     <Compile Include="Authentication\Service\IAuthenticationService.cs" />
     <Compile Include="Common\Base\PageTokens.cs" />
+    <Compile Include="Common\Controls\Grid\VariableGrid.cs" />
+    <Compile Include="Common\Extensions\ModelExtensions.cs" />
+    <Compile Include="Home\Models\ClassModel.cs" />
+    <Compile Include="Home\Services\ICourseService.cs" />
+    <Compile Include="Localization\IResourceManagerProvider.cs" />
     <Compile Include="ViewModels\ClassPageViewModel.cs" />
     <Compile Include="ViewModels\LoginPageViewModel.cs" />
     <Compile Include="Common\Base\AppContants.cs" />
@@ -250,6 +257,12 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.10</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
+      <Version>6.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
+      <Version>2.0.1</Version>
+    </PackageReference>
     <PackageReference Include="Plugin.Toast">
       <Version>2.2.0</Version>
     </PackageReference>
@@ -265,8 +278,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Authentication\ViewModels\" />
-    <Folder Include="Home\Models\" />
-    <Folder Include="Home\Services\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
