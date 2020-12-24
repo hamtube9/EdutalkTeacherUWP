@@ -62,7 +62,23 @@
         x:Key="OnBackgroundGreenColor">#DFF4C3</Color>
 
     </Page.Resources>
-    <GridView
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            
+        </Grid>
+        
+        <ScrollViewer  HorizontalScrollBarVisibility="Disabled" 
+                       Grid.Row="1"
+                   Height="800"
+                   VerticalScrollMode="Enabled"
+                  VerticalScrollBarVisibility="Auto">
+            <GridView
         Padding="16"
         ItemClick="GridView_ItemClick"
         Background="{StaticResource BackgroundColor}"
@@ -72,52 +88,44 @@
           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
           ScrollViewer.VerticalScrollMode="Enabled"
           ScrollViewer.VerticalScrollBarVisibility="Hidden">
-        <GridView.ItemsPanel>
-            <ItemsPanelTemplate>
-                <ItemsWrapGrid MaximumRowsOrColumns="3" Orientation="Horizontal" />
-            </ItemsPanelTemplate>
-        </GridView.ItemsPanel>
-        <GridView.ItemTemplate>
-            <DataTemplate >
-                <Border CornerRadius="12" Margin="16"  BorderBrush="{StaticResource SurfaceColor}" BorderThickness="1">
-                    <Grid  Background="{StaticResource SurfaceColor}" >
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="160"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                            <Image
+                <GridView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid MaximumRowsOrColumns="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </ItemsPanelTemplate>
+                </GridView.ItemsPanel>
+                <GridView.ItemTemplate>
+                    <DataTemplate >
+                        <Border CornerRadius="12" Margin="48,8"  BorderBrush="{StaticResource SurfaceColor}" BorderThickness="1">
+                            <Grid  Background="{StaticResource SurfaceColor}" >
+                                <StackPanel Spacing="0" Grid.Row="1">
+                                    <Image
                                 Stretch="Fill"
+                                MaxWidth="240" MaxHeight="180"
                                      Source="{Binding Image}">
-                            </Image>
-                        <StackPanel Spacing="0" Grid.Row="1">
-
-                            <TextBlock
+                                    </Image>
+                                    <TextBlock
                                 Margin="8,0"
                                 Style="{StaticResource LabelBase}"
                                 Text="{Binding Name}">
-                            </TextBlock>
-                            <TextBlock
+                                    </TextBlock>
+                                    <TextBlock
                                 Style="{StaticResource LabelBase}"
                                    Margin="8,0"
                                     VerticalAlignment="Top"
                                             Text="{Binding CourseName}" />
-                            <TextBlock
+                                    <TextBlock
                                 Style="{StaticResource LabelBase}"
                                 Margin="8,0,8,8"
                                 VerticalAlignment="Top"
                                             Text="{Binding Time}" />
-                        </StackPanel>
+                                </StackPanel>
 
-                </Grid>
-                </Border>
+                            </Grid>
+                        </Border>
 
-            </DataTemplate>
-        </GridView.ItemTemplate>
-    </GridView>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+        </ScrollViewer>
+    </Grid>
 </Page>

@@ -8,17 +8,13 @@ using System.Threading.Tasks;
 
 namespace EdutalkTeacherUWP.ViewModels
 {
-    public class MainPageViewModel : ViewModelBase
+    public class RoutesPageViewModel : ViewModelBase
     {
         private readonly INavigationService navigationService;
 
-        public MainPageViewModel(INavigationService navigationService)
+        public RoutesPageViewModel(INavigationService navigationService)
         {
             this.navigationService = navigationService;
-        }
-        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
-        {
-            base.OnNavigatedTo(e, viewModelState);
         }
     }
 }

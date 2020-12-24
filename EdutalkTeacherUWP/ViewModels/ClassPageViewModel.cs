@@ -14,7 +14,7 @@ using System.Windows.Input;
 
 namespace EdutalkTeacherUWP.ViewModels
 {
-    public class ClassPageViewModel : ViewModelBase
+    public class ClassPageViewModel : ViewModelBase, INavigationAware
     {
         public bool IsRefreshing { get; set; }
         public List<ClassModel> Classes { get; set; }
@@ -22,11 +22,21 @@ namespace EdutalkTeacherUWP.ViewModels
         public bool HasNotification { get; set; }
         public ClassModel ClassSelected { set; get; }
 
-
+        string Name { set; get; }
         private readonly INavigationService navigationService;
         IApplicationSettings settings;
         ICourseService service;
 
+        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        {
+            base.OnNavigatedTo(e, viewModelState);
+            Name = (string)e.Parameter;
+            if (viewModelState.Count > 0)
+            {
+                Toast("alo");
+            }
+
+        }
         public ClassPageViewModel(INavigationService navigationService)
         {
             this.navigationService = navigationService;
@@ -64,13 +74,13 @@ namespace EdutalkTeacherUWP.ViewModels
             if (User.AccountType == AccountType.Teacher)
             {
                  navigationService.Navigate(
-                   PageTokens.Settings.ToString(),
+                   PageTokens.Routes.ToString(),
                   obj);
             }
             else
             {
                 navigationService.Navigate(
-                     PageTokens.Settings.ToString(),
+                     PageTokens.Routes.ToString(),
                     obj);
             }
         }

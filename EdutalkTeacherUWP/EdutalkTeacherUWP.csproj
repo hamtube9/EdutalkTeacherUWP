@@ -137,7 +137,6 @@
     <Compile Include="Authentication\Models\UserModel.cs" />
     <Compile Include="Authentication\Service\IAuthenticationService.cs" />
     <Compile Include="Common\Base\PageTokens.cs" />
-    <Compile Include="Common\Controls\Grid\VariableGrid.cs" />
     <Compile Include="Common\Extensions\ModelExtensions.cs" />
     <Compile Include="Home\Models\ClassModel.cs" />
     <Compile Include="Home\Services\ICourseService.cs" />
@@ -155,6 +154,7 @@
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\MessengerPageViewModel.cs" />
     <Compile Include="ViewModels\ReportPageViewModel.cs" />
+    <Compile Include="ViewModels\RoutesPageViewModel.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel.cs" />
     <Compile Include="Views\ClassPage.xaml.cs">
       <DependentUpon>ClassPage.xaml</DependentUpon>
@@ -170,6 +170,9 @@
     </Compile>
     <Compile Include="Views\ReportPage.xaml.cs">
       <DependentUpon>ReportPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RoutesPage.xaml.cs">
+      <DependentUpon>RoutesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
@@ -237,6 +240,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\RoutesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -278,6 +285,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Authentication\ViewModels\" />
+    <Folder Include="Common\Controls\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

@@ -18,10 +18,12 @@ using Prism.Unity.Windows;
 using System.Threading.Tasks;
 using EdutalkTeacherUWP.Localization;
 using System.Resources;
+using EdutalkTeacherUWP.Api.Authorization;
+using EdutalkTeacherUWP.Api.Extensions;
 
 namespace EdutalkTeacherUWP
 {
-    sealed partial class App : PrismUnityApplication 
+    sealed partial class App : PrismUnityApplication
     {
         public App()
         {
@@ -39,17 +41,23 @@ namespace EdutalkTeacherUWP
             base.ConfigureViewModelLocator();
         }
 
-        protected override async  Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
+        protected override async Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
         {
             if (args.PreviousExecutionState != ApplicationExecutionState.Running)
             {
                 // Here we would load the application's resources.
                 await LoadAppResources();
             }
-
+            var authHeader = new AuthHeaderManager();
+            var token = authHeader.GetBearerToken().Result;
+            if (!string.IsNullOrEmpty(token))
+            {
+                var check = NavigationService.Navigate("Main", null);
+                return;
+            }
             NavigationService.Navigate("Login", null);
         }
- 
-      
+
+
     }
 }

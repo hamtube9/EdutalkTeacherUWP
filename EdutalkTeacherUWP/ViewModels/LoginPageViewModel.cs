@@ -1,4 +1,6 @@
-﻿using EdutalkTeacherUWP.Authentication.Service;
+﻿using EdutalkTeacherUWP.Api.Authorization;
+using EdutalkTeacherUWP.Api.Extensions;
+using EdutalkTeacherUWP.Authentication.Service;
 using EdutalkTeacherUWP.Common.Base;
 using Plugin.Toast;
 using Prism.Windows.Navigation;
@@ -23,11 +25,7 @@ namespace EdutalkTeacherUWP.ViewModels
             service = new AuthenticationService();
             Email = "ngotriha02@gmail.com";
             Password = "123456";
-        }
-
-        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
-        {
-            base.OnNavigatedTo(e, viewModelState);
+       
         }
 
         ICommand _LoginAsyncCommand;
@@ -45,7 +43,7 @@ namespace EdutalkTeacherUWP.ViewModels
             if (result == true)
             {
                 Toast("Success");
-                var check = _navigationService.Navigate("Main", null);
+                var check = _navigationService.Navigate(PageTokens.Main.ToString(), null);
             }
             else
             {

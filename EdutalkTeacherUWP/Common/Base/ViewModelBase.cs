@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.UI.Xaml.Navigation;
 
 namespace EdutalkTeacherUWP.Common.Base
 {
@@ -16,7 +17,7 @@ namespace EdutalkTeacherUWP.Common.Base
         {
             if (CrossToastPopUp.IsSupported == true)
             {
-                CrossToastPopUp.Current.ShowToastMessage(str,Plugin.Toast.Abstractions.ToastLength.Short);
+                CrossToastPopUp.Current.ShowToastMessage(str, Plugin.Toast.Abstractions.ToastLength.Short);
             }
         }
 
@@ -71,7 +72,7 @@ namespace EdutalkTeacherUWP.Common.Base
         }
         private void OnCanExcuteChanged()
         {
-            if(this.CanExecuteChanged != null)
+            if (this.CanExecuteChanged != null)
             {
                 this.CanExecuteChanged(this, EventArgs.Empty);
             }
@@ -81,5 +82,12 @@ namespace EdutalkTeacherUWP.Common.Base
     public class ModelBase : BindableBase
     {
 
+    }
+
+    public interface INavigable
+    {
+        Task OnNavigatedToAsync(object parameter, NavigationMode mode);
+        void OnNavigatingFrom(NavigatingCancelEventArgs e);
+        void OnNavigatedFrom();
     }
 }

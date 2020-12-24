@@ -280,7 +280,7 @@
         </Style>
     </Page.Resources>
 
-    <Pivot x:Name="rootPivot" Title="Category Title"  Style="{StaticResource PivotHeaderBottomStyle}">
+    <Pivot x:Name="rootPivot" Title="Category Title" HorizontalContentAlignment="Center" UseSystemFocusVisuals="True"  Style="{StaticResource PivotHeaderBottomStyle}">
         <PivotItem>
             <PivotItem.Header>
                 <StackPanel Orientation="Vertical">
@@ -290,7 +290,7 @@
             </PivotItem.Header>
             <PivotItem.Content>
                 <ItemsControl>
-                    <view:ClassPage/>
+                    <view:ClassPage />
                 </ItemsControl>
             </PivotItem.Content>
         </PivotItem>
