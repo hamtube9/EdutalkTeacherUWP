@@ -126,8 +126,18 @@
     <Compile Include="Api\Dtos\AuthorizationDtos\SignInRequestDto.cs" />
     <Compile Include="Api\Dtos\AuthorizationDtos\SignInResultDto.cs" />
     <Compile Include="Api\Dtos\AuthorizationDtos\UserResultDto.cs" />
+    <Compile Include="Api\Dtos\ClassDtos\AttendanceResultDto.cs" />
     <Compile Include="Api\Dtos\ClassDtos\ClassroomResultDto.cs" />
+    <Compile Include="Api\Dtos\ClassDtos\SubmitAttendanceRequestDto.cs" />
+    <Compile Include="Api\Dtos\ClassDtos\SubmitAttendanceTutoringRequestDto.cs" />
+    <Compile Include="Api\Dtos\ClassDtos\TutoringResultDto.cs" />
     <Compile Include="Api\Dtos\DataDtos.cs" />
+    <Compile Include="Api\Dtos\Exam\ExamResultDto.cs" />
+    <Compile Include="Api\Dtos\Exam\ExamResultResultDto.cs" />
+    <Compile Include="Api\Dtos\Exam\HomeworkResultDto.cs" />
+    <Compile Include="Api\Dtos\Messenger\ConversationResultDto.cs" />
+    <Compile Include="Api\Dtos\Messenger\MessageResultDto.cs" />
+    <Compile Include="Api\Dtos\Route\ScheduleResultDto.cs" />
     <Compile Include="Api\Extensions\StringExtensions.cs" />
     <Compile Include="Api\Extensions\TokenExtensions.cs" />
     <Compile Include="Api\Utils\RefitSetting.cs" />
@@ -137,11 +147,57 @@
     <Compile Include="Authentication\Models\UserModel.cs" />
     <Compile Include="Authentication\Service\IAuthenticationService.cs" />
     <Compile Include="Common\Base\PageTokens.cs" />
+    <Compile Include="Common\Controls\AttendanceControl.xaml.cs">
+      <DependentUpon>AttendanceControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Controls\CircleImageControl.xaml.cs">
+      <DependentUpon>CircleImageControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Controls\CircleImageSemiControl.xaml.cs">
+      <DependentUpon>CircleImageSemiControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Controls\ItemRouteControl.xaml.cs">
+      <DependentUpon>ItemRouteControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Controls\RouteControl.xaml.cs">
+      <DependentUpon>RouteControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Converts\BoolToVisibilityConverter.cs" />
+    <Compile Include="Common\Converts\VisibilityConverter.cs" />
     <Compile Include="Common\Extensions\ModelExtensions.cs" />
+    <Compile Include="Exam\Controls\PlayButtonControl.xaml.cs">
+      <DependentUpon>PlayButtonControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Exam\Controls\TitleQuestionView.xaml.cs">
+      <DependentUpon>TitleQuestionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Exam\Controls\ViewFillTextScriptView.xaml.cs">
+      <DependentUpon>ViewFillTextScriptView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Exam\Controls\ViewFillTextToAudioView.xaml.cs">
+      <DependentUpon>ViewFillTextToAudioView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Exam\Models\AnswerModel.cs" />
+    <Compile Include="Exam\Models\GroupQuestionModel.cs" />
+    <Compile Include="Exam\Models\HomeworkResultModel.cs" />
+    <Compile Include="Exam\Models\NewQuestionDataTemplate.cs" />
+    <Compile Include="Exam\Models\QuestionCategoryModel.cs" />
+    <Compile Include="Exam\Models\QuestionModel.cs" />
+    <Compile Include="Exam\Models\ResultModel.cs" />
+    <Compile Include="Exam\Service\IExamService.cs" />
+    <Compile Include="Home\Models\AttendanceModel.cs" />
     <Compile Include="Home\Models\ClassModel.cs" />
+    <Compile Include="Home\Models\RouteDataTemplateSelector.cs" />
+    <Compile Include="Home\Models\RouteModel.cs" />
+    <Compile Include="Home\Params\ParamsAttendanceModel.cs" />
     <Compile Include="Home\Services\ICourseService.cs" />
     <Compile Include="Localization\IResourceManagerProvider.cs" />
+    <Compile Include="Message\Models\ConversationModel.cs" />
+    <Compile Include="Message\Models\MessageModel.cs" />
+    <Compile Include="Settings\IMessageService.cs" />
+    <Compile Include="ViewModels\AttendancePageViewModel.cs" />
     <Compile Include="ViewModels\ClassPageViewModel.cs" />
+    <Compile Include="ViewModels\HomeworkPageViewModel.cs" />
     <Compile Include="ViewModels\LoginPageViewModel.cs" />
     <Compile Include="Common\Base\AppContants.cs" />
     <Compile Include="Common\Base\ViewModelBase.cs" />
@@ -156,8 +212,17 @@
     <Compile Include="ViewModels\ReportPageViewModel.cs" />
     <Compile Include="ViewModels\RoutesPageViewModel.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel.cs" />
+    <Compile Include="Views\AttendancePage.xaml.cs">
+      <DependentUpon>AttendancePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ClassPage.xaml.cs">
       <DependentUpon>ClassPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExamPage.xaml.cs">
+      <DependentUpon>ExamPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HomeworkPage.xaml.cs">
+      <DependentUpon>HomeworkPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
@@ -184,11 +249,22 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\chat.png" />
+    <Content Include="Assets\ic_attendance.png" />
+    <Content Include="Assets\ic_cloud_green.png" />
+    <Content Include="Assets\ic_cloud_white.png" />
+    <Content Include="Assets\ic_feedback.png" />
     <Content Include="Assets\ic_home.png" />
+    <Content Include="Assets\ic_homework.png" />
     <Content Include="Assets\ic_list_notify.png" />
     <Content Include="Assets\ic_messenger.png" />
+    <Content Include="Assets\ic_notification.png" />
+    <Content Include="Assets\ic_play_solid.png" />
     <Content Include="Assets\ic_setting.png" />
+    <Content Include="Assets\image_line.png" />
     <Content Include="Assets\im_logo_splash.png" />
+    <Content Include="Assets\tick.png" />
+    <Content Include="Assets\tick_circle.png" />
     <Content Include="FodyWeavers.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
@@ -204,6 +280,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Common\Controls\AttendanceControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Common\Controls\CircleImageControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Common\Controls\CircleImageSemiControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Common\Controls\ItemRouteControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Common\Controls\RouteControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Common\Styles\Colors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -216,11 +312,43 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Exam\Controls\PlayButtonControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Exam\Controls\TitleQuestionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Exam\Controls\ViewFillTextScriptView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Exam\Controls\ViewFillTextToAudioView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SplashScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AttendancePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ClassPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ExamPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HomeworkPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -250,6 +378,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Acr.UserDialogs">
+      <Version>7.1.0.470</Version>
+    </PackageReference>
     <PackageReference Include="Fielder.Fody">
       <Version>1.2.4</Version>
     </PackageReference>
@@ -285,7 +416,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Authentication\ViewModels\" />
-    <Folder Include="Common\Controls\" />
+    <Folder Include="Message\Services\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

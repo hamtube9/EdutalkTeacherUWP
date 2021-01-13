@@ -3,14 +3,11 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
      xmlns:windows="using:Prism.Unity.Windows"
+   
     xmlns:style="using:EdutalkTeacherUWP.Common.Styles">
 
     <windows:PrismUnityApplication.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <style:Colors/>
-                <style:LabelStyles/>
-            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </windows:PrismUnityApplication.Resources>
 </windows:PrismUnityApplication>

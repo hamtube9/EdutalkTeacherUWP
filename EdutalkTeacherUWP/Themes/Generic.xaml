@@ -1,0 +1,22 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EdutalkTeacherUWP"
+    xmlns:local2="using:EdutalkTeacherUWP.Exam.Controls">
+
+   
+
+    <Style TargetType="local2:TitleQuestionView" xmlns:local2="using:EdutalkTeacherUWP.Exam.Controls">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local2:TitleQuestionView">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

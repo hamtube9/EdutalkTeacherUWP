@@ -6,78 +6,542 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:control="using:EdutalkTeacherUWP.Common.Controls"
     xmlns:prism="using:Prism.Windows.Mvvm"
+    xmlns:model="using:EdutalkTeacherUWP.Home.Models"
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+     xmlns:Core="using:Microsoft.Xaml.Interactions.Core" 
+    xmlns:convert="using:EdutalkTeacherUWP.Common.Converts" 
     prism:ViewModelLocator.AutoWireViewModel="True"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="#040927">
 
     <Page.Resources>
+        <ResourceDictionary>
 
-        <Style
+            <convert:BoolToVisibilityConverter x:Key="convertBack"/>
+            <Style
         x:Key="LabelBase"
         TargetType="TextBlock">
-            <Setter
+                <Setter
             Property="Foreground"
             Value="{StaticResource OnBackgroundColor}" />
-        </Style>
+            </Style>
 
-        <Color
+            <Style
+        x:Key="LabelBaseSmall"
+        TargetType="TextBlock">
+                <Setter Property="FontSize" Value="12"/>
+                <Setter
+            Property="Foreground"
+            Value="{StaticResource OnBackgroundColor}" />
+            </Style>
+
+            <Color
         x:Key="PrimaryColor">#455EA9</Color>
-        <Color
+            <Color
         x:Key="BackgroundColor">#040927</Color>
-        <Color
+            <Color
         x:Key="PopupBackgroundColor">#B3040927</Color>
-        <Color
+            <Color
         x:Key="OnBackgroundColor">#DEE5FF</Color>
-        <Color
+            <Color
         x:Key="SurfaceColor">#252E69</Color>
-        <Color
+            <Color
         x:Key="OnSurfaceColor">#DBDBDB</Color>
-        <Color
+            <Color
         x:Key="TestColor">#982D2D</Color>
-        <Color
+            <Color
         x:Key="OnTestColor">#FFEDED</Color>
-        <Color
+            <Color
         x:Key="PassColor">#1EA218</Color>
-        <Color
+            <Color
         x:Key="OnPassColor">#E4F2DF</Color>
-        <Color
+            <Color
         x:Key="FutureColor">#585B69</Color>
-        <Color
+            <Color
         x:Key="OnFutureColor">#C7C7C7</Color>
-        <Color
+            <Color
         x:Key="PresentColor">#31428D</Color>
-        <Color
+            <Color
         x:Key="OnPresentColor">#D1E3F2</Color>
-        <Color
+            <Color
         x:Key="RedColor">#C34742</Color>
-        <Color
+            <Color
         x:Key="GreenColor">#128D16</Color>
-        <Color
+            <Color
         x:Key="AbsentColor">#454545</Color>
-        <Color
+            <Color
         x:Key="HighLightColor">#364064</Color>
-        <Color
+            <Color
         x:Key="OnLightColor">#191E3E</Color>
-        <Color
+            <Color
         x:Key="OnBackgroundGreenColor">#DFF4C3</Color>
 
-    </Page.Resources>
+        </ResourceDictionary>
 
+
+    </Page.Resources>
+    <!--PaneBackground="{StaticResource BackgroundColor}"-->
 
     <SplitView IsPaneOpen="True"
-           DisplayMode="Inline" > 
+             PaneBackground="{StaticResource BackgroundColor}"
+           DisplayMode="Inline" 
+           OpenPaneLength="480">
         <SplitView.Pane>
-            <TextBlock Text="Pane"
-                   FontSize="24"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="148"/>
+                    <ColumnDefinition Width="342"/>
+                </Grid.ColumnDefinitions>
+                <Line
+            x:Name="line"
+            HorizontalAlignment="Center"
+            Stroke="White"
+            X1="0"
+            Y1="0"
+            X2="0"
+            Y2="2000"
+            StrokeLineJoin="Round"
+            StrokeDashArray="3,6"
+            StrokeDashOffset="2"
+            StrokeThickness="3" />
+                <ListView ItemsSource="{Binding Routes}" IsHitTestVisible="True"  Grid.ColumnSpan="2" x:Name="Routes" ContainerContentChanging="Routes_ContainerContentChanging" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid x:Name="dataRoute">
+                                <Grid Visibility="{Binding IsPass}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="104"/>
+                                        <ColumnDefinition Width="360"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="56"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Grid.RowSpan="2" Width="80" HorizontalAlignment="Right">
+                                        <Grid Height="50">
+                                            <Image Source="/Assets/ic_cloud_white.png"/>
+                                            <TextBlock  Text="{Binding  DateMonthStudy}" HorizontalAlignment="Center" Foreground="{StaticResource PassColor}" VerticalAlignment="Center"/>
+                                        </Grid>
+
+                                        <Border CornerRadius="4"  Margin="4" HorizontalAlignment="Center" MinWidth="64" MaxWidth="68">
+                                            <Grid Height="40">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="20"/>
+                                                    <RowDefinition Height="20"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid Background="{StaticResource PassColor}">
+                                                    <TextBlock Text="{Binding Room.Name}" Foreground="White" HorizontalAlignment="Center"/>
+                                                </Grid>
+
+                                                <Grid Grid.Row="1" Background="White">
+                                                    <TextBlock HorizontalAlignment="Center" FontSize="12" Text="{Binding DatetimeStudy}" />
+                                                </Grid>
+                                            </Grid>
+                                        </Border>
+                                    </StackPanel>
+
+                                    <Border Grid.Column="1" CornerRadius="8" Height="40" Margin="8,0" Background="{StaticResource PassColor}">
+                                        <TextBlock Text="{Binding Lesson}" Style="{StaticResource LabelBase}" Margin="16,0"  VerticalAlignment="Center"/>
+                                    </Border>
+
+                                    <Rectangle HorizontalAlignment="Center" VerticalAlignment="Top" StrokeDashArray="0.5 1.0 0.3" Stroke="White" StrokeThickness="2" RadiusX="10" RadiusY="10"/>
+
+                                    <Grid Grid.Row="1" Grid.Column="1">
+                                        <Border CornerRadius="12" Padding="0" Width="320">
+                                            <Grid>
+                                                <Rectangle StrokeDashArray="4 6"
+                                            Stroke="White"
+                                            StrokeThickness="2"
+                                            Width="320" >
+
+                                                </Rectangle>
+                                                <StackPanel Margin="16" Spacing="8">
+
+                                                    <Grid>
+                                                        <Border Height="48" CornerRadius="12" Background="{StaticResource OnPassColor}">
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="48"/>
+                                                                    <ColumnDefinition Width="280"/>
+                                                                </Grid.ColumnDefinitions>
+
+                                                                <Border Height="32" Width="32" CornerRadius="16" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                                    <Image Source="/Assets/ic_attendance.png" Height="32" Width="32"/>
+                                                                </Border>
+
+                                                                <TextBlock Text="Attendance" Grid.Column="1" VerticalAlignment="Center"/>
+                                                            </Grid>
+                                                        </Border>
+
+                                                        <Border CornerRadius="12" Padding="0">
+                                                            <Button Background="Transparent" Width="300" Height="48" Click="Button_Click_Attendace" />
+                                                        </Border>
+                                                        
+                                                    </Grid>
+
+                                                    <Grid>
+                                                        <Border Height="48" CornerRadius="12" Background="{StaticResource OnPassColor}">
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="48"/>
+                                                                    <ColumnDefinition Width="280"/>
+                                                                </Grid.ColumnDefinitions>
+
+                                                                <Border Height="32" Width="32" CornerRadius="16" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                                    <Image Source="/Assets/ic_feedback.png" Height="32" Width="32"/>
+                                                                </Border>
+
+                                                                <TextBlock Text="Feedback" Grid.Column="1" VerticalAlignment="Center"/>
+                                                            </Grid>
+                                                        </Border>
+                                                        <Border CornerRadius="12" Padding="0">
+                                                            <Button Background="Transparent" Width="300" Height="48" Click="Button_Click_Feedback" />
+                                                        </Border>
+                                                    </Grid>
+
+                                                    <Grid>
+                                                        <Border Height="48" CornerRadius="12" Background="{StaticResource OnPassColor}">
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="48"/>
+                                                                    <ColumnDefinition Width="280"/>
+                                                                </Grid.ColumnDefinitions>
+
+                                                                <Border Height="32" Width="32" CornerRadius="16" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                                    <Image Source="/Assets/ic_homework.png" Height="32" Width="32"/>
+                                                                </Border>
+
+                                                                <TextBlock Text="Homework" Grid.Column="1" VerticalAlignment="Center"/>
+                                                            </Grid>
+                                                        </Border>
+
+                                                        <Border CornerRadius="12" Padding="0" >
+                                                            <Button Background="Transparent" Width="300" Height="48"  Click="Button_Click_Homework"/>
+                                                        </Border>
+                                                    </Grid>
+
+                                                    <Grid>
+                                                        <Border Height="48" CornerRadius="12" Background="{StaticResource OnPassColor}">
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="48"/>
+                                                                    <ColumnDefinition Width="280"/>
+                                                                </Grid.ColumnDefinitions>
+
+                                                                <Border Height="32" Width="32" CornerRadius="16" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                                    <Image Source="/Assets/ic_attendance.png" Height="32" Width="32"/>
+                                                                </Border>
+
+                                                                <TextBlock Text="Attendance" Grid.Column="1" VerticalAlignment="Center"/>
+                                                            </Grid>
+                                                        </Border>
+                                                        <Border CornerRadius="12" Padding="0">
+                                                            <Button Background="Transparent" Width="300" Height="48"  Command="{Binding Path=DataContext.AttendanceCommand,ElementName=Routes}" CommandParameter="{Binding Attendance}"/>
+                                                        </Border>
+                                                    </Grid>
+                                                </StackPanel>
+
+
+                                            </Grid>
+                                        </Border>
+
+
+                                    </Grid>
+                                </Grid>
+                                <Grid Visibility="{Binding IsPresent}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="104"/>
+                                        <ColumnDefinition Width="360"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="56"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Grid.RowSpan="2" Width="80" HorizontalAlignment="Right">
+                                        <Grid Height="50">
+                                            <Image Source="/Assets/ic_cloud_white.png"/>
+                                            <TextBlock  Text="{Binding DateMonthStudy}" HorizontalAlignment="Center" Foreground="{StaticResource PresentColor}" VerticalAlignment="Center"/>
+                                        </Grid>
+
+                                        <Border CornerRadius="4"  Margin="4" HorizontalAlignment="Center" MinWidth="64" MaxWidth="68">
+                                            <Grid Height="40">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="20"/>
+                                                    <RowDefinition Height="20"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid Background="{StaticResource PresentColor}">
+                                                    <TextBlock Text="{Binding Room.Name}" Foreground="White" HorizontalAlignment="Center"/>
+                                                </Grid>
+
+                                                <Grid Grid.Row="1" Background="White">
+                                                    <TextBlock HorizontalAlignment="Center" FontSize="12" Text="{Binding DatetimeStudy}" />
+                                                </Grid>
+                                            </Grid>
+                                        </Border>
+                                    </StackPanel>
+
+                                    <Border Grid.Column="1" CornerRadius="8" Height="40" Margin="8,0" Background="{StaticResource PresentColor}">
+                                        <TextBlock Text="{Binding Lesson}" Style="{StaticResource LabelBase}" Margin="16,0"  VerticalAlignment="Center"/>
+                                    </Border>
+
+                                    <Grid Grid.Row="1" Grid.Column="1">
+                                        <Rectangle HorizontalAlignment="Center" VerticalAlignment="Top" StrokeDashArray="0.5 1.0 0.3" Stroke="White" StrokeThickness="2" RadiusX="10" RadiusY="10"/>
+
+                                        <Border CornerRadius="12" Padding="0" Width="320">
+                                            <Grid>
+                                                <Rectangle StrokeDashArray="4 6"
+                                            Stroke="White"
+                                            StrokeThickness="2"
+                                            Width="320" >
+
+                                                </Rectangle>
+                                                <StackPanel Margin="16" Spacing="8">
+
+                                                    <Grid>
+                                                        <Border Height="48" CornerRadius="12" Background="{StaticResource OnPresentColor}">
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="48"/>
+                                                                    <ColumnDefinition Width="280"/>
+                                                                </Grid.ColumnDefinitions>
+
+                                                                <Border Height="32" Width="32" CornerRadius="16" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                                    <Image Source="/Assets/ic_attendance.png" Height="32" Width="32"/>
+                                                                </Border>
+
+                                                                <TextBlock Text="Attendance" Grid.Column="1" VerticalAlignment="Center"/>
+                                                            </Grid>
+                                                        </Border>
+                                                        <Button Background="Transparent" Width="300" Height="48"  Click="Button_Click_Attendace"/>
+                                                    </Grid>
+
+                                                    <Grid>
+                                                        <Border Height="48" CornerRadius="12" Background="{StaticResource OnPresentColor}">
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="48"/>
+                                                                    <ColumnDefinition Width="280"/>
+                                                                </Grid.ColumnDefinitions>
+
+                                                                <Border Height="32" Width="32" CornerRadius="16" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                                    <Image Source="/Assets/ic_feedback.png" Height="32" Width="32"/>
+                                                                </Border>
+
+                                                                <TextBlock Text="Feedback" Grid.Column="1" VerticalAlignment="Center"/>
+                                                            </Grid>
+                                                        </Border>
+
+                                                        <Border CornerRadius="12" Padding="0">
+                                                            <Button Background="Transparent" Width="300" Height="48"  Click="Button_Click_Feedback"/>
+                                                        </Border>
+                                                    </Grid>
+
+                                                    <Grid>
+                                                        <Border Height="48" CornerRadius="12" Background="{StaticResource OnPresentColor}">
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="48"/>
+                                                                    <ColumnDefinition Width="280"/>
+                                                                </Grid.ColumnDefinitions>
+
+                                                                <Border Height="32" Width="32" CornerRadius="16" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                                    <Image Source="/Assets/ic_homework.png" Height="32" Width="32"/>
+                                                                </Border>
+
+                                                                <TextBlock Text="Homework" Grid.Column="1" VerticalAlignment="Center"/>
+                                                            </Grid>
+                                                        </Border>
+
+                                                        <Border CornerRadius="12" Padding="0">
+                                                            <Button Background="Transparent" Width="300" Height="48" Click="Button_Click_Homework"/>
+                                                        </Border>
+                                                    </Grid>
+
+                                                    <Grid>
+                                                        <Border Height="48" CornerRadius="12" Background="{StaticResource OnPresentColor}">
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="48"/>
+                                                                    <ColumnDefinition Width="280"/>
+                                                                </Grid.ColumnDefinitions>
+
+                                                                <Border Height="32" Width="32" CornerRadius="16" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                                    <Image Source="/Assets/ic_attendance.png" Height="32" Width="32"/>
+                                                                </Border>
+
+                                                                <TextBlock Text="Attendance" Grid.Column="1" VerticalAlignment="Center"/>
+                                                            </Grid>
+                                                        </Border>
+
+                                                        <Border CornerRadius="12" Padding="0">
+                                                            <Button Background="Transparent" Width="300" Height="48"  Command="{Binding Path=DataContext.AttendanceCommand,ElementName=Routes}" 
+                                                                    CommandParameter="{Binding Attendance}"/>
+                                                        </Border>
+                                                    </Grid>
+
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>
+                                    </Grid>
+                                </Grid>
+                                <Grid Visibility="{Binding IsFuture}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="104"/>
+                                        <ColumnDefinition Width="360"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="56"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Grid.RowSpan="2" Width="80" HorizontalAlignment="Right">
+                                        <Grid Height="50">
+                                            <Image Source="/Assets/ic_cloud_white.png"/>
+                                            <TextBlock  Text="{Binding DateMonthStudy}" HorizontalAlignment="Center" Foreground="{StaticResource FutureColor}" VerticalAlignment="Center"/>
+                                        </Grid>
+
+                                        <Border CornerRadius="4"  Margin="4" HorizontalAlignment="Center" MinWidth="64" MaxWidth="68">
+                                            <Grid Height="40">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="20"/>
+                                                    <RowDefinition Height="20"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid Background="{StaticResource FutureColor}">
+                                                    <TextBlock Text="{Binding Room.Name}" Foreground="White" HorizontalAlignment="Center"/>
+                                                </Grid>
+
+                                                <Grid Grid.Row="1" Background="White">
+                                                    <TextBlock HorizontalAlignment="Center" FontSize="12" Text="{Binding DatetimeStudy}" />
+                                                </Grid>
+                                            </Grid>
+                                        </Border>
+                                    </StackPanel>
+
+                                    <Border Grid.Column="1" CornerRadius="8" Height="40" Margin="8,0" Background="{StaticResource FutureColor}">
+                                        <TextBlock Text="{Binding Lesson}" Style="{StaticResource LabelBase}" Margin="16,0"  VerticalAlignment="Center"/>
+                                    </Border>
+
+                                    <Grid Grid.Row="1" Grid.Column="1">
+                                        <Rectangle HorizontalAlignment="Center" VerticalAlignment="Top" StrokeDashArray="0.5 1.0 0.3" Stroke="White" StrokeThickness="2" RadiusX="10" RadiusY="10"/>
+
+                                        <Border CornerRadius="12" Padding="0" Width="320">
+                                            <Grid>
+                                                <Rectangle StrokeDashArray="4 6"
+                                            Stroke="White"
+                                            StrokeThickness="2"
+                                            Width="320" >
+
+                                                </Rectangle>
+                                                <StackPanel Margin="16" Spacing="8">
+
+                                                    <Grid>
+                                                        <Border Height="48" CornerRadius="12" Background="{StaticResource OnFutureColor}">
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="48"/>
+                                                                    <ColumnDefinition Width="280"/>
+                                                                </Grid.ColumnDefinitions>
+
+                                                                <Border Height="32" Width="32" CornerRadius="16" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                                    <Image Source="/Assets/ic_attendance.png" Height="32" Width="32"/>
+                                                                </Border>
+
+                                                                <TextBlock Text="Attendance" Grid.Column="1" VerticalAlignment="Center"/>
+                                                            </Grid>
+                                                        </Border>
+
+                                                      
+                                                    </Grid>
+
+                                                    <Border Height="48" CornerRadius="12" Background="{StaticResource OnFutureColor}">
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="48"/>
+                                                                <ColumnDefinition Width="280"/>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <Border Height="32" Width="32" CornerRadius="16" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                                <Image Source="/Assets/ic_feedback.png" Height="32" Width="32"/>
+                                                            </Border>
+
+                                                            <TextBlock Text="Feedback" Grid.Column="1" VerticalAlignment="Center"/>
+                                                        </Grid>
+                                                    </Border>
+
+                                                    <Border Height="48" CornerRadius="12" Background="{StaticResource OnFutureColor}">
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="48"/>
+                                                                <ColumnDefinition Width="280"/>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <Border Height="32" Width="32" CornerRadius="16" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                                <Image Source="/Assets/ic_homework.png" Height="32" Width="32"/>
+                                                            </Border>
+
+                                                            <TextBlock Text="Homework" Grid.Column="1" VerticalAlignment="Center"/>
+                                                        </Grid>
+                                                    </Border>
+
+                                                    <Border Height="48" CornerRadius="12" Background="{StaticResource OnFutureColor}">
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="48"/>
+                                                                <ColumnDefinition Width="280"/>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <Border Height="32" Width="32" CornerRadius="16" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                                <Image Source="/Assets/ic_attendance.png" Height="32" Width="32"/>
+                                                            </Border>
+
+                                                            <TextBlock Text="Attendance" Grid.Column="1" VerticalAlignment="Center"/>
+                                                        </Grid>
+                                                    </Border>
+
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+            
         </SplitView.Pane>
 
-        <Grid>
-            <TextBlock Text="Content"
-                   FontSize="24"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center"/>
-        </Grid>
+        <SplitView.Content>
+            <Frame x:Name="SplitViewFrame">
+                <Frame.ContentTransitions>
+                    <TransitionCollection>
+                        <NavigationThemeTransition>
+                            <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                                <EntranceNavigationTransitionInfo />
+                            </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                        </NavigationThemeTransition>
+                    </TransitionCollection>
+                </Frame.ContentTransitions>
+            </Frame>
+            
+            
+            <!--<Grid Width="800">
+                <Line
+            HorizontalAlignment="Left"
+            Stroke="Black"
+            X1="0"
+            Y1="0"
+            X2="0"
+            Y2="2000"
+            StrokeLineJoin="Round"
+            StrokeDashOffset="2"
+            StrokeThickness="3" />
+                
+            </Grid>-->
+           
+        </SplitView.Content>
     </SplitView>
 </Page>

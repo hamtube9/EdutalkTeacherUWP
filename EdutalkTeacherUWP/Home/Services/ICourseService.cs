@@ -1,7 +1,9 @@
 ﻿using EdutalkTeacherUWP.Api.Authorization;
 using EdutalkTeacherUWP.Api.Base;
+using EdutalkTeacherUWP.Api.Dtos.ClassDtos;
 using EdutalkTeacherUWP.Api.Extensions;
 using EdutalkTeacherUWP.Api.Utils;
+using EdutalkTeacherUWP.Authentication.Models;
 using EdutalkTeacherUWP.Common.Extensions;
 using EdutalkTeacherUWP.Home.Models;
 using EdutalkTeacherUWP.Settings.Service;
@@ -20,18 +22,20 @@ namespace EdutalkTeacherUWP.Home.Services
         //Task<HomeworkResultModel[]> GetMarksAsync(int lesson, long classroomId);
         //Task<HomeworkResultModel[]> GetHomeworksAsync(int lesson, long classroomId);
         //Task<CommentModel[]> GetFeedbacksAsync(int lesson, long classroomId);
-        //Task<AttendanceModel[]> GetAttendancesAsync(int lesson, long classroomId);
+        Task<AttendanceModel[]> GetAttendancesAsync(int lesson, long classroomId);
+        Task<AttendanceModel[]> GetAttendancesAsync(long tutoringId);
         //Task<UserModel[]> GetStudentsAsync(long classroomId);
         Task<ClassModel[]> GetAllClassesAsync();
-        //Task<bool> AttendanceAsync(AttendanceModel[] attendance, int lesson, long classroomId, long? tutorId);
+        Task<bool> AttendanceAsync(AttendanceModel[] attendance, int lesson, long classroomId, long? tutorId);
+        Task<bool> AttendanceTutoringAsync(AttendanceModel[] attendance, long tutoringId, long classroomId, long? tutorId);
         //Task<bool> FeedbackAsync(CommentModel[] comments, int lesson, long classroomId);
-        //Task<ScheduleModel> GetRoutesAsync(long classroomId);
+        Task<ScheduleModel> GetRoutesAsync(long classroomId);
         //Task<ScheduleModel> GetRoutesAsync(long classroomId, long tutorId);
         //Task<bool> OffClassAsync(int lesson, long classroomId);
         //Task<LessonModel> GetLessonAsync(int lesson, long classroomId);
 
         //Task<bool> SetingZoomAsync(long idclas, string zoomid, string zoompassword);
-        //Task<UserModel[]> GetAllTutorAsync(long classId);
+        Task<UserModel[]> GetAllTutorAsync(long classId);
     }
 
     public class CourseService :  ICourseService
@@ -53,30 +57,30 @@ namespace EdutalkTeacherUWP.Home.Services
 
         }
 
-        //public async Task<bool> AttendanceAsync(AttendanceModel[] students, int lesson, long classroomId, long? tutorId)
-        //{
-        //    try
-        //    {
-        //        var result = await Api.SubmitAttendance(new SubmitAttendanceRequestDto
-        //        {
-        //            TrogiangId = tutorId,
-        //            Lesson = lesson,
-        //            ClassroomId = classroomId,
-        //            Attendances = students.Select(d => new AttendanceRequestDto
-        //            {
-        //                CourseStudentId = d.User.Id,
-        //                Value = d.Status.ToString()
-        //            }).ToArray()
-        //        });
+        public async Task<bool> AttendanceAsync(AttendanceModel[] students, int lesson, long classroomId, long? tutorId)
+        {
+            try
+            {
+                var result = await Api.SubmitAttendance(new SubmitAttendanceRequestDto
+                {
+                    TrogiangId = tutorId,
+                    Lesson = lesson,
+                    ClassroomId = classroomId,
+                    Attendances = students.Select(d => new AttendanceRequestDto
+                    {
+                        CourseStudentId = d.User.Id,
+                        Value = d.Status.ToString()
+                    }).ToArray()
+                });
 
-        //        return result.ToResult();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        logService.Log(e, new Dictionary<string, string>() { { $"Attendance student error . classroom id {classroomId}, lesson {lesson}, tutor id :{tutorId}", e.Message } });
-        //    }
-        //    return false;
-        //}
+                return result.ToResult();
+            }
+            catch (Exception e)
+            {
+                //logService.Log(e, new Dictionary<string, string>() { { $"Attendance student error . classroom id {classroomId}, lesson {lesson}, tutor id :{tutorId}", e.Message } });
+            }
+            return false;
+        }
 
         //public async Task<bool> SetingZoomAsync(long idclass, string zoomid, string zoompassword)
         //{
@@ -142,23 +146,63 @@ namespace EdutalkTeacherUWP.Home.Services
             return new ClassModel[0];
         }
 
-        //public async Task<AttendanceModel[]> GetAttendancesAsync(int lesson, long classroomId)
-        //{
-        //    try
-        //    {
-        //        var result = await Api.GetAttendance(classroomId, lesson);
-        //        if (result?.Data?.Length > 0)
-        //        {
-        //            return result.Data.Select(d => d.ToAttendanceModel()).ToArray();
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        logService.Log(e, new Dictionary<string, string>() { { $"Get attendance error . classroom id {classroomId}, lesson {lesson}", e.Message } });
-        //    }
-        //    return new AttendanceModel[0];
-        //}
+        public async Task<AttendanceModel[]> GetAttendancesAsync(int lesson, long classroomId)
+        {
+            try
+            {
+                var result = await Api.GetAttendance(classroomId, lesson);
+                if (result?.Data?.Length > 0)
+                {
+                    return result.Data.Select(d => d.ToAttendanceModel()).ToArray();
+                }
+            }
+            catch (Exception e)
+            {
+            }
+            return new AttendanceModel[0];
+        }
 
+        public async Task<AttendanceModel[]> GetAttendancesAsync(long tutoringId)
+        {
+            try
+            {
+                var result = await Api.GetTutoring(tutoringId);
+                if (result?.Data?.Length > 0)
+                {
+                    return result.Data.Select(d => d.ToAttendanceModel()).ToArray();
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+            return new AttendanceModel[0];
+        }
+
+        public async Task<bool> AttendanceTutoringAsync(AttendanceModel[] attendance, long tutoringId, long classroomId, long? tutorId)
+        {
+            try
+            {
+                var result = await Api.SubmitAttendanceTutoring(new SubmitAttendanceTutoringRequestDto
+                {
+                    Id = tutoringId,
+                    Attendances = attendance.Select(d => new AttendanceRequestDto
+                    {
+                        CourseStudentId = d.User.Id,
+                        Value = d.Status.ToString()
+
+                    }).ToArray(),
+                    TrogiangId = tutorId
+                });
+
+                return result.ToResult();
+            }
+            catch (Exception e)
+            {
+                //logService.Log(e, new Dictionary<string, string>() { { $"Tutor attendance error. classroom id {classroomId},tutor id :{tutoringId} ", e.Message } });
+            }
+            return false;
+        }
 
         //public async Task<CommentModel[]> GetFeedbacksAsync(int lesson, long classroomId)
         //{
@@ -240,42 +284,43 @@ namespace EdutalkTeacherUWP.Home.Services
         //    return null;
         //}
 
-        //public async Task<ScheduleModel> GetRoutesAsync(long classroomId)
-        //{
-        //    try
-        //    {
-        //        var result = await Api.GetSchedule(classroomId);
-        //        if (result?.Data?.ListDate?.Length > 0)
-        //        {
-        //            var routes = result.Data.ListDate.Where(d => !d.OffClass.HasValue || d.OffClass.Value == false).Select(d => d.ToModel(result.Data.Room, result.Data.Id)).OrderBy(d => d.Date).ToArray();
-        //            var lessons = routes.Where(d => d.RouteType == RouteType.Lesson).ToArray();
-        //            for (int i = 0; i < lessons.Length - 1; i++)
-        //            {
-        //                var first = lessons[i];
-        //                var next = lessons[i + 1];
-        //                first.Next = next.Date;
-        //            }
+        public async Task<ScheduleModel> GetRoutesAsync(long classroomId)
+        {
+            try
+            {
+                var result = await Api.GetSchedule(classroomId);
+                if (result?.Data?.ListDate?.Length > 0)
+                {
+                    var spaceDay = result.Data.ListDate.Length >1 ? (result.Data.ListDate[1].DateTime - result.Data.ListDate[0].DateTime).Days : 0;
+                    var routes = result.Data.ListDate.Where(d => !d.OffClass.HasValue || d.OffClass.Value == false).Select(d => d.ToModel(result.Data.Room, result.Data.Id, spaceDay)).OrderBy(d => d.Date).ToArray();
+                    var lessons = routes.Where(d => d.RouteType == RouteType.Lesson).ToArray();
+                    for (int i = 0; i < lessons.Length - 1; i++)
+                    {
+                        var first = lessons[i];
+                        var next = lessons[i + 1];
+                        first.Next = next.Date;
+                    }
 
 
-        //            return new ScheduleModel()
-        //            {
-        //                ZoomId = result?.Data.ZoomId,
-        //                ZoomPassword = result?.Data.ZoomPassword,
-        //                Mode = result?.Data?.FormStudy?.ToLower() == "online" ? OnlineMode.Online : OnlineMode.Offline,
-        //                Routes = routes
-        //            };
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        logService.Log(e, new Dictionary<string, string>() { { $"Get routes error . classroom id {classroomId}", e.Message } });
+                    return new ScheduleModel()
+                    {
+                        ZoomId = result?.Data.ZoomId,
+                        ZoomPassword = result?.Data.ZoomPassword,
+                        Mode = result?.Data?.FormStudy?.ToLower() == "online" ? OnlineMode.Online : OnlineMode.Offline,
+                        Routes = routes
+                    };
+                }
+            }
+            catch (Exception e)
+            {
+                //logService.Log(e, new Dictionary<string, string>() { { $"Get routes error . classroom id {classroomId}", e.Message } });
 
-        //    }
-        //    return new ScheduleModel
-        //    {
-        //        Routes = new RouteModel[0]
-        //    };
-        //}
+            }
+            return new ScheduleModel
+            {
+                Routes = new RouteModel[0]
+            };
+        }
 
         //public async Task<UserModel[]> GetStudentsAsync(long classroomId)
         //{
@@ -314,23 +359,23 @@ namespace EdutalkTeacherUWP.Home.Services
         //    return false;
         //}
 
-        //public async Task<UserModel[]> GetAllTutorAsync(long classId)
-        //{
-        //    try
-        //    {
-        //        var result = await Api.GetAllTutor(classId);
-        //        if (result?.Data?.Length > 0)
-        //        {
-        //            return result.Data.Select(d => d.ToModel()).ToArray();
-        //        }
+        public async Task<UserModel[]> GetAllTutorAsync(long classId)
+        {
+            try
+            {
+                var result = await Api.GetAllTutor(classId);
+                if (result?.Data?.Length > 0)
+                {
+                    return result.Data.Select(d => d.ToModel()).ToArray();
+                }
 
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        logService.Log(e, new Dictionary<string, string>() { { $"Get all Tutoring class error . class id :{classId}", e.Message } });
-        //    }
-        //    return new UserModel[0];
-        //}
+            }
+            catch (Exception e)
+            {
+                //logService.Log(e, new Dictionary<string, string>() { { $"Get all Tutoring class error . class id :{classId}", e.Message } });
+            }
+            return new UserModel[0];
+        }
 
         //public async Task<ScheduleModel> GetRoutesAsync(long classroomId, long tutorId)
         //{

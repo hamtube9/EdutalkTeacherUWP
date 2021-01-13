@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EdutalkTeacherUWP.Message.Models;
+using EdutalkTeacherUWP.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +24,33 @@ namespace EdutalkTeacherUWP.Views
     /// </summary>
     public sealed partial class MessengerPage : Page
     {
+        MessengerPageViewModel binding;
         public MessengerPage()
         {
             this.InitializeComponent();
+            binding = (MessengerPageViewModel)DataContext; if (binding == null)
+            {
+                return;
+            }
+        }
+
+        private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+       
+        }
+
+        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (binding == null)
+            {
+
+                return;
+            }
+            var check = binding.SelectedConversationCommand.CanExecute((ConversationModel)e.ClickedItem);
+            if (check)
+            {
+                binding.SelectedConversationCommand.Execute((ConversationModel)e.ClickedItem);
+            }
         }
     }
 }

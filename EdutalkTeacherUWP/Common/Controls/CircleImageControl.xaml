@@ -1,0 +1,18 @@
+﻿<UserControl
+    x:Class="EdutalkTeacherUWP.Common.Controls.CircleImageControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EdutalkTeacherUWP.Common.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Name="cic"
+    d:DesignHeight="40"
+    d:DesignWidth="40">
+
+    <Ellipse Height="40" Width="40" HorizontalAlignment="Right" Margin="16,0">
+        <Ellipse.Fill>
+            <ImageBrush  ImageSource="{x:Bind Image}"/>
+        </Ellipse.Fill>
+    </Ellipse>
+</UserControl>

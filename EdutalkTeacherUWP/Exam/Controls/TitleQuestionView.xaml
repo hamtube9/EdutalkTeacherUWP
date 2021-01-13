@@ -1,0 +1,87 @@
+﻿<UserControl
+    x:Class="EdutalkTeacherUWP.Exam.Controls.TitleQuestionView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EdutalkTeacherUWP.Exam.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style
+        x:Key="LabelBase"
+        TargetType="TextBlock">
+                <Setter
+            Property="Foreground"
+            Value="{StaticResource OnBackgroundColor}" />
+            </Style>
+
+            <Style
+        x:Key="LabelBaseSmall"
+        TargetType="TextBlock">
+                <Setter Property="FontSize" Value="12"/>
+                <Setter
+            Property="Foreground"
+            Value="{StaticResource OnBackgroundColor}" />
+            </Style>
+
+            <Color
+        x:Key="PrimaryColor">#455EA9</Color>
+            <Color
+        x:Key="BackgroundColor">#040927</Color>
+            <Color
+        x:Key="PopupBackgroundColor">#B3040927</Color>
+            <Color
+        x:Key="OnBackgroundColor">#DEE5FF</Color>
+            <Color
+        x:Key="SurfaceColor">#252E69</Color>
+            <Color
+        x:Key="OnSurfaceColor">#DBDBDB</Color>
+            <Color
+        x:Key="TestColor">#982D2D</Color>
+            <Color
+        x:Key="OnTestColor">#FFEDED</Color>
+            <Color
+        x:Key="PassColor">#1EA218</Color>
+            <Color
+        x:Key="OnPassColor">#E4F2DF</Color>
+            <Color
+        x:Key="FutureColor">#585B69</Color>
+            <Color
+        x:Key="OnFutureColor">#C7C7C7</Color>
+            <Color
+        x:Key="PresentColor">#31428D</Color>
+            <Color
+        x:Key="OnPresentColor">#D1E3F2</Color>
+            <Color
+        x:Key="RedColor">#C34742</Color>
+            <Color
+        x:Key="GreenColor">#128D16</Color>
+            <Color
+        x:Key="AbsentColor">#454545</Color>
+            <Color
+        x:Key="HighLightColor">#364064</Color>
+            <Color
+        x:Key="OnLightColor">#191E3E</Color>
+            <Color
+        x:Key="OnBackgroundGreenColor">#DFF4C3</Color>
+
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Border
+        Margin="8,0,8,4"
+        VerticalAlignment="Center"
+        CornerRadius="8"
+        Padding="16,4">
+        <StackPanel
+            Spacing="0">
+            <TextBlock
+                Style="{StaticResource LabelBase}"
+                Text="{Binding Category.Title}" />
+            <TextBlock
+                Style="{StaticResource LabelBase}"
+                Text="{Binding Category.Description}" />
+        </StackPanel>
+    </Border>
+</UserControl>

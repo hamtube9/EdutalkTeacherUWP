@@ -8,6 +8,7 @@
     mc:Ignorable="d"
     xmlns:interact="using:Microsoft.Xaml.Interactivity"
     xmlns:interactcore="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:control="using:EdutalkTeacherUWP.Common.Controls"
     xmlns:prismMvvm="using:Prism.Windows.Mvvm"
     prismMvvm:ViewModelLocator.AutoWireViewModel="True" >
     <Page.Resources>
@@ -20,6 +21,18 @@
             Value="{StaticResource OnBackgroundColor}" />
         </Style>
 
+        <Style
+        x:Key="LabelLargeBold"
+        TargetType="TextBlock"
+        BasedOn="{StaticResource LabelBase}">
+            <Setter
+            Property="FontWeight"
+            Value="SemiBold" />
+            <Setter
+            Property="FontSize"
+            Value="18" />
+        </Style>
+        
         <Color
         x:Key="PrimaryColor">#455EA9</Color>
         <Color
@@ -43,6 +56,8 @@
         <Color
         x:Key="FutureColor">#585B69</Color>
         <Color
+        x:Key="OnDarkColor">#000000</Color>
+        <Color
         x:Key="OnFutureColor">#C7C7C7</Color>
         <Color
         x:Key="PresentColor">#31428D</Color>
@@ -65,16 +80,21 @@
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="48"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid>
-            
+        <Grid Grid.Row="1">
+            <StackPanel Orientation="Horizontal" >
+                <TextBlock Text="Hello!" Style="{StaticResource LabelBase}" VerticalAlignment="Center" Padding="4"/>
+                <TextBlock Text="{Binding User.FullName}" Style="{StaticResource LabelLargeBold}" VerticalAlignment="Center"/>
+            </StackPanel>
+            <control:CircleImageControl Image="{Binding User.Image}"   HorizontalAlignment="Right" Margin="16,0"/>
         </Grid>
         
         <ScrollViewer  HorizontalScrollBarVisibility="Disabled" 
-                       Grid.Row="1"
+                       Grid.Row="2"
                    Height="800"
                    VerticalScrollMode="Enabled"
                   VerticalScrollBarVisibility="Auto">
@@ -95,34 +115,56 @@
                 </GridView.ItemsPanel>
                 <GridView.ItemTemplate>
                     <DataTemplate >
-                        <Border CornerRadius="12" Margin="48,8"  BorderBrush="{StaticResource SurfaceColor}" BorderThickness="1">
-                            <Grid  Background="{StaticResource SurfaceColor}" >
-                                <StackPanel Spacing="0" Grid.Row="1">
-                                    <Image
-                                Stretch="Fill"
-                                MaxWidth="240" MaxHeight="180"
-                                     Source="{Binding Image}">
-                                    </Image>
-                                    <TextBlock
-                                Margin="8,0"
-                                Style="{StaticResource LabelBase}"
-                                Text="{Binding Name}">
-                                    </TextBlock>
-                                    <TextBlock
+                        <Grid ColumnSpacing="0" RowSpacing="0" Margin="24,8">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="24"/>
+                                <RowDefinition Height="12"/>
+                                <RowDefinition Height="12"/>
+                                <RowDefinition Height="144"/>
+                            </Grid.RowDefinitions>
+                           
+                            <Border CornerRadius="12" Grid.Row="1" Grid.RowSpan="3" BorderBrush="{StaticResource SurfaceColor}" BorderThickness="1">
+                                <Grid  Background="{StaticResource SurfaceColor}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="8"/>
+                                        <RowDefinition Height="40"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <StackPanel Spacing="0" Grid.Row="1">
+                                        <TextBlock
                                 Style="{StaticResource LabelBase}"
                                    Margin="8,0"
                                     VerticalAlignment="Top"
                                             Text="{Binding CourseName}" />
-                                    <TextBlock
+                                        <TextBlock
                                 Style="{StaticResource LabelBase}"
                                 Margin="8,0,8,8"
                                 VerticalAlignment="Top"
                                             Text="{Binding Time}" />
-                                </StackPanel>
+                                    </StackPanel>
 
-                            </Grid>
-                        </Border>
+                                    <Image
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                Stretch="Fill"
+                                        Grid.Row="2"
+                                MaxWidth="240" MaxHeight="180"
+                                     Source="{Binding Image}">
+                                    </Image>
+                                </Grid>
+                            </Border>
 
+                            <Border Width="80" Margin="16,0" CornerRadius="12" HorizontalAlignment="Right" Background="{StaticResource OnDarkColor}" Grid.RowSpan="2">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    Padding="8"
+                                Style="{StaticResource LabelBase}"
+                                Text="{Binding Room}">
+                                </TextBlock>
+                            </Border>
+                            
+                        </Grid>
+                        
                     </DataTemplate>
                 </GridView.ItemTemplate>
             </GridView>

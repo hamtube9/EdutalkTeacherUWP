@@ -27,16 +27,6 @@ namespace EdutalkTeacherUWP.ViewModels
         IApplicationSettings settings;
         ICourseService service;
 
-        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
-        {
-            base.OnNavigatedTo(e, viewModelState);
-            Name = (string)e.Parameter;
-            if (viewModelState.Count > 0)
-            {
-                Toast("alo");
-            }
-
-        }
         public ClassPageViewModel(INavigationService navigationService)
         {
             this.navigationService = navigationService;

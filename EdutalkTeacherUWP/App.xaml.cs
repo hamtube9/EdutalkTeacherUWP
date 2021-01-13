@@ -1,25 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using Prism.Unity.Windows;
+using Prism.Windows.AppModel;
 using System.Threading.Tasks;
-using EdutalkTeacherUWP.Localization;
-using System.Resources;
 using EdutalkTeacherUWP.Api.Authorization;
 using EdutalkTeacherUWP.Api.Extensions;
+using Windows.UI.ViewManagement;
+using EdutalkTeacherUWP.Authentication.Service;
+using Acr.UserDialogs;
+using System.Windows;
 
 namespace EdutalkTeacherUWP
 {
@@ -29,11 +18,20 @@ namespace EdutalkTeacherUWP
         {
             this.InitializeComponent();
             ExtendedSplashScreenFactory = (splashscreen) => new SplashScreen(splashscreen);
+            ApplicationView.PreferredLaunchViewSize = new Windows.Foundation.Size(1280, 960);
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+          
         }
 
         private Task LoadAppResources()
         {
             return Task.Delay(1000);
+        }
+
+        protected override Task OnInitializeAsync(IActivatedEventArgs args)
+        {
+            return base.OnInitializeAsync(args);
+
         }
 
         protected override void ConfigureViewModelLocator()
@@ -53,9 +51,17 @@ namespace EdutalkTeacherUWP
             if (!string.IsNullOrEmpty(token))
             {
                 var check = NavigationService.Navigate("Main", null);
+                ApplicationViewTitleBar titlebar = ApplicationView.GetForCurrentView().TitleBar;
+
+                titlebar.ButtonBackgroundColor = Windows.UI.Color.FromArgb(255, 126, 188, 66);
+                titlebar.ButtonForegroundColor = Windows.UI.Colors.White;
                 return;
             }
             NavigationService.Navigate("Login", null);
+            ApplicationViewTitleBar titlebar2 = ApplicationView.GetForCurrentView().TitleBar;
+
+            titlebar2.ButtonBackgroundColor = Windows.UI.Color.FromArgb(255, 126, 188, 66);
+            titlebar2.ButtonForegroundColor = Windows.UI.Colors.White;
         }
 
 

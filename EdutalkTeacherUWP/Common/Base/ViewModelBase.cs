@@ -45,12 +45,19 @@ namespace EdutalkTeacherUWP.Common.Base
     {
         private SimpleEventHandler handler;
         private bool isEnable = true;
+        private ICommand selectedConversation;
+
         public event EventHandler CanExecuteChanged;
         public delegate void SimpleEventHandler();
 
         public DelegateCommand(SimpleEventHandler handler)
         {
             this.handler = handler;
+        }
+
+        public DelegateCommand(ICommand selectedConversation)
+        {
+            this.selectedConversation = selectedConversation;
         }
 
         public bool IsEnable
