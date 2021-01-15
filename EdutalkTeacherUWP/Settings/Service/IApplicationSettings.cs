@@ -11,7 +11,8 @@ namespace EdutalkTeacherUWP.Settings.Service
 {
     public interface IApplicationSettings
     {
-        UserModel CurrentUser { get; set; }
+        UserModel GetCurrentUser();
+        bool SetCurrentUser(UserModel user);
         //bool ProfileUpdated { set; get; }
         //bool GuideAttendance { set; get; }
     }
@@ -22,10 +23,21 @@ namespace EdutalkTeacherUWP.Settings.Service
         const string ProfileUpdatedKey = "ApplicationSettings_ET_ProfileUpdatedKey_Key";
         const string GuideAttendanceKey = "ApplicationSettings_ET_GuideAttendance_Key";
 
-        public UserModel CurrentUser
+
+        public UserModel GetCurrentUser()
         {
-            get => ((string)ApplicationData.Current.LocalSettings.Values[CurrentUserKey]).DeserializeObject<UserModel>();
-            set => ApplicationData.Current.LocalSettings.Values[CurrentUserKey] = value.SerializeObject();
+            return ((string)ApplicationData.Current.LocalSettings.Values[CurrentUserKey]).DeserializeObject<UserModel>();
+        }
+
+        public bool SetCurrentUser(UserModel user)
+        {
+            ApplicationData.Current.LocalSettings.Values.Remove(CurrentUserKey);
+            ApplicationData.Current.LocalSettings.Values[CurrentUserKey] = user.SerializeObject();
+            if(((string)ApplicationData.Current.LocalSettings.Values[CurrentUserKey]).DeserializeObject<UserModel>() != null)
+            {
+                return true;
+            }
+            return false;
         }
 
         //public bool ProfileUpdated

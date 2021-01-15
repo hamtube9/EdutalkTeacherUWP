@@ -6,6 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     mc:Ignorable="d"
+    Width="Auto"
+    Height="Auto"
     Background="#040927"
     xmlns:prism="using:Prism.Windows.Mvvm" xmlns:convert="using:EdutalkTeacherUWP.Common.Converts"
     prism:ViewModelLocator.AutoWireViewModel="True">
@@ -100,16 +102,22 @@
                             </Interactivity:Interaction.Behaviors>
 
                             <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="60"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
+                                <StackPanel VerticalAlignment="Center">
+                                    <Grid >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="60"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
 
-                                <Border Height="32" Width="32" CornerRadius="16" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <Image Source="{Binding User.Image}" Height="32" Width="32"/>
-                                </Border>
+                                        <Border Height="32" Width="32" CornerRadius="16" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <Image Source="{Binding User.Image}" Height="32" Width="32"/>
+                                        </Border>
 
-                                <TextBlock Text="{Binding User.FullName}" Grid.Column="1" VerticalAlignment="Center" />
+                                        <TextBlock Text="{Binding User.FullName}" Grid.Column="1" VerticalAlignment="Center" Margin="16,0" />
+
+
+                                    </Grid>
+                                </StackPanel>
                                 <Border CornerRadius="12" Padding="0" Width="40" Height="40" HorizontalAlignment="Right" Margin="16,0" Grid.Column="1">
                                     <Image Source="/Assets/tick.png" Height="12" Width="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>

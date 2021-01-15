@@ -47,12 +47,12 @@ namespace EdutalkTeacherUWP.Authentication.Service
                     Email = userName,
                     Password = password
                 });
-                if(result != null)
+                if (result != null)
                 {
                     return await SetTokenAndUser(result);
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
 
             }
@@ -75,8 +75,9 @@ namespace EdutalkTeacherUWP.Authentication.Service
                 return true;
             }
 
+
             var user = result.User;
-            applicationSettings.CurrentUser = user.ToModel();
+            var boolSetting = applicationSettings.SetCurrentUser(user.ToModel());
             return true;
         }
     }

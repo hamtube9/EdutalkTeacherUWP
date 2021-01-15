@@ -1,10 +1,13 @@
 ﻿using EdutalkTeacherUWP.Common.Base;
 using EdutalkTeacherUWP.Exam.Models;
 using EdutalkTeacherUWP.Exam.Service;
+using Prism.Commands;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace EdutalkTeacherUWP.ViewModels
 {
@@ -33,6 +36,14 @@ namespace EdutalkTeacherUWP.ViewModels
                 }
             }
             Results = new ObservableCollection<HomeworkResultModel>(listUserHomwork);
+        }
+
+        ICommand _viewHomeworkCommand;
+        public ICommand ViewHomeworkCommand => _viewHomeworkCommand = _viewHomeworkCommand ?? new DelegateCommand<HomeworkResultModel>(ViewHomework);
+
+        private void ViewHomework(HomeworkResultModel obj)
+        {
+
         }
     }
 }

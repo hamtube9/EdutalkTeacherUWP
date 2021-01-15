@@ -86,7 +86,7 @@
     <SplitView IsPaneOpen="True"
              PaneBackground="{StaticResource BackgroundColor}"
            DisplayMode="Inline" 
-           OpenPaneLength="480">
+           OpenPaneLength="500">
         <SplitView.Pane>
             <Grid>
                 <Grid.ColumnDefinitions>

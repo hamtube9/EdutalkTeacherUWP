@@ -44,7 +44,7 @@ namespace EdutalkTeacherUWP.ViewModels
                 }
                 return;
             }
-            var students = await courseService.GetAttendancesAsync(Route.Lesson, Route.Id);
+            var students = await courseService.GetAttendancesAsync(Route.Lesson, ClassroomId);
             if (students != null || students.Length > 0)
             {
                 Students = new ObservableCollection<AttendanceModel>(students);

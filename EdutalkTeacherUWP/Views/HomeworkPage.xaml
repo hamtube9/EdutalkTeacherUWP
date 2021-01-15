@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    Width="Auto"
     xmlns:prism="using:Prism.Windows.Mvvm"
     prism:ViewModelLocator.AutoWireViewModel="True"
     xmlns:convert="using:EdutalkTeacherUWP.Common.Converts"
@@ -89,6 +90,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid 
+                        HorizontalAlignment="Stretch"
                         Margin="12,8"
                         ColumnSpacing="0"
                         RowSpacing="0">
@@ -96,11 +98,12 @@
                             <ColumnDefinition
                                 Width="52" />
                             <ColumnDefinition
-                                Width="*" />
+                                Width="Auto" />
                             <ColumnDefinition
                                 Width="52" />
                         </Grid.ColumnDefinitions>
 
+                      
                         <Border
                             Background="{StaticResource SurfaceColor}"
                             HorizontalAlignment="Left"
@@ -172,6 +175,7 @@
                                 HorizontalTextAlignment="Center"
                                 Text="{Binding Total}" />
                         </StackPanel>
+                        <Button Background="Transparent" Click="Button_Click" Grid.ColumnSpan="3" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

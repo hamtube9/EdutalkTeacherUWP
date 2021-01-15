@@ -8,6 +8,6 @@ namespace EdutalkTeacherUWP.Common.Base
 {
     public enum PageTokens
     {
-        Main,Reports,Messenger,Settings,Routes,Class
+        Main,Reports,Messenger,Settings,Routes,Class,Login
     }
 }

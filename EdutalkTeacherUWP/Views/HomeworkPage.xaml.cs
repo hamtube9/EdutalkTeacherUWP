@@ -1,4 +1,5 @@
-﻿using EdutalkTeacherUWP.Home.Params;
+﻿using EdutalkTeacherUWP.Exam.Models;
+using EdutalkTeacherUWP.Home.Params;
 using EdutalkTeacherUWP.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -41,6 +42,13 @@ namespace EdutalkTeacherUWP.Views
                 vm.Lesson = param.Route.Lesson;
                 await vm.LoadAllStudent();
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var obj = (Button)sender;
+            var binding = (HomeworkResultModel)obj.DataContext;
+            Frame.Navigate(typeof(ViewExamPage), null);
         }
     }
 }

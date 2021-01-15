@@ -177,6 +177,18 @@
     <Compile Include="Exam\Controls\ViewFillTextToAudioView.xaml.cs">
       <DependentUpon>ViewFillTextToAudioView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Exam\Controls\ViewFillWordInImageView.xaml.cs">
+      <DependentUpon>ViewFillWordInImageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Exam\Controls\ViewMatchTextImageView.xaml.cs">
+      <DependentUpon>ViewMatchTextImageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Exam\Controls\ViewMatchTextToAudioView.xaml.cs">
+      <DependentUpon>ViewMatchTextToAudioView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Exam\Controls\ViewMatchWordView.xaml.cs">
+      <DependentUpon>ViewMatchWordView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Exam\Models\AnswerModel.cs" />
     <Compile Include="Exam\Models\GroupQuestionModel.cs" />
     <Compile Include="Exam\Models\HomeworkResultModel.cs" />
@@ -212,6 +224,7 @@
     <Compile Include="ViewModels\ReportPageViewModel.cs" />
     <Compile Include="ViewModels\RoutesPageViewModel.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel.cs" />
+    <Compile Include="ViewModels\ViewExamPageViewModel.cs" />
     <Compile Include="Views\AttendancePage.xaml.cs">
       <DependentUpon>AttendancePage.xaml</DependentUpon>
     </Compile>
@@ -241,6 +254,9 @@
     </Compile>
     <Compile Include="Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewExamPage.xaml.cs">
+      <DependentUpon>ViewExamPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -328,6 +344,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Exam\Controls\ViewFillWordInImageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Exam\Controls\ViewMatchTextImageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Exam\Controls\ViewMatchTextToAudioView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Exam\Controls\ViewMatchWordView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SplashScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -373,6 +405,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ViewExamPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

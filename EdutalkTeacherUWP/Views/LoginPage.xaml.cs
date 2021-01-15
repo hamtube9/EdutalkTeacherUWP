@@ -25,5 +25,15 @@ namespace EdutalkTeacherUWP.Views
                 binding.Password = str.Password;
             }
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var binding = (LoginPageViewModel)this.DataContext;
+            var str = (TextBox)sender;
+            if (binding != null)
+            {
+                binding.Email = str.Text;
+            }
+        }
     }
 }

@@ -82,8 +82,8 @@
                         Padding="0"
                         Text="Email" />
                     <TextBox
+                        TextChanged="TextBox_TextChanged"
                         SelectionHighlightColor="{StaticResource OnColorFrame}"
-                        Text="{Binding Email}"
                         Foreground="White"
                         Background="Transparent"
                         BorderBrush="Transparent"

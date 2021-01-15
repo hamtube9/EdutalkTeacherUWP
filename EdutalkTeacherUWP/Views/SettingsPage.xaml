@@ -11,6 +11,8 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-
+        <Border CornerRadius="12" Background="DarkRed" Height="48" Margin="16,0">
+            <Button Content=" Log out" Command="{Binding LoggoutCommand}"/>
+        </Border>
     </Grid>
 </Page>

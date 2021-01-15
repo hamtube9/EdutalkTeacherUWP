@@ -23,9 +23,6 @@ namespace EdutalkTeacherUWP.ViewModels
         {
             this._navigationService = _navigationService;
             service = new AuthenticationService();
-            Email = "ngotriha02@gmail.com";
-            Password = "123456";
-       
         }
 
         ICommand _LoginAsyncCommand;

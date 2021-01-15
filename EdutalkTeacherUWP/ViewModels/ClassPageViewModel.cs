@@ -37,7 +37,7 @@ namespace EdutalkTeacherUWP.ViewModels
         {
             settings = new ApplicationSettings();
             service = new CourseService();
-            User = settings.CurrentUser;
+            User = settings.GetCurrentUser();
             LoadClass();
         }
 
