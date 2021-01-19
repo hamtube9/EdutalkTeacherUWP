@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EdutalkTeacherUWP.Message.Models;
+using EdutalkTeacherUWP.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,21 +22,23 @@ namespace EdutalkTeacherUWP.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ExamPage : Page
+    public sealed partial class ConversationPage : Page
     {
-        public ExamPage()
+        ConversationPageViewModel vm;
+        public ConversationPage()
         {
             this.InitializeComponent();
+            vm = new ConversationPageViewModel();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-
+            base.OnNavigatedTo(e);
+            if((MessageModel[])e.Parameter != null || ((MessageModel[])e.Parameter).Length > 0)
+            {
+                vm.SetData(((MessageModel[])e.Parameter));
+            }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

@@ -11,7 +11,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace EdutalkTeacherUWP.Common.Base
 {
-    public class ViewModelBase : Prism.Windows.Mvvm.ViewModelBase
+    public class ViewModelBase : Prism.Windows.Mvvm.ViewModelBase 
     {
         public void Toast(string str)
         {

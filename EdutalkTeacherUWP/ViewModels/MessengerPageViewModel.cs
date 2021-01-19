@@ -40,11 +40,7 @@ namespace EdutalkTeacherUWP.ViewModels
             Conversations = new List<ConversationModel>(result);
         }
 
-        ICommand _SelectedConversationCommand;
-        public ICommand SelectedConversationCommand => _SelectedConversationCommand = _SelectedConversationCommand ?? new Prism.Commands.DelegateCommand<ConversationModel>(SelectedConversation);
-
-
-        async void SelectedConversation (ConversationModel obj)
+        public async Task<MessageModel[]> SelectedConversation (ConversationModel obj)
         {
             if(obj != null)
             {
@@ -55,8 +51,10 @@ namespace EdutalkTeacherUWP.ViewModels
                 if(mess != null)
                 {
                     Messages = new ObservableCollection<MessageModel>(mess);
-                }
+                    return Messages.ToArray();
+                } 
             }
+            return new MessageModel[0];
         }
 
     }

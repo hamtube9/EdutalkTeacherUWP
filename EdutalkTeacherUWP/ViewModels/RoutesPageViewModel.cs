@@ -19,7 +19,7 @@ namespace EdutalkTeacherUWP.ViewModels
         ICourseService courseService;
         public ClassModel Classroom { set; get; }
         public List<RouteModel> Routes { set; get; }
-         RouteModel RouteSelected { set; get; }
+        RouteModel RouteSelected { set; get; }
         public ObservableCollection<AttendanceModel> Students { set; get; } = new ObservableCollection<AttendanceModel>();
         public bool IsVisibleAttendance { set; get; }
         public ScheduleModel Schedule { set; get; }
@@ -39,6 +39,11 @@ namespace EdutalkTeacherUWP.ViewModels
             base.OnNavigatedTo(e, viewModelState);
             courseService = new CourseService();
             Classroom = (ClassModel)e.Parameter != null ? (ClassModel)e.Parameter : null;
+            await LoadRoutes();
+        }
+
+        public async Task LoadRoutes()
+        {
             Schedule = await courseService.GetRoutesAsync((long)Classroom?.Id);
             if (Schedule == null)
             {
@@ -47,7 +52,6 @@ namespace EdutalkTeacherUWP.ViewModels
             //IsEnableItemToobar = Schedule.Mode == OnlineMode.Online;
             Classroom.Mode = Schedule.Mode;
             Routes = new List<RouteModel>(Schedule.Routes);
-           
         }
 
 
@@ -58,7 +62,7 @@ namespace EdutalkTeacherUWP.ViewModels
         {
             RouteSelected = obj;
             await LoadTutor();
-           if (obj.RouteType == RouteType.SupportClass)
+            if (obj.RouteType == RouteType.SupportClass)
             {
                 IsSupportClass = true;
                 var result = await courseService.GetAttendancesAsync(Classroom.Id);
@@ -78,7 +82,7 @@ namespace EdutalkTeacherUWP.ViewModels
             }
         }
 
-       async Task LoadTutor()
+        async Task LoadTutor()
         {
             Tutors = await courseService.GetAllTutorAsync(Classroom.Id);
             //AttendanceTutor = applicationSettings.CurrentUser?.AccountType == AccountType.Teacher && Tutors != null && Tutors.Length > 0 && Editable;
@@ -120,6 +124,6 @@ namespace EdutalkTeacherUWP.ViewModels
         }
 
 
-    
+
     }
 }

@@ -3,6 +3,7 @@ using EdutalkTeacherUWP.Api.Dtos.Authorizations;
 using EdutalkTeacherUWP.Api.Dtos.ClassDtos;
 using EdutalkTeacherUWP.Api.Dtos.Exam;
 using EdutalkTeacherUWP.Api.Dtos.Messenger;
+using EdutalkTeacherUWP.Api.Dtos.RoomDto;
 using EdutalkTeacherUWP.Api.Dtos.Route;
 using EdutalkTeacherUWP.Authentication.Models;
 using EdutalkTeacherUWP.Exam.Models;
@@ -34,6 +35,19 @@ namespace EdutalkTeacherUWP.Common.Extensions
         //        Image = dto.Avatar?.Path
         //    };
         //}
+
+        public static RoomModel ToModel(this RoomResultDto d)
+        {
+            if (d == null)
+            {
+                return null;
+            }
+            return new RoomModel
+            {
+                Id = d.Id,
+                Name = d.Name
+            };
+        }
 
         public static ResultModel ToModel(this ExamResultResultDto dto)
         {

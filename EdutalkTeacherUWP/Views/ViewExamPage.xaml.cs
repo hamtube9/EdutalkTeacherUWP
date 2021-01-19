@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EdutalkTeacherUWP.Exam.Models;
+using EdutalkTeacherUWP.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,15 +24,21 @@ namespace EdutalkTeacherUWP.Views
     /// </summary>
     public sealed partial class ViewExamPage : Page
     {
+        ViewExamPageViewModel vm;
         public ViewExamPage()
         {
-            this.InitializeComponent();
+                this.InitializeComponent();
+            vm = new ViewExamPageViewModel();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            Frame.GoBack();
-
+            base.OnNavigatedTo(e);
+            var param = (ViewHomeworkParam)e.Parameter;
+            if (param != null)
+            {
+                await vm.LoadHomework(param.CourseStudentId, param.ClassroomId,param.Lesson,param.IsHomework);
+            }
         }
     }
 }

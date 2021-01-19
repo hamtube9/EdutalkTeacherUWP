@@ -9,7 +9,10 @@
     xmlns:prism="using:Prism.Windows.Mvvm"
     prism:ViewModelLocator.AutoWireViewModel="True"
     xmlns:control="using:EdutalkTeacherUWP.Exam.Controls"
-    xmlns:model="using:EdutalkTeacherUWP.Exam.Models" xmlns:Controls="using:Microsoft.Toolkit.Uwp.UI.Controls" xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:model="using:EdutalkTeacherUWP.Exam.Models"
+    xmlns:Controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     Background="Transparent">
 
     <Page.Resources>
@@ -98,6 +101,46 @@
             </DataTemplate>
 
             <DataTemplate
+                x:Key="MatchTextToAudio">
+                <ScrollViewer>
+                    <control:TitleQuestionView>
+                        <control:ViewMatchTextToAudioView
+                            VerticalAlignment="Stretch"
+                            GroupQuestion="{Binding .}" />
+                    </control:TitleQuestionView>
+                </ScrollViewer>
+            </DataTemplate>
+
+            <DataTemplate
+                x:Key="ArrangeSentences">
+                <ScrollViewer>
+                    <control:TitleQuestionView>
+                        <control:ViewMatchWordView
+                           VerticalAlignment="Stretch"
+                            GroupQuestion="{Binding .}" />
+                    </control:TitleQuestionView>
+                </ScrollViewer>
+            </DataTemplate>
+            <DataTemplate
+                x:Key="MatchTextImage">
+                <ScrollViewer>
+                    <control:TitleQuestionView>
+                        <control:ViewMatchTextImageView
+                              VerticalAlignment="Stretch"
+                            GroupQuestion="{Binding .}" />
+                    </control:TitleQuestionView>
+                </ScrollViewer>
+            </DataTemplate>
+
+            <DataTemplate
+                x:Key="FillTextImage">
+                <control:TitleQuestionView>
+                    <control:ViewFillWordInImageView
+                       VerticalAlignment="Stretch"
+                        GroupQuestion="{Binding .}" />
+                </control:TitleQuestionView>
+            </DataTemplate>
+            <!--<DataTemplate
                 x:Key="MatchImageToAudio">
                 <ScrollViewer>
                     <control:TitleQuestionView>
@@ -107,9 +150,82 @@
                             GroupQuestion="{Binding .}" />
                     </control:TitleQuestionView>
                 </ScrollViewer>
-            </DataTemplate>
+            </DataTemplate>-->
+
+            <model:NewQuestionDataTemplate
+                x:Key="data"
+                ArrangeSentences="{StaticResource ArrangeSentences}"
+                MatchTextImage="{StaticResource MatchTextImage}"
+                FillTextImage="{StaticResource FillTextImage}"
+                FillTextScript="{StaticResource FillTextScript}"
+                MatchTextToAudio="{StaticResource MatchTextToAudio}"
+                FillTextToAudio="{StaticResource FillTextToAudio}" />
+
         </ResourceDictionary>
     </Page.Resources>
     <Grid>
-     </Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="64"/>
+        </Grid.RowDefinitions>
+        <ListView
+            x:Name="questionsView"
+            VerticalAlignment="Center"
+            Height="48"
+            ItemsSource="{Binding Questions}"
+            SelectedItem="{Binding SelectedQuestion,Mode=OneWay}"
+            SelectionMode="Single"
+            ShowsScrollingPlaceholders="False" >
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Background="Transparent" Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border
+                        CornerRadius="24"
+                        Height="48"
+                        Background="{StaticResource BackgroundColor}"
+                        Width="48">
+                        <Grid>
+                            <TextBlock
+                            x:Name="txtIndex"
+                            VerticalAlignment="Center" 
+                            HorizontalAlignment="Center"
+                            Style="{StaticResource LabelNormal}"
+                            Text="{Binding Number}">
+                             <Interactivity:Interaction.Behaviors>
+                                <Core:DataTriggerBehavior Binding="{Binding IsSelected}" Value="True">
+                                    <Core:ChangePropertyAction TargetObject="{Binding ElementName=txtIndex}" PropertyName="Foreground" Value="{StaticResource GreenColor}"/>
+                                </Core:DataTriggerBehavior>
+                                <Core:DataTriggerBehavior Binding="{Binding IsAttendance}" Value="False">
+                                    <Core:ChangePropertyAction TargetObject="{Binding ElementName=txtIndex}" PropertyName="Foreground" Value="White"/>
+                                </Core:DataTriggerBehavior>
+                            </Interactivity:Interaction.Behaviors>
+                            </TextBlock>
+                            <Button Background="Transparent"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Controls:Carousel
+            Grid.Row="1"
+            ItemTemplate="{StaticResource data}"
+            ItemsSource="{Binding Questions}"  > 
+        </Controls:Carousel>
+
+        <Border  Margin="32,0,32,8"
+            Grid.Row="2" Height="48" CornerRadius="12">
+            <Button
+            Visibility="{Binding StatusNext}"
+            Content="Next"
+            Background="{StaticResource PrimaryColor}"
+         />
+        </Border>
+
+    </Grid>
 </Page>

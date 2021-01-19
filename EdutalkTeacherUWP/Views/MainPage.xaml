@@ -522,7 +522,7 @@
             </PivotItem.Header>
             <PivotItem.Content>
                 <ItemsControl>
-                    <view:SettingsPage/>
+                    <view:SettingsPage VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
                 </ItemsControl>
             </PivotItem.Content>
         </PivotItem>

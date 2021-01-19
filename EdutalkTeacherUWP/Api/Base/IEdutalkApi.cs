@@ -3,6 +3,7 @@ using EdutalkTeacherUWP.Api.Dtos.Authorizations;
 using EdutalkTeacherUWP.Api.Dtos.ClassDtos;
 using EdutalkTeacherUWP.Api.Dtos.Exam;
 using EdutalkTeacherUWP.Api.Dtos.Messenger;
+using EdutalkTeacherUWP.Api.Dtos.RoomDto;
 using EdutalkTeacherUWP.Api.Dtos.Route;
 using Refit;
 using System.Threading.Tasks;
@@ -60,5 +61,24 @@ namespace EdutalkTeacherUWP.Api.Base
 
         [Get("/api/v3/mobile/teacher/class/student/result?course_student_id={courseStudentId}&classroom_id={classroomId}&lesson={lesson}&type={type}&status_mark=1")]
         Task<ErrorResultDto<ExamResultResultDto>> GetResult(int courseStudentId, long classroomId, long lesson, string type);
+
+
+        //ROOM
+
+        [Get("/api/v3/mobile/teacher/class/list-room?id={classroomId}")]
+        Task<DataDto<RoomResultDto[]>> GetRoom(long classroomId);
+
+        [Get("/api/v3/mobile/teacher/class/list-room?id={classroomId}&date={date}&start_time={start}&end_time={end}")]
+        Task<DataDto<RoomResultDto[]>> GetRoom(long classroomId, string date, string start, string end);
+
+        //SUPPORT CLASS
+        [Post("/api/v3/mobile/teacher/class/tutoring/create")]
+        Task<ErrorResultDto> CreateTutoring([Body] CreateTutoringRequestDto request);
+
+        [Post("/api/v3/mobile/teacher/class/tutoring/update")]
+        Task<ErrorResultDto> UpdateTutoring([Body] UpdateTutoringRequestDto request);
+
+        [Post("/api/v3/mobile/teacher/class/tutoring/delete")]
+        Task<ErrorResultDto> DeleteTutoring([Body] DeleteingRequestDto request);
     }
 }

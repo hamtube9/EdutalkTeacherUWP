@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EdutalkTeacherUWP.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +23,18 @@ namespace EdutalkTeacherUWP.Views
     /// </summary>
     public sealed partial class SettingsPage : Page
     {
+        SettingsPageViewModel vm;
         public SettingsPage()
         {
             this.InitializeComponent();
+            vm = (SettingsPageViewModel)DataContext;
+        }
+
+
+
+        private void NavigationViewItem_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            vm.LoggoutCommand.Execute(null);
         }
     }
 }

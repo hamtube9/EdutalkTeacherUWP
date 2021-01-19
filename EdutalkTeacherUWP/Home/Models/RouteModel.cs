@@ -77,7 +77,7 @@ namespace EdutalkTeacherUWP.Home.Models
         public bool IsSuccess { get; set; }
     }
 
-    public class ScheduleModel
+    public class ScheduleModel : ModelBase
     {
         public OnlineMode Mode { set; get; }
         public string ZoomId { set; get; }

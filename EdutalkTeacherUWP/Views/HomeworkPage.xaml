@@ -87,10 +87,14 @@
         Background="Transparent"
         SelectionMode="None"
         ItemsSource="{Binding Results}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid 
-                        HorizontalAlignment="Stretch"
+                    <Grid  Tapped="Button_Click"
                         Margin="12,8"
                         ColumnSpacing="0"
                         RowSpacing="0">
@@ -98,7 +102,7 @@
                             <ColumnDefinition
                                 Width="52" />
                             <ColumnDefinition
-                                Width="Auto" />
+                                Width="*" />
                             <ColumnDefinition
                                 Width="52" />
                         </Grid.ColumnDefinitions>
@@ -175,7 +179,6 @@
                                 HorizontalTextAlignment="Center"
                                 Text="{Binding Total}" />
                         </StackPanel>
-                        <Button Background="Transparent" Click="Button_Click" Grid.ColumnSpan="3" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

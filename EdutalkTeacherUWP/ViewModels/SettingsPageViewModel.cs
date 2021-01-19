@@ -15,13 +15,19 @@ namespace EdutalkTeacherUWP.ViewModels
     {
         private readonly INavigationService navigationService;
         IApplicationSettings applicationSettings;
+        public UserModel User { set; get; }
 
         public SettingsPageViewModel(INavigationService navigationService  )
         {
             this.navigationService = navigationService;
             this.applicationSettings = new ApplicationSettings();
+            SetData();
         }
 
+        private void SetData()
+        {
+            User = applicationSettings.GetCurrentUser();
+        }
 
         ICommand _loggoutCommand;
         public ICommand LoggoutCommand => _loggoutCommand = _loggoutCommand ?? new DelegateCommand(Logout);

@@ -6,13 +6,191 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    xmlns:prismMvvm="using:Prism.Windows.Mvvm"
+    xmlns:prismMvvm="using:Prism.Windows.Mvvm" xmlns:convert="using:EdutalkTeacherUWP.Common.Converts"
     prismMvvm:ViewModelLocator.AutoWireViewModel="True"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="#040927">
 
-    <Grid>
-        <Border CornerRadius="12" Background="DarkRed" Height="48" Margin="16,0">
-            <Button Content=" Log out" Command="{Binding LoggoutCommand}"/>
-        </Border>
-    </Grid>
+    <Page.Resources>
+        <ResourceDictionary>
+           <convert:BoolToVisibilityConverter x:Key="convertBack"/>
+            <Style
+        x:Key="LabelBase"
+        TargetType="TextBlock">
+                <Setter
+            Property="Foreground"
+            Value="{StaticResource OnBackgroundColor}" />
+            </Style>
+
+            <Style
+        x:Key="LabelBaseSmall"
+        TargetType="TextBlock">
+                <Setter Property="FontSize" Value="12"/>
+                <Setter
+            Property="Foreground"
+            Value="{StaticResource OnBackgroundColor}" />
+            </Style>
+
+            <Color
+        x:Key="PrimaryColor">#455EA9</Color>
+            <Color
+        x:Key="BackgroundColor">#040927</Color>
+            <Color
+        x:Key="PopupBackgroundColor">#B3040927</Color>
+            <Color
+        x:Key="OnBackgroundColor">#DEE5FF</Color>
+            <Color
+        x:Key="SurfaceColor">#252E69</Color>
+            <Color
+        x:Key="OnSurfaceColor">#DBDBDB</Color>
+            <Color
+        x:Key="TestColor">#982D2D</Color>
+            <Color
+        x:Key="OnTestColor">#FFEDED</Color>
+            <Color
+        x:Key="PassColor">#1EA218</Color>
+            <Color
+        x:Key="OnPassColor">#E4F2DF</Color>
+            <Color
+        x:Key="FutureColor">#585B69</Color>
+            <Color
+        x:Key="OnFutureColor">#C7C7C7</Color>
+            <Color
+        x:Key="PresentColor">#31428D</Color>
+            <Color
+        x:Key="OnPresentColor">#D1E3F2</Color>
+            <Color
+        x:Key="RedColor">#C34742</Color>
+            <Color
+        x:Key="GreenColor">#128D16</Color>
+            <Color
+        x:Key="AbsentColor">#454545</Color>
+            <Color
+        x:Key="HighLightColor">#364064</Color>
+            <Color
+        x:Key="OnLightColor">#191E3E</Color>
+            <Color
+        x:Key="OnBackgroundGreenColor">#DFF4C3</Color>
+
+            <AcrylicBrush x:Key="NavigationViewDefaultPaneBackground" BackgroundSource="Backdrop" TintColor="{StaticResource BackgroundColor}" TintOpacity=".6"/>
+            <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground" BackgroundSource="HostBackdrop" TintColor="{StaticResource PrimaryColor}" TintOpacity=".8"/>
+
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <NavigationView
+         Canvas.ZIndex="0"
+        Background="{StaticResource NavigationViewDefaultPaneBackground}"
+            x:Name="NavigationViewControl"
+            Grid.Column="1"
+            AlwaysShowHeader="True"
+            Header=" "
+            IsTabStop="False"
+           >
+
+        <NavigationView.MenuItems >
+            <!--<NavigationViewItem  HorizontalContentAlignment="Stretch" Margin="0,8" VerticalContentAlignment="Stretch" >
+                    <Border Padding="0" CornerRadius="12" Background="{StaticResource PrimaryColor}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="48"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="48"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Height="32" Width="32" Source="/Assets/ic_phone.png" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <Image Height="16" Grid.Column="2" Width="16" Source="/Assets/ic_right_chevron.png" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Text="Phone" Padding="16,8" Grid.Column="1" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+                </NavigationViewItem>-->
+
+
+            <NavigationViewItemHeader>
+                <NavigationViewItemHeader.Template>
+                    <ControlTemplate>
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                            <Border Padding="0" CornerRadius="48">
+                                <Image Source="{Binding User.Image}" Height="96" Width="96"/>
+                            </Border>
+                            <TextBlock Text="{Binding User.FullName}" Style="{StaticResource LabelBase}"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </NavigationViewItemHeader.Template>
+            </NavigationViewItemHeader>
+            <NavigationViewItemHeader />
+            <NavigationViewItem Icon="Mail" CornerRadius="12" Foreground="White" Background="{StaticResource PrimaryColor}">
+                <NavigationViewItem.Content>
+                    <TextBlock Text="{Binding User.Email}" Foreground="White"/>
+                </NavigationViewItem.Content>
+            </NavigationViewItem>
+            <NavigationViewItem Icon="CellPhone" Foreground="White" CornerRadius="12" Background="{StaticResource PrimaryColor}">
+                <NavigationViewItem.Content>
+                    <TextBlock Text="{Binding User.Phone}" Foreground="White"/>
+                </NavigationViewItem.Content>
+            </NavigationViewItem>
+            <NavigationViewItem Icon="Keyboard"   Foreground="White" CornerRadius="12" Background="{StaticResource PrimaryColor}">
+                <NavigationViewItem.Content>
+                    <TextBlock Text="Đổi mật khẩu" Foreground="White"/>
+                </NavigationViewItem.Content>
+            </NavigationViewItem>
+
+            <NavigationViewItemHeader />
+            <NavigationViewItem  Foreground="White" CornerRadius="12" Background="{StaticResource PrimaryColor}">
+                <NavigationViewItem.Icon>
+                    <BitmapIcon UriSource="/Assets/icon.png"/>
+                </NavigationViewItem.Icon>
+                <NavigationViewItem.Content>
+                    <TextBlock Text="Cơ chế thu nhập" Foreground="White"/>
+                </NavigationViewItem.Content>
+            </NavigationViewItem>
+            <NavigationViewItem  Foreground="White" CornerRadius="12" Background="{StaticResource PrimaryColor}">
+                <NavigationViewItem.Icon>
+                    <BitmapIcon UriSource="/Assets/icon.png"/>
+                </NavigationViewItem.Icon>
+                <NavigationViewItem.Content>
+                    <TextBlock Text="Bản cam kết" Foreground="White"/>
+                </NavigationViewItem.Content>
+            </NavigationViewItem>
+            <NavigationViewItem   Foreground="White" CornerRadius="12" Background="{StaticResource PrimaryColor}">
+                <NavigationViewItem.Icon>
+                    <BitmapIcon UriSource="/Assets/icon.png"/>
+                </NavigationViewItem.Icon>
+                <NavigationViewItem.Content>
+                    <TextBlock Text="Hợp đồng" Foreground="White"/>
+                </NavigationViewItem.Content>
+            </NavigationViewItem>
+
+            <NavigationViewItem   Foreground="White" CornerRadius="12" Background="{StaticResource PrimaryColor}">
+                <NavigationViewItem.Icon>
+                    <BitmapIcon UriSource="/Assets/icon.png"/>
+                </NavigationViewItem.Icon>
+                <NavigationViewItem.Content>
+                    <TextBlock Text="Phiên bản" Foreground="White"/>
+                </NavigationViewItem.Content>
+            </NavigationViewItem>
+        </NavigationView.MenuItems>
+
+        <NavigationView.PaneFooter>
+            <NavigationViewItem   Foreground="White" CornerRadius="12" Background="{StaticResource PrimaryColor}" Tapped="NavigationViewItem_Tapped">
+                <NavigationViewItem.Icon>
+                    <BitmapIcon UriSource="/Assets/icon.png"/>
+                </NavigationViewItem.Icon>
+                <NavigationViewItem.Content>
+                    <TextBlock Text="Logout" Foreground="White"/>
+                </NavigationViewItem.Content>
+            </NavigationViewItem>
+        </NavigationView.PaneFooter>
+
+
+        <Frame x:Name="FrameContent" >
+            <Frame.ContentTransitions>
+                <TransitionCollection>
+                    <NavigationThemeTransition>
+                        <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                            <EntranceNavigationTransitionInfo />
+                        </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    </NavigationThemeTransition>
+                </TransitionCollection>
+            </Frame.ContentTransitions>
+        </Frame>
+    </NavigationView>
 </Page>

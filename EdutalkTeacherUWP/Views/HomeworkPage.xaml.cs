@@ -46,9 +46,15 @@ namespace EdutalkTeacherUWP.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var obj = (Button)sender;
+            var obj = (Grid)sender;
             var binding = (HomeworkResultModel)obj.DataContext;
-            Frame.Navigate(typeof(ViewExamPage), null);
+            Frame.Navigate(typeof(ViewExamPage), new ViewHomeworkParam()
+            {
+                ClassroomId = (int)vm?.ClassroomId,
+                CourseStudentId = (int)binding.User.Id,
+                IsHomework = true,
+                Lesson = vm.Lesson
+            });
         }
     }
 }

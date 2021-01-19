@@ -34,23 +34,16 @@ namespace EdutalkTeacherUWP.Views
             }
         }
 
-        private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-       
-        }
-
-        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
+        private async void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             if (binding == null)
             {
 
                 return;
             }
-            var check = binding.SelectedConversationCommand.CanExecute((ConversationModel)e.ClickedItem);
-            if (check)
-            {
-                binding.SelectedConversationCommand.Execute((ConversationModel)e.ClickedItem);
-            }
+            var arr = await binding.SelectedConversation((ConversationModel)e.ClickedItem);
+            ConversationFrame.Navigate(typeof(ConversationPage), arr);
         }
+
     }
 }

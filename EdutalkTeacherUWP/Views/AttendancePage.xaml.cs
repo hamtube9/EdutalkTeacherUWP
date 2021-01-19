@@ -52,7 +52,7 @@ namespace EdutalkTeacherUWP.Views
 
         private void Attendance_Student_Click(object sender, RoutedEventArgs e)
         {
-            var obj = (Button)sender;
+            var obj = (Grid)sender;
             var dataContext = (AttendanceModel)obj.DataContext;
             if (vm.SelectStudentCommand.CanExecute(dataContext))
             {

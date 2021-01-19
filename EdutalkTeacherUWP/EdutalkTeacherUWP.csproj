@@ -128,6 +128,7 @@
     <Compile Include="Api\Dtos\AuthorizationDtos\UserResultDto.cs" />
     <Compile Include="Api\Dtos\ClassDtos\AttendanceResultDto.cs" />
     <Compile Include="Api\Dtos\ClassDtos\ClassroomResultDto.cs" />
+    <Compile Include="Api\Dtos\ClassDtos\CreateTutoringRequestDto.cs" />
     <Compile Include="Api\Dtos\ClassDtos\SubmitAttendanceRequestDto.cs" />
     <Compile Include="Api\Dtos\ClassDtos\SubmitAttendanceTutoringRequestDto.cs" />
     <Compile Include="Api\Dtos\ClassDtos\TutoringResultDto.cs" />
@@ -137,6 +138,7 @@
     <Compile Include="Api\Dtos\Exam\HomeworkResultDto.cs" />
     <Compile Include="Api\Dtos\Messenger\ConversationResultDto.cs" />
     <Compile Include="Api\Dtos\Messenger\MessageResultDto.cs" />
+    <Compile Include="Api\Dtos\RoomDto\RoomResultDto.cs" />
     <Compile Include="Api\Dtos\Route\ScheduleResultDto.cs" />
     <Compile Include="Api\Extensions\StringExtensions.cs" />
     <Compile Include="Api\Extensions\TokenExtensions.cs" />
@@ -196,19 +198,24 @@
     <Compile Include="Exam\Models\QuestionCategoryModel.cs" />
     <Compile Include="Exam\Models\QuestionModel.cs" />
     <Compile Include="Exam\Models\ResultModel.cs" />
+    <Compile Include="Exam\Models\ViewHomeworkParam.cs" />
     <Compile Include="Exam\Service\IExamService.cs" />
     <Compile Include="Home\Models\AttendanceModel.cs" />
     <Compile Include="Home\Models\ClassModel.cs" />
+    <Compile Include="Home\Models\InfoStudentModel.cs" />
     <Compile Include="Home\Models\RouteDataTemplateSelector.cs" />
     <Compile Include="Home\Models\RouteModel.cs" />
+    <Compile Include="Home\Models\SupportClassParams.cs" />
     <Compile Include="Home\Params\ParamsAttendanceModel.cs" />
     <Compile Include="Home\Services\ICourseService.cs" />
+    <Compile Include="Home\Services\ISupportClassService.cs" />
     <Compile Include="Localization\IResourceManagerProvider.cs" />
     <Compile Include="Message\Models\ConversationModel.cs" />
     <Compile Include="Message\Models\MessageModel.cs" />
     <Compile Include="Settings\IMessageService.cs" />
     <Compile Include="ViewModels\AttendancePageViewModel.cs" />
     <Compile Include="ViewModels\ClassPageViewModel.cs" />
+    <Compile Include="ViewModels\ConversationPageViewModel.cs" />
     <Compile Include="ViewModels\HomeworkPageViewModel.cs" />
     <Compile Include="ViewModels\LoginPageViewModel.cs" />
     <Compile Include="Common\Base\AppContants.cs" />
@@ -224,6 +231,8 @@
     <Compile Include="ViewModels\ReportPageViewModel.cs" />
     <Compile Include="ViewModels\RoutesPageViewModel.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel.cs" />
+    <Compile Include="ViewModels\StudentSupportClassPageViewModel.cs" />
+    <Compile Include="ViewModels\SupportClassPageViewModel.cs" />
     <Compile Include="ViewModels\ViewExamPageViewModel.cs" />
     <Compile Include="Views\AttendancePage.xaml.cs">
       <DependentUpon>AttendancePage.xaml</DependentUpon>
@@ -231,8 +240,8 @@
     <Compile Include="Views\ClassPage.xaml.cs">
       <DependentUpon>ClassPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ExamPage.xaml.cs">
-      <DependentUpon>ExamPage.xaml</DependentUpon>
+    <Compile Include="Views\ConversationPage.xaml.cs">
+      <DependentUpon>ConversationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HomeworkPage.xaml.cs">
       <DependentUpon>HomeworkPage.xaml</DependentUpon>
@@ -255,6 +264,12 @@
     <Compile Include="Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\StudentSupportClassPage.xaml.cs">
+      <DependentUpon>StudentSupportClassPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SupportClassPage.xaml.cs">
+      <DependentUpon>SupportClassPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ViewExamPage.xaml.cs">
       <DependentUpon>ViewExamPage.xaml</DependentUpon>
     </Compile>
@@ -266,19 +281,29 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\chat.png" />
+    <Content Include="Assets\icon.png" />
     <Content Include="Assets\ic_attendance.png" />
+    <Content Include="Assets\ic_change_passwod.png" />
     <Content Include="Assets\ic_cloud_green.png" />
     <Content Include="Assets\ic_cloud_white.png" />
+    <Content Include="Assets\ic_email.png" />
     <Content Include="Assets\ic_feedback.png" />
     <Content Include="Assets\ic_home.png" />
     <Content Include="Assets\ic_homework.png" />
     <Content Include="Assets\ic_list_notify.png" />
     <Content Include="Assets\ic_messenger.png" />
     <Content Include="Assets\ic_notification.png" />
+    <Content Include="Assets\ic_phone.png" />
     <Content Include="Assets\ic_play_solid.png" />
+    <Content Include="Assets\ic_plus.png" />
+    <Content Include="Assets\ic_right_chevron.png" />
     <Content Include="Assets\ic_setting.png" />
+    <Content Include="Assets\ic_support_small.png" />
     <Content Include="Assets\image_line.png" />
     <Content Include="Assets\im_logo_splash.png" />
+    <Content Include="Assets\left_chevron_white.png" />
+    <Content Include="Assets\plus.png" />
+    <Content Include="Assets\right-chevron.png" />
     <Content Include="Assets\tick.png" />
     <Content Include="Assets\tick_circle.png" />
     <Content Include="FodyWeavers.xml" />
@@ -376,7 +401,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ExamPage.xaml">
+    <Page Include="Views\ConversationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -405,6 +430,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StudentSupportClassPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SupportClassPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
