@@ -114,7 +114,7 @@
                     <TextBlock Text="{Binding User.Email}" Foreground="White"/>
                 </NavigationViewItem.Content>
             </NavigationViewItem>
-            <NavigationViewItem Icon="CellPhone" Foreground="White" CornerRadius="12" Background="{StaticResource PrimaryColor}">
+            <NavigationViewItem Icon="CellPhone" Foreground="White" CornerRadius="12" Background="{StaticResource PrimaryColor}" Tapped="NavigationViewItem_Phone">
                 <NavigationViewItem.Content>
                     <TextBlock Text="{Binding User.Phone}" Foreground="White"/>
                 </NavigationViewItem.Content>

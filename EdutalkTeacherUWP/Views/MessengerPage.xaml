@@ -139,5 +139,12 @@
                 </TransitionCollection>
             </Frame.ContentTransitions>
         </Frame>
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Center" Visibility="{Binding IsHaveMessenger}">
+
+            <Image Source="/Assets/ic_alert_information.png"  Height="48" Width="48" Margin="4"/>
+
+            <TextBlock Text="Không có hội thoại" Style="{StaticResource LabelBase}" VerticalAlignment="Center" Padding="8" FontSize="16"/>
+        </StackPanel>
     </Grid>
 </Page>

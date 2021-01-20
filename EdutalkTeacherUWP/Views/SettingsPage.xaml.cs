@@ -85,6 +85,9 @@ namespace EdutalkTeacherUWP.Views
             var success = await Windows.System.Launcher.LaunchUriAsync(uriBing);
         }
 
-      
+        private void NavigationViewItem_Phone(object sender, TappedRoutedEventArgs e)
+        {
+            FrameContent.Navigate(typeof(UpdatePhonePage), null);
+        }
     }
 }

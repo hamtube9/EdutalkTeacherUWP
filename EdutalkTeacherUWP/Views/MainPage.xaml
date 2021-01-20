@@ -73,7 +73,7 @@
                                         </Storyboard>
                                     </VisualState>
                                 </VisualStateGroup>
-                                <VisualStateGroup x:Name="NavigationButtonsVisibility">
+                                <!--<VisualStateGroup x:Name="NavigationButtonsVisibility">
                                     <VisualState x:Name="NavigationButtonsHidden"/>
                                     <VisualState x:Name="NavigationButtonsVisible">
                                         <Storyboard>
@@ -91,7 +91,7 @@
                                             </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualState>
-                                </VisualStateGroup>
+                                </VisualStateGroup>-->
                                 <VisualStateGroup x:Name="HeaderStates">
                                     <VisualState x:Name="HeaderDynamic"/>
                                     <VisualState x:Name="HeaderStatic">

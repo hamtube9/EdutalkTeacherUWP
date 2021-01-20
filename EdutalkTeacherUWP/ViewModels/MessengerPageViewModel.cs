@@ -24,6 +24,7 @@ namespace EdutalkTeacherUWP.ViewModels
         public ConversationModel Chat { set; get; }
         public UserModel User { set; get; }
 
+        public bool IsHaveMessenger { set; get; }
         public MessengerPageViewModel(INavigationService navigationService)
         {
             this.navigationService = navigationService;
@@ -38,6 +39,7 @@ namespace EdutalkTeacherUWP.ViewModels
         {
             var result = await messengerServices.GetAllConversationsAsync();
             Conversations = new List<ConversationModel>(result);
+            IsHaveMessenger = Conversations.Count > 0 ? false : true;
         }
 
         public async Task<MessageModel[]> SelectedConversation (ConversationModel obj)

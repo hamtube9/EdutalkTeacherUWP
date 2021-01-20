@@ -79,6 +79,14 @@ namespace EdutalkTeacherUWP.Settings.Service
 
         public async Task<bool> GetPinCodeVerify(string phone)
         {
+            try
+            {
+                var result = await Api.GetPinCode(new PhoneRequestDto { Phone = phone });
+                return result?.Data != null;
+            }
+            catch (Exception e)
+            {
+            }
             return false;
         }
 
@@ -97,6 +105,17 @@ namespace EdutalkTeacherUWP.Settings.Service
 
         public async Task<bool> VerifyPhone(VerifyPhoneRequestDto request)
         {
+            try
+            {
+                var result = await Api.VerifyPhone(request);
+                if (result != null)
+                {
+                    return result.Data.Verified == true;
+                }
+            }
+            catch (Exception e)
+            {
+            }
             return false;
         }
     }

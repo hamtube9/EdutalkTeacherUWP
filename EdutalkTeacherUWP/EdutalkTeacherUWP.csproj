@@ -219,7 +219,7 @@
     <Compile Include="Localization\IResourceManagerProvider.cs" />
     <Compile Include="Message\Models\ConversationModel.cs" />
     <Compile Include="Message\Models\MessageModel.cs" />
-    <Compile Include="Settings\IMessageService.cs" />
+    <Compile Include="Settings\Service\IMessageService.cs" />
     <Compile Include="Settings\Models\ChangePasswordResult.cs" />
     <Compile Include="Settings\Service\IAccountService.cs" />
     <Compile Include="ViewModels\AttendancePageViewModel.cs" />
@@ -243,6 +243,7 @@
     <Compile Include="ViewModels\SettingsPageViewModel.cs" />
     <Compile Include="ViewModels\StudentSupportClassPageViewModel.cs" />
     <Compile Include="ViewModels\SupportClassPageViewModel.cs" />
+    <Compile Include="ViewModels\UpdatePhonePageViewModel.cs" />
     <Compile Include="ViewModels\ViewExamPageViewModel.cs" />
     <Compile Include="Views\AttendancePage.xaml.cs">
       <DependentUpon>AttendancePage.xaml</DependentUpon>
@@ -283,6 +284,9 @@
     <Compile Include="Views\SupportClassPage.xaml.cs">
       <DependentUpon>SupportClassPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UpdatePhonePage.xaml.cs">
+      <DependentUpon>UpdatePhonePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ViewExamPage.xaml.cs">
       <DependentUpon>ViewExamPage.xaml</DependentUpon>
     </Compile>
@@ -295,12 +299,14 @@
   <ItemGroup>
     <Content Include="Assets\chat.png" />
     <Content Include="Assets\icon.png" />
+    <Content Include="Assets\ic_alert_information.png" />
     <Content Include="Assets\ic_attendance.png" />
     <Content Include="Assets\ic_change_passwod.png" />
     <Content Include="Assets\ic_cloud_green.png" />
     <Content Include="Assets\ic_cloud_white.png" />
     <Content Include="Assets\ic_email.png" />
     <Content Include="Assets\ic_feedback.png" />
+    <Content Include="Assets\ic_help_header.png" />
     <Content Include="Assets\ic_home.png" />
     <Content Include="Assets\ic_homework.png" />
     <Content Include="Assets\ic_list_notify.png" />
@@ -455,6 +461,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SupportClassPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdatePhonePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
