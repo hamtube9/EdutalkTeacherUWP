@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 
 namespace EdutalkTeacherUWP.ViewModels
 {
@@ -32,7 +33,7 @@ namespace EdutalkTeacherUWP.ViewModels
         private void SetData()
         {
             User = applicationSettings.GetCurrentUser();
-            Version = AppInfo.VersionString;
+            Version = $"AppVersion {AppInfo.VersionString}";
         }
 
         ICommand _loggoutCommand;
