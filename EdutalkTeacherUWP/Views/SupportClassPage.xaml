@@ -146,46 +146,47 @@
 
                 </Grid>
 
-                <StackPanel
-                    Grid.Row="2"
+                <ScrollViewer Grid.Row="2">
+                    <StackPanel
+                    
                     >
-                    <Border  Padding="0" CornerRadius="12" Background="{StaticResource PrimaryColor}" Margin="16,0">
-                        <StackPanel>
-                            <TextBox   TextChanged="TextBox_TextChanged" Background="Transparent"   Margin="16,8" PlaceholderText="Class" Foreground="White">
-                                <TextBox.Header>
-                                    <TextBlock Text="Lớp học" Style="{StaticResource LabelBase}"/>
-                                </TextBox.Header>
-                            </TextBox>
-
-                            <Grid Margin="16,0,16,8" Background="Transparent">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <TimePicker HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Center" x:Name="timePicker" Time="{Binding TimePicker}" SelectedTimeChanged="timePicker_SelectedTimeChanged">
-                                    <TimePicker.Header>
-                                        <TextBlock Text="Thời gian" Style="{StaticResource LabelBase}"/>
-                                    </TimePicker.Header>
-                                </TimePicker>
-
-                                <DatePicker HorizontalAlignment="Center" Foreground="White"  VerticalAlignment="Center"  Grid.Column="1" x:Name="datePicker" Date="{Binding DatePicker}" SelectedDateChanged="datePicker_SelectedDateChanged">
-                                    <DatePicker.Header>
-                                        <TextBlock Text="Ngày" Style="{StaticResource LabelBase}"/>
-                                    </DatePicker.Header>
-                                </DatePicker>
-                            </Grid>
-
-
-                            <Grid Margin="16,4" Background="Transparent">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBox Text="90 Phút"  Foreground="White" Background="Transparent" Margin="0,0,16,0"  VerticalAlignment="Center" IsEnabled="False" >
+                        <Border  Padding="0" CornerRadius="12" Background="{StaticResource PrimaryColor}" Margin="16,0">
+                            <StackPanel>
+                                <TextBox   TextChanged="TextBox_TextChanged" Background="Transparent"   Margin="16,8" PlaceholderText="Class" Foreground="White">
                                     <TextBox.Header>
-                                        <TextBlock Style="{StaticResource LabelBase}" x:Name="headerTime" Text="Thời gian" >
+                                        <TextBlock Text="Lớp học" Style="{StaticResource LabelBase}"/>
+                                    </TextBox.Header>
+                                </TextBox>
+
+                                <Grid Margin="16,0,16,8" Background="Transparent">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TimePicker HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Center" x:Name="timePicker" Time="{Binding TimePicker}" SelectedTimeChanged="timePicker_SelectedTimeChanged">
+                                        <TimePicker.Header>
+                                            <TextBlock Text="Thời gian" Style="{StaticResource LabelBase}"/>
+                                        </TimePicker.Header>
+                                    </TimePicker>
+
+                                    <DatePicker HorizontalAlignment="Center" Foreground="White"  VerticalAlignment="Center"  Grid.Column="1" x:Name="datePicker" Date="{Binding DatePicker}" SelectedDateChanged="datePicker_SelectedDateChanged">
+                                        <DatePicker.Header>
+                                            <TextBlock Text="Ngày" Style="{StaticResource LabelBase}"/>
+                                        </DatePicker.Header>
+                                    </DatePicker>
+                                </Grid>
+
+
+                                <Grid Margin="16,4" Background="Transparent">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBox Text="90 Phút"  Foreground="White" Background="Transparent" Margin="0,0,16,0"  VerticalAlignment="Center" IsEnabled="False" >
+                                        <TextBox.Header>
+                                            <TextBlock Style="{StaticResource LabelBase}" x:Name="headerTime" Text="Thời gian" >
                                          <Interactivity:Interaction.Behaviors>
                                             <Core:DataTriggerBehavior Binding="{Binding IsOffline}" Value="False">
                                                 <Core:ChangePropertyAction TargetObject="{Binding ElementName=headerTime}" PropertyName="Foreground" Value="{StaticResource FutureColor}"/>
@@ -194,19 +195,19 @@
                                                 <Core:ChangePropertyAction TargetObject="{Binding ElementName=headerTime}" PropertyName="Foreground" Value="White"/>
                                             </Core:DataTriggerBehavior> 
                                          </Interactivity:Interaction.Behaviors>
-                                        </TextBlock>
-                                    </TextBox.Header>
+                                            </TextBlock>
+                                        </TextBox.Header>
 
-                                </TextBox>
+                                    </TextBox>
 
-                                <!--<TextBox  Margin="16,0,0,0" Grid.Column="1" Text="{Binding Room}" Foreground="White" Background="Transparent"  VerticalAlignment="Center" IsEnabled="False">
+                                    <!--<TextBox  Margin="16,0,0,0" Grid.Column="1" Text="{Binding Room}" Foreground="White" Background="Transparent"  VerticalAlignment="Center" IsEnabled="False">
                             <TextBox.Header>
                                 <TextBlock Style="{StaticResource LabelBase}" Text="Phòng học"/>
                             </TextBox.Header>
                         </TextBox>-->
 
-                                <StackPanel Margin="16,0,0,0" Grid.Column="1" VerticalAlignment="Bottom">
-                                    <TextBlock  Text="Phòng học" x:Name="headerRoom" Style="{StaticResource LabelBase}">
+                                    <StackPanel Margin="16,0,0,0" Grid.Column="1" VerticalAlignment="Bottom">
+                                        <TextBlock  Text="Phòng học" x:Name="headerRoom" Style="{StaticResource LabelBase}">
                                  <Interactivity:Interaction.Behaviors>
                                             <Core:DataTriggerBehavior Binding="{Binding IsOffline}" Value="False">
                                                 <Core:ChangePropertyAction TargetObject="{Binding ElementName=headerRoom}" PropertyName="Foreground" Value="{StaticResource FutureColor}"/>
@@ -215,18 +216,18 @@
                                                 <Core:ChangePropertyAction TargetObject="{Binding ElementName=headerRoom}" PropertyName="Foreground" Value="White"/>
                                             </Core:DataTriggerBehavior> 
                                          </Interactivity:Interaction.Behaviors>
-                                    </TextBlock>
-                                    <Border BorderBrush="White" BorderThickness="1" x:Name="borderRoom" Tapped="Border_Tapped">
-                                        <Interactivity:Interaction.Behaviors>
-                                            <Core:DataTriggerBehavior Binding="{Binding IsOffline}" Value="False">
-                                                <Core:ChangePropertyAction TargetObject="{Binding ElementName=borderRoom}" PropertyName="BorderBrush" Value="{StaticResource FutureColor}"/>
-                                            </Core:DataTriggerBehavior>
-                                            <Core:DataTriggerBehavior Binding="{Binding IsOffline}" Value="True">
-                                                <Core:ChangePropertyAction TargetObject="{Binding ElementName=borderRoom}" PropertyName="BorderBrush" Value="White"/>
-                                            </Core:DataTriggerBehavior>
-                                        </Interactivity:Interaction.Behaviors>
+                                        </TextBlock>
+                                        <Border BorderBrush="White" BorderThickness="1" x:Name="borderRoom" Tapped="Border_Tapped">
+                                            <Interactivity:Interaction.Behaviors>
+                                                <Core:DataTriggerBehavior Binding="{Binding IsOffline}" Value="False">
+                                                    <Core:ChangePropertyAction TargetObject="{Binding ElementName=borderRoom}" PropertyName="BorderBrush" Value="{StaticResource FutureColor}"/>
+                                                </Core:DataTriggerBehavior>
+                                                <Core:DataTriggerBehavior Binding="{Binding IsOffline}" Value="True">
+                                                    <Core:ChangePropertyAction TargetObject="{Binding ElementName=borderRoom}" PropertyName="BorderBrush" Value="White"/>
+                                                </Core:DataTriggerBehavior>
+                                            </Interactivity:Interaction.Behaviors>
 
-                                        <TextBlock x:Name="txtRoom"  Style="{StaticResource LabelBase}" Padding="4,8,4,4">
+                                            <TextBlock x:Name="txtRoom"  Style="{StaticResource LabelBase}" Padding="4,8,4,4">
                                      <Interactivity:Interaction.Behaviors>
                                             <Core:DataTriggerBehavior Binding="{Binding IsOffline}" Value="False">
                                                 <Core:ChangePropertyAction TargetObject="{Binding ElementName=txtRoom}" PropertyName="Foreground" Value="{StaticResource FutureColor}"/>
@@ -235,28 +236,28 @@
                                                 <Core:ChangePropertyAction TargetObject="{Binding ElementName=txtRoom}" PropertyName="Foreground" Value="White"/>
                                             </Core:DataTriggerBehavior> 
                                          </Interactivity:Interaction.Behaviors>
-                                        </TextBlock>
-                                    </Border>
-                                </StackPanel>
+                                            </TextBlock>
+                                        </Border>
+                                    </StackPanel>
 
-                            </Grid>
-                            <Grid  Margin="16,4" Background="Transparent">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
+                                </Grid>
+                                <Grid  Margin="16,4" Background="Transparent">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
 
-                                <TextBox Text="{Binding ZoomId}" x:Name="txtZoomId" Foreground="White" Background="Transparent" Margin="0,0,16,0"  VerticalAlignment="Center"    >
-                                    <Interactivity:Interaction.Behaviors>
-                                        <Core:DataTriggerBehavior Binding="{Binding IsOffline}" Value="True">
-                                            <Core:ChangePropertyAction TargetObject="{Binding ElementName=txtZoomId}" PropertyName="IsEnabled" Value="False"/>
-                                        </Core:DataTriggerBehavior>
-                                        <Core:DataTriggerBehavior Binding="{Binding IsOffline}" Value="False">
-                                            <Core:ChangePropertyAction TargetObject="{Binding ElementName=txtZoomId}" PropertyName="IsEnabled" Value="True"/>
-                                        </Core:DataTriggerBehavior>
-                                    </Interactivity:Interaction.Behaviors>
-                                    <TextBox.Header>
-                                        <TextBlock Style="{StaticResource LabelBase}" x:Name="headerZoomId" Text="Zoom Id">
+                                    <TextBox Text="{Binding ZoomId}" x:Name="txtZoomId" Foreground="White" Background="Transparent" Margin="0,0,16,0"  VerticalAlignment="Center"    >
+                                        <Interactivity:Interaction.Behaviors>
+                                            <Core:DataTriggerBehavior Binding="{Binding IsOffline}" Value="True">
+                                                <Core:ChangePropertyAction TargetObject="{Binding ElementName=txtZoomId}" PropertyName="IsEnabled" Value="False"/>
+                                            </Core:DataTriggerBehavior>
+                                            <Core:DataTriggerBehavior Binding="{Binding IsOffline}" Value="False">
+                                                <Core:ChangePropertyAction TargetObject="{Binding ElementName=txtZoomId}" PropertyName="IsEnabled" Value="True"/>
+                                            </Core:DataTriggerBehavior>
+                                        </Interactivity:Interaction.Behaviors>
+                                        <TextBox.Header>
+                                            <TextBlock Style="{StaticResource LabelBase}" x:Name="headerZoomId" Text="Zoom Id">
                                       <Interactivity:Interaction.Behaviors>
                                             <Core:DataTriggerBehavior Binding="{Binding IsOffline}" Value="True">
                                                 <Core:ChangePropertyAction TargetObject="{Binding ElementName=headerZoomId}" PropertyName="Foreground" Value="{StaticResource FutureColor}"/>
@@ -265,23 +266,23 @@
                                                 <Core:ChangePropertyAction TargetObject="{Binding ElementName=headerZoomId}" PropertyName="Foreground" Value="White"/>
                                             </Core:DataTriggerBehavior> 
                                          </Interactivity:Interaction.Behaviors>
-                                        </TextBlock>
-                                    </TextBox.Header>
+                                            </TextBlock>
+                                        </TextBox.Header>
 
-                                </TextBox>
+                                    </TextBox>
 
 
-                                <TextBox  Text="{Binding ZoomPassword}" x:Name="txtZoomPassword" Grid.Column="1" Foreground="White" Background="Transparent" Margin="16,0,0,0"  VerticalAlignment="Center"  >
-                                    <Interactivity:Interaction.Behaviors>
-                                        <Core:DataTriggerBehavior Binding="{Binding IsOffline}" Value="True">
-                                            <Core:ChangePropertyAction TargetObject="{Binding ElementName=txtZoomPassword}" PropertyName="IsEnabled" Value="False"/>
-                                        </Core:DataTriggerBehavior>
-                                        <Core:DataTriggerBehavior Binding="{Binding IsOffline}" Value="False">
-                                            <Core:ChangePropertyAction TargetObject="{Binding ElementName=txtZoomPassword}" PropertyName="IsEnabled" Value="True"/>
-                                        </Core:DataTriggerBehavior>
-                                    </Interactivity:Interaction.Behaviors>
-                                    <TextBox.Header>
-                                        <TextBlock Style="{StaticResource LabelBase}" x:Name="headerZoomPassword" Text="Zoom Password">
+                                    <TextBox  Text="{Binding ZoomPassword}" x:Name="txtZoomPassword" Grid.Column="1" Foreground="White" Background="Transparent" Margin="16,0,0,0"  VerticalAlignment="Center"  >
+                                        <Interactivity:Interaction.Behaviors>
+                                            <Core:DataTriggerBehavior Binding="{Binding IsOffline}" Value="True">
+                                                <Core:ChangePropertyAction TargetObject="{Binding ElementName=txtZoomPassword}" PropertyName="IsEnabled" Value="False"/>
+                                            </Core:DataTriggerBehavior>
+                                            <Core:DataTriggerBehavior Binding="{Binding IsOffline}" Value="False">
+                                                <Core:ChangePropertyAction TargetObject="{Binding ElementName=txtZoomPassword}" PropertyName="IsEnabled" Value="True"/>
+                                            </Core:DataTriggerBehavior>
+                                        </Interactivity:Interaction.Behaviors>
+                                        <TextBox.Header>
+                                            <TextBlock Style="{StaticResource LabelBase}" x:Name="headerZoomPassword" Text="Zoom Password">
                                      <Interactivity:Interaction.Behaviors>
                                             <Core:DataTriggerBehavior Binding="{Binding IsOffline}" Value="True">
                                                 <Core:ChangePropertyAction TargetObject="{Binding ElementName=headerZoomPassword}" PropertyName="Foreground" Value="{StaticResource FutureColor}"/>
@@ -290,89 +291,91 @@
                                                 <Core:ChangePropertyAction TargetObject="{Binding ElementName=headerZoomPassword}" PropertyName="Foreground" Value="White"/>
                                             </Core:DataTriggerBehavior> 
                                          </Interactivity:Interaction.Behaviors>
-                                        </TextBlock>
-                                    </TextBox.Header>
-                                </TextBox>
+                                            </TextBlock>
+                                        </TextBox.Header>
+                                    </TextBox>
 
-                            </Grid>
+                                </Grid>
 
-                            <Grid Margin="16,4">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBox Text="{Binding TutorName}" Foreground="White" Margin="0,0,16,0" IsEnabled="False">
-                                    <TextBox.Header>
-                                        <TextBlock Text="Trợ giảng" Style="{StaticResource LabelBase}"/>
-                                    </TextBox.Header>
-                                </TextBox>
-
-                                <CheckBox IsChecked="{Binding IsTutorLead}"  BorderBrush="White" IsEnabled="{Binding IsHaveTutor}"  Grid.Column="1" Margin="16,0,0,0" VerticalAlignment="Bottom">
-                                    <TextBlock Text="Trợ giảng dạy" Style="{StaticResource LabelBase}"/>
-                                </CheckBox>
-                            </Grid>
-                            <TextBox Text="{Binding Note}" Foreground="White" Margin="16,4,16,12">
-                                <TextBox.Header>
-                                    <TextBlock Text="Ghi chú" Style="{StaticResource LabelBase}"/>
-                                </TextBox.Header>
-                            </TextBox>
-                        </StackPanel>
-                    </Border>
-
-
-                    <StackPanel Orientation="Horizontal" Margin="16,8">
-                        <TextBlock Text="Học viên" Style="{StaticResource LabelBase}" Padding="8"/>
-                        <Image Source="/Assets/plus.png" Height="24" Width="24" Tapped="Image_Tapped"/>
-                    </StackPanel>
-                    
-                    <ListView ItemsSource="{Binding Students}" HorizontalAlignment="Stretch" IsItemClickEnabled="False" SelectionMode="None">
-                        <ListView.ItemContainerStyle>
-                            <Style TargetType="ListViewItem">
-                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                            </Style>
-                        </ListView.ItemContainerStyle>
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid Margin="0,8">
+                                <Grid Margin="16,4">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Border Height="48" CornerRadius="12" x:Name="bgStudent">
-                                        <Interactivity:Interaction.Behaviors>
-                                            <Core:DataTriggerBehavior Binding="{Binding IsChoose}" Value="True">
-                                                <Core:ChangePropertyAction TargetObject="{Binding ElementName=bgStudent}" PropertyName="Background" Value="{StaticResource PassColor}"/>
-                                            </Core:DataTriggerBehavior>
-                                            <Core:DataTriggerBehavior Binding="{Binding IsChoose}" Value="False">
-                                                <Core:ChangePropertyAction TargetObject="{Binding ElementName=bgStudent}" PropertyName="Background" Value="{StaticResource PrimaryColor}"/>
-                                            </Core:DataTriggerBehavior>
-                                        </Interactivity:Interaction.Behaviors>
 
-                                        <Grid>
-                                            <StackPanel VerticalAlignment="Center">
-                                                <Grid >
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="60"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                    </Grid.ColumnDefinitions>
+                                    <TextBox Text="{Binding TutorName}" Foreground="White" Margin="0,0,16,0" IsEnabled="False">
+                                        <TextBox.Header>
+                                            <TextBlock Text="Trợ giảng" Style="{StaticResource LabelBase}"/>
+                                        </TextBox.Header>
+                                    </TextBox>
 
-                                                    <Border Height="32" Width="32" CornerRadius="16" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                                        <Image Source="{Binding User.Image}" Height="32" Width="32"/>
-                                                    </Border>
-
-                                                    <TextBlock Text="{Binding User.FullName}" Grid.Column="1" VerticalAlignment="Center" Margin="16,0" />
-
-
-                                                </Grid>
-                                            </StackPanel>
-                                           
-                                        </Grid>
-                                    </Border>
+                                    <CheckBox IsChecked="{Binding IsTutorLead}"  BorderBrush="White" IsEnabled="{Binding IsHaveTutor}"  Grid.Column="1" Margin="16,0,0,0" VerticalAlignment="Bottom">
+                                        <TextBlock Text="Trợ giảng dạy" Style="{StaticResource LabelBase}"/>
+                                    </CheckBox>
                                 </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </StackPanel>
+                                <TextBox Text="{Binding Note}" Foreground="White" Margin="16,4,16,12">
+                                    <TextBox.Header>
+                                        <TextBlock Text="Ghi chú" Style="{StaticResource LabelBase}"/>
+                                    </TextBox.Header>
+                                </TextBox>
+                            </StackPanel>
+                        </Border>
+
+
+                        <StackPanel Orientation="Horizontal" Margin="16,8">
+                            <TextBlock Text="Học viên" Style="{StaticResource LabelBase}" Padding="8"/>
+                            <Image Source="/Assets/plus.png" Height="24" Width="24" Tapped="Image_Tapped"/>
+                        </StackPanel>
+
+                        <ListView ItemsSource="{Binding Students}" HorizontalAlignment="Stretch" IsItemClickEnabled="False" SelectionMode="None">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,8">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Height="48" CornerRadius="12" x:Name="bgStudent">
+                                            <Interactivity:Interaction.Behaviors>
+                                                <Core:DataTriggerBehavior Binding="{Binding IsChoose}" Value="True">
+                                                    <Core:ChangePropertyAction TargetObject="{Binding ElementName=bgStudent}" PropertyName="Background" Value="{StaticResource PassColor}"/>
+                                                </Core:DataTriggerBehavior>
+                                                <Core:DataTriggerBehavior Binding="{Binding IsChoose}" Value="False">
+                                                    <Core:ChangePropertyAction TargetObject="{Binding ElementName=bgStudent}" PropertyName="Background" Value="{StaticResource PrimaryColor}"/>
+                                                </Core:DataTriggerBehavior>
+                                            </Interactivity:Interaction.Behaviors>
+
+                                            <Grid>
+                                                <StackPanel VerticalAlignment="Center">
+                                                    <Grid >
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="60"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <Border Height="32" Width="32" CornerRadius="16" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                            <Image Source="{Binding User.Image}" Height="32" Width="32"/>
+                                                        </Border>
+
+                                                        <TextBlock Text="{Binding User.FullName}" Grid.Column="1" VerticalAlignment="Center" Margin="16,0" />
+
+
+                                                    </Grid>
+                                                </StackPanel>
+
+                                            </Grid>
+                                        </Border>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
+                </ScrollViewer>
+            
               
 
             </Grid>

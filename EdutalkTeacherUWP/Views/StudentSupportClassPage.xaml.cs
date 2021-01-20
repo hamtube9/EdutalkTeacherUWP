@@ -38,7 +38,7 @@ namespace EdutalkTeacherUWP.Views
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            if((InfoStudentModel[])e.Parameter != null)
+            if ((InfoStudentModel[])e.Parameter != null)
             {
                 vm.Students = new System.Collections.ObjectModel.ObservableCollection<InfoStudentModel>((InfoStudentModel[])e.Parameter);
             }
@@ -47,7 +47,7 @@ namespace EdutalkTeacherUWP.Views
         {
             var obj = (Grid)sender;
             var data = (InfoStudentModel)obj.DataContext;
-            vm.Students.FirstOrDefault(q => q.User.UserId == data.User.UserId).IsChoose = !data.IsChoose;
+            vm.Students.FirstOrDefault(q => q.User.Id == data.User.Id).IsChoose = !data.IsChoose;
         }
 
         private void Image_Tapped(object sender, TappedRoutedEventArgs e)
@@ -55,9 +55,9 @@ namespace EdutalkTeacherUWP.Views
             Frame.GoBack();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            applicationSettings.SetStudentSupportClass(vm.Students.ToArray());
+            var check = await applicationSettings.SetStudentSupportClass(vm.Students.ToArray());
             Frame.GoBack();
         }
     }

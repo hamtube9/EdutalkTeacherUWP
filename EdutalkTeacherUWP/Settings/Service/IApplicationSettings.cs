@@ -3,6 +3,8 @@ using EdutalkTeacherUWP.Common.Extensions;
 using EdutalkTeacherUWP.Home.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,8 +16,8 @@ namespace EdutalkTeacherUWP.Settings.Service
     {
         UserModel GetCurrentUser();
         bool SetCurrentUser(UserModel user);
-        InfoStudentModel[] GetStudentSupportClass();
-       bool SetStudentSupportClass(InfoStudentModel[] data);
+        Task<InfoStudentModel[]> GetStudentSupportClass();
+       Task<bool> SetStudentSupportClass(InfoStudentModel[] data);
 
         //bool ProfileUpdated { set; get; }
         //bool GuideAttendance { set; get; }
@@ -28,15 +30,36 @@ namespace EdutalkTeacherUWP.Settings.Service
         const string ProfileUpdatedKey = "ApplicationSettings_ET_ProfileUpdatedKey_Key";
         const string GuideAttendanceKey = "ApplicationSettings_ET_GuideAttendance_Key";
 
-
+        Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
         public UserModel GetCurrentUser()
         {
             return ((string)ApplicationData.Current.LocalSettings.Values[CurrentUserKey]).DeserializeObject<UserModel>();
         }
 
-        public InfoStudentModel[] GetStudentSupportClass()
+        public async Task<InfoStudentModel[]> GetStudentSupportClass()
         {
-            return ((string)ApplicationData.Current.LocalSettings.Values[StudentSupportClassKey]).DeserializeObject<InfoStudentModel[]>();
+            try
+            {
+                StorageFile sampleFile = await localFolder.GetFileAsync(StudentSupportClassKey + ".txt");
+                string data = await FileIO.ReadTextAsync(sampleFile);
+                return data.DeserializeObject<InfoStudentModel[]>();
+            }
+            catch (FileNotFoundException e)
+            {
+                // Cannot find file
+            }
+            catch (IOException e)
+            {
+                // Get information from the exception, then throw
+                // the info to the parent method.
+                if (e.Source != null)
+                {
+                    Debug.WriteLine("IOException source: {0}", e.Source);
+                }
+              
+            }
+            return null;
+
         }
 
         public bool SetCurrentUser(UserModel user)
@@ -50,11 +73,12 @@ namespace EdutalkTeacherUWP.Settings.Service
             return false;
         }
 
-        public bool SetStudentSupportClass(InfoStudentModel[] data)
+        public async Task<bool> SetStudentSupportClass(InfoStudentModel[] data)
         {
-            ApplicationData.Current.LocalSettings.Values.Remove(StudentSupportClassKey);
-            ApplicationData.Current.LocalSettings.Values[StudentSupportClassKey] = data.SerializeObject();
-            if (((string)ApplicationData.Current.LocalSettings.Values[StudentSupportClassKey]).DeserializeObject<InfoStudentModel[]>() != null)
+           var result = await localFolder.CreateFileAsync(StudentSupportClassKey + ".txt", CreationCollisionOption.ReplaceExisting);
+            await FileIO.WriteTextAsync(result, data.SerializeObject());
+            StorageFile sampleFile = await localFolder.GetFileAsync(StudentSupportClassKey + ".txt");
+            if (sampleFile != null)
             {
                 return true;
             }

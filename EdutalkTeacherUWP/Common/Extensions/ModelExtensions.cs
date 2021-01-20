@@ -347,7 +347,7 @@ namespace EdutalkTeacherUWP.Common.Extensions
         }
 
 
-        public static RouteModel ToModel(this RouteResultDto d, string room, long classId,int spaceDay)
+        public static RouteModel ToModel(this RouteResultDto d, string room, long classId)
         {
             if (d == null)
             {
@@ -360,7 +360,7 @@ namespace EdutalkTeacherUWP.Common.Extensions
                 DatetimeStudy = $"{d.StartTime.Value.Hours}h{d.StartTime.Value.Minutes}-{d.EndTime.Value.Hours}h{d.EndTime.Value.Minutes}",
                 DateMonthStudy = $"{d.DateTime.Day}-{d.DateTime.Month}",
                 IsPass = d.DateTime < DateTime.Now ? true : false,
-                IsPresent= DateTime.Now >= d.DateTime.Add(d.StartTime ?? TimeSpan.FromHours(0)) && DateTime.Now <= d.DateTime.AddDays(spaceDay) ? true : false,
+                //IsPresent= d.DateTime <= DateTime.Now && DateTime.Now <= d.DateTime.Add(d.EndTime ?? TimeSpan.FromHours(24)) ? true : false,
                 IsFuture = DateTime.Now < d.DateTime ? true : false,
                 Durration = duration.HasValue ? duration.Value.TotalMinutes : 90,
                 Name = d.Name ?? d.Lesson + "",

@@ -70,53 +70,45 @@
         x:Key="OnLightColor">#191E3E</Color>
             <Color
         x:Key="OnBackgroundGreenColor">#DFF4C3</Color>
+            <Style x:Key="CustomNavigationMenuStyle" TargetType="Button" BasedOn="{StaticResource PaneToggleButtonStyle}">
+                <Setter Property="Foreground" Value="White" />
+            </Style>
 
             <AcrylicBrush x:Key="NavigationViewDefaultPaneBackground" BackgroundSource="Backdrop" TintColor="{StaticResource BackgroundColor}" TintOpacity=".6"/>
-            <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground" BackgroundSource="HostBackdrop" TintColor="{StaticResource PrimaryColor}" TintOpacity=".8"/>
-
+            <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground" BackgroundSource="HostBackdrop" TintColor="{StaticResource BackgroundColor}" />
         </ResourceDictionary>
     </Page.Resources>
 
     <NavigationView
-         Canvas.ZIndex="0"
-        Background="{StaticResource NavigationViewDefaultPaneBackground}"
+            PaneOpening="NavigationViewControl_PaneOpening"
+            Background="{StaticResource NavigationViewDefaultPaneBackground}"
             x:Name="NavigationViewControl"
-            Grid.Column="1"
+            PaneClosing="NavigationViewControl_PaneClosing"
             AlwaysShowHeader="True"
+            Foreground="White"
+            PaneToggleButtonStyle="{StaticResource CustomNavigationMenuStyle}"
             Header=" "
             IsTabStop="False"
            >
 
-        <NavigationView.MenuItems >
-            <!--<NavigationViewItem  HorizontalContentAlignment="Stretch" Margin="0,8" VerticalContentAlignment="Stretch" >
-                    <Border Padding="0" CornerRadius="12" Background="{StaticResource PrimaryColor}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="48"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="48"/>
-                            </Grid.ColumnDefinitions>
-                            <Image Height="32" Width="32" Source="/Assets/ic_phone.png" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                            <Image Height="16" Grid.Column="2" Width="16" Source="/Assets/ic_right_chevron.png" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <TextBlock Text="Phone" Padding="16,8" Grid.Column="1" VerticalAlignment="Center"/>
-                        </Grid>
-                    </Border>
-                </NavigationViewItem>-->
-
-
-            <NavigationViewItemHeader>
+        <NavigationView.MenuItems>
+            <NavigationViewItemHeader x:Name="itemImage" >
                 <NavigationViewItemHeader.Template>
                     <ControlTemplate>
-                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-                            <Border Padding="0" CornerRadius="48">
-                                <Image Source="{Binding User.Image}" Height="96" Width="96"/>
+                        <StackPanel Orientation="Vertical"  HorizontalAlignment="Center">
+                            <Border Padding="0" CornerRadius="40"  HorizontalAlignment="Center" >
+                                <Image Source="{Binding User.Image}" Height="80" Width="80"  Stretch="Fill"/>
                             </Border>
-                            <TextBlock Text="{Binding User.FullName}" Style="{StaticResource LabelBase}"/>
+                            <TextBlock  Padding="0,8,0,4" Text="{Binding User.FullName}" HorizontalAlignment="Center" Style="{StaticResource LabelBase}"/>
                         </StackPanel>
                     </ControlTemplate>
                 </NavigationViewItemHeader.Template>
             </NavigationViewItemHeader>
-            <NavigationViewItemHeader />
+            <NavigationViewItem Icon="Pictures" CornerRadius="12" Foreground="White" Background="{StaticResource PrimaryColor}" Tapped="itemImage_Tapped">
+                <NavigationViewItem.Content>
+                    <TextBlock Text="Thay đổi ảnh đại diện" Foreground="White"/>
+                </NavigationViewItem.Content>
+            </NavigationViewItem>
             <NavigationViewItem Icon="Mail" CornerRadius="12" Foreground="White" Background="{StaticResource PrimaryColor}">
                 <NavigationViewItem.Content>
                     <TextBlock Text="{Binding User.Email}" Foreground="White"/>
@@ -127,7 +119,7 @@
                     <TextBlock Text="{Binding User.Phone}" Foreground="White"/>
                 </NavigationViewItem.Content>
             </NavigationViewItem>
-            <NavigationViewItem Icon="Keyboard"   Foreground="White" CornerRadius="12" Background="{StaticResource PrimaryColor}">
+            <NavigationViewItem Icon="Keyboard"   Foreground="White" CornerRadius="12" Background="{StaticResource PrimaryColor}" Tapped="NavigationViewItem_ChangePassword">
                 <NavigationViewItem.Content>
                     <TextBlock Text="Đổi mật khẩu" Foreground="White"/>
                 </NavigationViewItem.Content>
@@ -181,16 +173,19 @@
         </NavigationView.PaneFooter>
 
 
-        <Frame x:Name="FrameContent" >
-            <Frame.ContentTransitions>
-                <TransitionCollection>
-                    <NavigationThemeTransition>
-                        <NavigationThemeTransition.DefaultNavigationTransitionInfo>
-                            <EntranceNavigationTransitionInfo />
-                        </NavigationThemeTransition.DefaultNavigationTransitionInfo>
-                    </NavigationThemeTransition>
-                </TransitionCollection>
-            </Frame.ContentTransitions>
-        </Frame>
+        <Grid>
+
+            <Frame x:Name="FrameContent" >
+                <Frame.ContentTransitions>
+                    <TransitionCollection>
+                        <NavigationThemeTransition>
+                            <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                                <EntranceNavigationTransitionInfo />
+                            </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                        </NavigationThemeTransition>
+                    </TransitionCollection>
+                </Frame.ContentTransitions>
+            </Frame>
+        </Grid>
     </NavigationView>
 </Page>

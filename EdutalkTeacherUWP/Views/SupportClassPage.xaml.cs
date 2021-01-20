@@ -52,7 +52,7 @@ namespace EdutalkTeacherUWP.Views
             }
             if (e.NavigationMode == NavigationMode.Back)
             {
-                var dataStudent = applicationSettings.GetStudentSupportClass();
+                var dataStudent = await applicationSettings.GetStudentSupportClass();
                 vm.Students = new List<InfoStudentModel>(dataStudent.Where(q => q.IsChoose == true).ToList());
             }
 
@@ -122,6 +122,7 @@ namespace EdutalkTeacherUWP.Views
 
         private void Image_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            if(vm.SourceStudents != null)
             Frame.Navigate(typeof(StudentSupportClassPage), vm.SourceStudents.ToArray());
         }
 

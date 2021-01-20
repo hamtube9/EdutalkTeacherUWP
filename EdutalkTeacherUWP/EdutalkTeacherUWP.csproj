@@ -123,9 +123,15 @@
     <Compile Include="Api\Base\IApiProvider.cs" />
     <Compile Include="Api\Base\IEdutalkApi.cs" />
     <Compile Include="Api\Base\PageToken.cs" />
+    <Compile Include="Api\Dtos\AuthorizationDtos\AccountUserResultDto.cs" />
+    <Compile Include="Api\Dtos\AuthorizationDtos\GetPinCodeResultDto.cs" />
+    <Compile Include="Api\Dtos\AuthorizationDtos\PhoneRequestDto.cs" />
     <Compile Include="Api\Dtos\AuthorizationDtos\SignInRequestDto.cs" />
     <Compile Include="Api\Dtos\AuthorizationDtos\SignInResultDto.cs" />
+    <Compile Include="Api\Dtos\AuthorizationDtos\UpdatePasswordRequestDto.cs" />
     <Compile Include="Api\Dtos\AuthorizationDtos\UserResultDto.cs" />
+    <Compile Include="Api\Dtos\AuthorizationDtos\VerifyPhoneRequestDto.cs" />
+    <Compile Include="Api\Dtos\AuthorizationDtos\VerifyPhoneResultDto.cs" />
     <Compile Include="Api\Dtos\ClassDtos\AttendanceResultDto.cs" />
     <Compile Include="Api\Dtos\ClassDtos\ClassroomResultDto.cs" />
     <Compile Include="Api\Dtos\ClassDtos\CreateTutoringRequestDto.cs" />
@@ -165,6 +171,7 @@
       <DependentUpon>RouteControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\Converts\BoolToVisibilityConverter.cs" />
+    <Compile Include="Common\Converts\EnumToVisibilityConverter.cs" />
     <Compile Include="Common\Converts\VisibilityConverter.cs" />
     <Compile Include="Common\Extensions\ModelExtensions.cs" />
     <Compile Include="Exam\Controls\PlayButtonControl.xaml.cs">
@@ -213,7 +220,9 @@
     <Compile Include="Message\Models\ConversationModel.cs" />
     <Compile Include="Message\Models\MessageModel.cs" />
     <Compile Include="Settings\IMessageService.cs" />
+    <Compile Include="Settings\Service\IAccountService.cs" />
     <Compile Include="ViewModels\AttendancePageViewModel.cs" />
+    <Compile Include="ViewModels\ChangePasswordPageViewModel.cs" />
     <Compile Include="ViewModels\ClassPageViewModel.cs" />
     <Compile Include="ViewModels\ConversationPageViewModel.cs" />
     <Compile Include="ViewModels\HomeworkPageViewModel.cs" />
@@ -236,6 +245,9 @@
     <Compile Include="ViewModels\ViewExamPageViewModel.cs" />
     <Compile Include="Views\AttendancePage.xaml.cs">
       <DependentUpon>AttendancePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChangePasswordPage.xaml.cs">
+      <DependentUpon>ChangePasswordPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ClassPage.xaml.cs">
       <DependentUpon>ClassPage.xaml</DependentUpon>
@@ -394,6 +406,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\AttendancePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChangePasswordPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

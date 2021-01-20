@@ -291,8 +291,7 @@ namespace EdutalkTeacherUWP.Home.Services
                 var result = await Api.GetSchedule(classroomId);
                 if (result?.Data?.ListDate?.Length > 0)
                 {
-                    var spaceDay = result.Data.ListDate.Length >1 ? (result.Data.ListDate[1].DateTime - result.Data.ListDate[0].DateTime).Days : 0;
-                    var routes = result.Data.ListDate.Where(d => !d.OffClass.HasValue || d.OffClass.Value == false).Select(d => d.ToModel(result.Data.Room, result.Data.Id, spaceDay)).OrderBy(d => d.Date).ToArray();
+                    var routes = result.Data.ListDate.Where(d => !d.OffClass.HasValue || d.OffClass.Value == false).Select(d => d.ToModel(result.Data.Room, result.Data.Id)).OrderBy(d => d.Date).ToArray();
                     var lessons = routes.Where(d => d.RouteType == RouteType.Lesson).ToArray();
                     for (int i = 0; i < lessons.Length - 1; i++)
                     {
@@ -300,7 +299,7 @@ namespace EdutalkTeacherUWP.Home.Services
                         var next = lessons[i + 1];
                         first.Next = next.Date;
                     }
-
+                    routes.FirstOrDefault(q => q.Date <= DateTime.Now && DateTime.Now <= q.Next).IsPresent = true;
 
                     return new ScheduleModel()
                     {

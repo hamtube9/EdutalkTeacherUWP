@@ -39,12 +39,12 @@ namespace EdutalkTeacherUWP.ViewModels
             var result = await service.SignInAsync(Email, Password);
             if (result == true)
             {
-                Toast("Success");
+                Toast("Đăng nhập thành công");
                 var check = _navigationService.Navigate(PageTokens.Main.ToString(), null);
             }
             else
             {
-                Toast("False");
+                Toast("Đăng nhập thất bại");
             }
         }
     }

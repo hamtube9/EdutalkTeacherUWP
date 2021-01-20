@@ -227,7 +227,7 @@
                                                     </PivotHeaderPanel>
                                                 </Grid>
                                             </ContentControl>
-                                            <Button x:Name="PreviousButton"
+                                            <!--<Button x:Name="PreviousButton"
                                                 Background="Transparent"
                                                 Grid.Column="1" 
                                                 HorizontalAlignment="Left"
@@ -253,7 +253,7 @@
                                                 Template="{StaticResource NextTemplate}"
                                                 UseSystemFocusVisuals="False"
                                                 VerticalAlignment="Top"
-                                                Width="20"/>
+                                                Width="20"/>-->
                                             <ContentPresenter x:Name="RightHeaderPresenter"
                                                           ContentTemplate="{TemplateBinding RightHeaderTemplate}"
                                                           Content="{TemplateBinding RightHeader}"
@@ -522,7 +522,9 @@
             </PivotItem.Header>
             <PivotItem.Content>
                 <ItemsControl>
-                    <view:SettingsPage VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+                    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <view:SettingsPage VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+                    </Grid>
                 </ItemsControl>
             </PivotItem.Content>
         </PivotItem>

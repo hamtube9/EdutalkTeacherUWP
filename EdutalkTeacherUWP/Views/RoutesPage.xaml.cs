@@ -27,6 +27,7 @@ namespace EdutalkTeacherUWP.Views
     /// </summary>
     public sealed partial class RoutesPage : Page
     {
+        bool isScrolled { set; get; } = false;
         RoutesPageViewModel vm;
         public RoutesPage()
         {
@@ -36,7 +37,11 @@ namespace EdutalkTeacherUWP.Views
 
         private void Routes_ContainerContentChanging(ListViewBase sender, ContainerContentChangingEventArgs args)
         {
-            Routes.ScrollIntoView(vm.Routes.FirstOrDefault(c => c.IsPresent == true));
+            if(isScrolled == false)
+            {
+                Routes.ScrollIntoView(vm.Routes.FirstOrDefault(c => c.IsPresent == true));
+                isScrolled = true;
+            }
         }
 
         private void Button_Click_Attendace(object sender, TappedRoutedEventArgs e)
@@ -95,9 +100,5 @@ namespace EdutalkTeacherUWP.Views
             });
         }
 
-        private async void RefreshContainer_RefreshRequested(RefreshContainer sender, RefreshRequestedEventArgs args)
-        {
-            await vm.LoadRoutes();
-        }
     }
 }

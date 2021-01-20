@@ -1,4 +1,5 @@
 ﻿using EdutalkTeacherUWP.Api.Dtos;
+using EdutalkTeacherUWP.Api.Dtos.AuthorizationDtos;
 using EdutalkTeacherUWP.Api.Dtos.Authorizations;
 using EdutalkTeacherUWP.Api.Dtos.ClassDtos;
 using EdutalkTeacherUWP.Api.Dtos.Exam;
@@ -80,5 +81,23 @@ namespace EdutalkTeacherUWP.Api.Base
 
         [Post("/api/v3/mobile/teacher/class/tutoring/delete")]
         Task<ErrorResultDto> DeleteTutoring([Body] DeleteingRequestDto request);
+
+
+        //UPLOAD AVATAR 
+        [Multipart]
+        [Post("/api/v3/profile/upload-avatar")]
+        Task<SignInResultDto> UpdateProfileUploadProfileImage([AliasAs("file")] StreamPart file);
+
+        [Get("/api/account/current")]
+        Task<DataDto<AccountUserResultDto>> GetCurrentUser();
+        [Post("/api/v3/mobile/change-password-teacher")]
+        Task<ChangepassResultDto> ChangePassword([Body] UpdatePasswordRequestDto request);
+
+        //Verify Phone
+        [Post("/api/v3/mobile/send-pin-code")]
+        Task<DataDto<GetPinCodeResultDto>> GetPinCode([Body] PhoneRequestDto request);
+
+        [Post("/api/v3/mobile/verify-pin-code")]
+        Task<DataDto<VerifyPhoneResultDto>> VerifyPhone([Body] VerifyPhoneRequestDto request);
     }
 }
