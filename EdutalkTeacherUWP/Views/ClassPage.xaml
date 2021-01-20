@@ -169,5 +169,8 @@
                 </GridView.ItemTemplate>
             </GridView>
         </ScrollViewer>
+
+        <ProgressRing IsActive="True" Visibility="{Binding IsBusy}" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Height="48" Width="48"/>
+
     </Grid>
 </Page>

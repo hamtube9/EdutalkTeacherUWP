@@ -88,66 +88,67 @@
 
     </Page.Resources>
 
-    <StackPanel
+    <Grid>
+        <StackPanel
         VerticalAlignment="Center">
-        <Image
+            <Image
             HorizontalAlignment="Left"
             Margin="16,8"
             Height="120"
             Width="80"
             Source="/Assets/im_logo_splash.png" />
 
-        <StackPanel
+            <StackPanel
             Margin="16,8"
             Orientation="Horizontal">
-            <TextBlock
+                <TextBlock
                 Padding="4"
                 Style="{StaticResource LabelBaseLarge}"
                 Text="Welcome to" />
-            <TextBlock
+                <TextBlock
                 Padding="4"
                 Style="{StaticResource LabelBaseLarger}"
                 Text="Edutalk"
                 FontWeight="Bold" />
-        </StackPanel>
+            </StackPanel>
 
-        <Border
+            <Border
             Margin="16,0"
             BorderThickness="1"
             Background="{StaticResource OnColorFrame}"
             CornerRadius="12">
-            <StackPanel>
-                <StackPanel
+                <StackPanel>
+                    <StackPanel
                     Margin="16,8">
-                    <TextBlock
+                        <TextBlock
                         Style="{StaticResource LabelBase}"
                         Padding="0"
                         Text="Email" />
-                    <TextBox
+                        <TextBox
                         TextChanged="TextBox_TextChanged"
                         SelectionHighlightColor="{StaticResource OnColorFrame}"
                         Foreground="White"
                         Background="Transparent"
                         BorderBrush="Transparent"
                         InputScope="EmailSmtpAddress" >
-                        <TextBox.Resources>
-                            <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="{StaticResource PrimaryColor}"/>
-                            <SolidColorBrush x:Key="TextControlForegroundFocused" Color="White"/>
-                            <SolidColorBrush x:Key="TextControlBorderBrushFocused" Color="{StaticResource PrimaryColor}" />
-                        </TextBox.Resources>
-                    </TextBox>
-                    <Line
+                            <TextBox.Resources>
+                                <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="{StaticResource PrimaryColor}"/>
+                                <SolidColorBrush x:Key="TextControlForegroundFocused" Color="White"/>
+                                <SolidColorBrush x:Key="TextControlBorderBrushFocused" Color="{StaticResource PrimaryColor}" />
+                            </TextBox.Resources>
+                        </TextBox>
+                        <Line
                         X2="1960"
                         Stroke="White"
                         StrokeThickness="1" />
-                </StackPanel>
-                <StackPanel
+                    </StackPanel>
+                    <StackPanel
                     Margin="16,8">
-                    <TextBlock
+                        <TextBlock
                         Style="{StaticResource LabelBase}"
                         Padding="0"
                         Text="Password" />
-                    <PasswordBox
+                        <PasswordBox
                         PasswordChar="*"
                         PasswordChanged="PasswordBox_PasswordChanged"
                         SelectionHighlightColor="{StaticResource OnColorFrame}"
@@ -155,21 +156,21 @@
                         Background="Transparent"
                         BorderBrush="Transparent"
                         InputScope="Password" >
-                        <PasswordBox.Resources>
-                            <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="{StaticResource PrimaryColor}"/>
-                            <SolidColorBrush x:Key="TextControlForegroundFocused" Color="White"/>
-                            <SolidColorBrush x:Key="TextControlBorderBrushFocused" Color="{StaticResource PrimaryColor}" />
-                        </PasswordBox.Resources>
-                    </PasswordBox>
-                    <Line
+                            <PasswordBox.Resources>
+                                <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="{StaticResource PrimaryColor}"/>
+                                <SolidColorBrush x:Key="TextControlForegroundFocused" Color="White"/>
+                                <SolidColorBrush x:Key="TextControlBorderBrushFocused" Color="{StaticResource PrimaryColor}" />
+                            </PasswordBox.Resources>
+                        </PasswordBox>
+                        <Line
                         X2="1960"
                         Stroke="White"
                         StrokeThickness="1" />
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
-        </Border>
+            </Border>
 
-        <Button
+            <Button
                 BorderBrush="Transparent"
                 BorderThickness="0"
                 Content="Login"
@@ -182,10 +183,13 @@
                 Foreground="White"
                 Background="{StaticResource OnColorFrame}" />
 
-        <TextBlock
+            <TextBlock
             HorizontalAlignment="Center"
             Style="{StaticResource LabelBase}"
             Text="Forgot assword">
-        </TextBlock>
-    </StackPanel>
+            </TextBlock>
+        </StackPanel>
+
+        <ProgressRing IsActive="True" Visibility="{Binding IsBusy}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="48" Width="48"/>
+    </Grid>
 </Page>

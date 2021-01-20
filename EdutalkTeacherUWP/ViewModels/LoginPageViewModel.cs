@@ -17,6 +17,7 @@ namespace EdutalkTeacherUWP.ViewModels
     {
         public string Email { set; get; }
         public string Password { set; get; }
+        public bool IsBusy { set; get; }
         IAuthenticationService service;
         private INavigationService _navigationService;
         public LoginPageViewModel(INavigationService _navigationService)
@@ -30,21 +31,26 @@ namespace EdutalkTeacherUWP.ViewModels
 
         private async void LoginAsync()
         {
+            IsBusy = true;
             if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password))
             {
                 Toast("Username or password cannot empty");
+                IsBusy = false;
                 return;
             }
 
             var result = await service.SignInAsync(Email, Password);
             if (result == true)
             {
+                IsBusy = false;
                 Toast("Đăng nhập thành công");
                 var check = _navigationService.Navigate(PageTokens.Main.ToString(), null);
             }
             else
             {
                 Toast("Đăng nhập thất bại");
+                IsBusy = false;
+
             }
         }
     }

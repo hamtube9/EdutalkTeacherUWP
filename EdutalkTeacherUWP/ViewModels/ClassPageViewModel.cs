@@ -19,6 +19,7 @@ namespace EdutalkTeacherUWP.ViewModels
         public bool IsRefreshing { get; set; }
         public List<ClassModel> Classes { get; set; }
         public UserModel User { get; set; }
+        public bool IsBusy { set; get; }
         public bool HasNotification { get; set; }
         public ClassModel ClassSelected { set; get; }
 
@@ -38,7 +39,9 @@ namespace EdutalkTeacherUWP.ViewModels
             settings = new ApplicationSettings();
             service = new CourseService();
             User = settings.GetCurrentUser();
+            IsBusy = true;
             LoadClass();
+            IsBusy = false;
         }
 
         async Task LoadClass()

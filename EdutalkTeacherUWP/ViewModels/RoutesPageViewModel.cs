@@ -26,6 +26,7 @@ namespace EdutalkTeacherUWP.ViewModels
         public UserModel Tutor { set; get; }
         public bool AttendanceTutor { set; get; } = false;
         public UserModel[] Tutors { set; get; }
+        public bool IsBusy { set; get; }
         public bool HasTutor { get; set; }
         public RoutesPageViewModel(INavigationService navigationService)
         {
@@ -39,7 +40,9 @@ namespace EdutalkTeacherUWP.ViewModels
             base.OnNavigatedTo(e, viewModelState);
             courseService = new CourseService();
             Classroom = (ClassModel)e.Parameter != null ? (ClassModel)e.Parameter : null;
+            IsBusy = true;
             await LoadRoutes();
+            IsBusy = false;
         }
 
         public async Task LoadRoutes()
