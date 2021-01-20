@@ -76,5 +76,15 @@ namespace EdutalkTeacherUWP.Views
         {
             FrameContent.Navigate(typeof(ChangePasswordPage), null);
         }
+
+        private async void NavigationViewItem_Tapped_1(object sender, TappedRoutedEventArgs e)
+        {
+            var uriBing = new Uri(@"https://api.edutalk.edu.vn/term-condition");
+
+            // Launch the URI
+            var success = await Windows.System.Launcher.LaunchUriAsync(uriBing);
+        }
+
+      
     }
 }

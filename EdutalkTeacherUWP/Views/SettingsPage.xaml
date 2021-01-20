@@ -126,7 +126,7 @@
             </NavigationViewItem>
 
             <NavigationViewItemHeader />
-            <NavigationViewItem  Foreground="White" CornerRadius="12" Background="{StaticResource PrimaryColor}">
+            <NavigationViewItem  Foreground="White" CornerRadius="12" Background="{StaticResource PrimaryColor}" Tapped="NavigationViewItem_Tapped_1">
                 <NavigationViewItem.Icon>
                     <BitmapIcon UriSource="/Assets/icon.png"/>
                 </NavigationViewItem.Icon>
@@ -134,7 +134,7 @@
                     <TextBlock Text="Cơ chế thu nhập" Foreground="White"/>
                 </NavigationViewItem.Content>
             </NavigationViewItem>
-            <NavigationViewItem  Foreground="White" CornerRadius="12" Background="{StaticResource PrimaryColor}">
+            <NavigationViewItem  Foreground="White" CornerRadius="12" Background="{StaticResource PrimaryColor}" Tapped="NavigationViewItem_Tapped_1">
                 <NavigationViewItem.Icon>
                     <BitmapIcon UriSource="/Assets/icon.png"/>
                 </NavigationViewItem.Icon>
@@ -142,7 +142,7 @@
                     <TextBlock Text="Bản cam kết" Foreground="White"/>
                 </NavigationViewItem.Content>
             </NavigationViewItem>
-            <NavigationViewItem   Foreground="White" CornerRadius="12" Background="{StaticResource PrimaryColor}">
+            <NavigationViewItem   Foreground="White" CornerRadius="12" Background="{StaticResource PrimaryColor}" Tapped="NavigationViewItem_Tapped_1">
                 <NavigationViewItem.Icon>
                     <BitmapIcon UriSource="/Assets/icon.png"/>
                 </NavigationViewItem.Icon>
@@ -156,7 +156,7 @@
                     <BitmapIcon UriSource="/Assets/icon.png"/>
                 </NavigationViewItem.Icon>
                 <NavigationViewItem.Content>
-                    <TextBlock Text="Phiên bản" Foreground="White"/>
+                    <TextBlock Text="{Binding Version}" Foreground="White"/>
                 </NavigationViewItem.Content>
             </NavigationViewItem>
         </NavigationView.MenuItems>

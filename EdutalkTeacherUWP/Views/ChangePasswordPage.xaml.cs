@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EdutalkTeacherUWP.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +23,27 @@ namespace EdutalkTeacherUWP.Views
     /// </summary>
     public sealed partial class ChangePasswordPage : Page
     {
+        ChangePasswordPageViewModel vm;
         public ChangePasswordPage()
         {
             this.InitializeComponent();
+            vm = (ChangePasswordPageViewModel)DataContext;
+        }
+
+        private void PasswordBox_OldPass(object sender, RoutedEventArgs e)
+        {
+            vm.OldPassword = ((PasswordBox)sender).Password;
+        }
+
+        private void PasswordBox_NewPass(object sender, RoutedEventArgs e)
+        {
+            vm.NewPassword = ((PasswordBox)sender).Password;
+
+        }
+
+        private void PasswordBox_NewPassConfirm(object sender, RoutedEventArgs e)
+        {
+            vm.ConfirmNewPassword = ((PasswordBox)sender).Password;
         }
     }
 }

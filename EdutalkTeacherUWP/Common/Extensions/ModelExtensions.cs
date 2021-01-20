@@ -1,4 +1,5 @@
 ﻿using EdutalkTeacherUWP.Api.Dtos;
+using EdutalkTeacherUWP.Api.Dtos.AuthorizationDtos;
 using EdutalkTeacherUWP.Api.Dtos.Authorizations;
 using EdutalkTeacherUWP.Api.Dtos.ClassDtos;
 using EdutalkTeacherUWP.Api.Dtos.Exam;
@@ -19,22 +20,22 @@ namespace EdutalkTeacherUWP.Common.Extensions
 {
     public static class ModelExtensions
     {
-        //public static UserModel ToModel(this AccountUserResultDto dto)
-        //{
-        //    if (dto == null)
-        //    {
-        //        return null;
-        //    }
+        public static UserModel ToModel(this AccountUserResultDto dto)
+        {
+            if (dto == null)
+            {
+                return null;
+            }
 
-        //    return new UserModel
-        //    {
-        //        Id = dto.Id,
-        //        FirstName = dto.FirstName,
-        //        LastName = dto.LastName,
-        //        Email = dto.Email,
-        //        Image = dto.Avatar?.Path
-        //    };
-        //}
+            return new UserModel
+            {
+                Id = dto.Id,
+                FirstName = dto.FirstName,
+                LastName = dto.LastName,
+                Email = dto.Email,
+                Image = dto.Avatar?.Path
+            };
+        }
 
         public static RoomModel ToModel(this RoomResultDto d)
         {

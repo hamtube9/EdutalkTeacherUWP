@@ -19,6 +19,7 @@ namespace EdutalkTeacherUWP.ViewModels
         IApplicationSettings applicationSettings;
         IAccountService accountService;
         public UserModel User { set; get; }
+        public string Version { set; get; }
 
         public SettingsPageViewModel(INavigationService navigationService  )
         {
@@ -31,6 +32,7 @@ namespace EdutalkTeacherUWP.ViewModels
         private void SetData()
         {
             User = applicationSettings.GetCurrentUser();
+            Version = AppInfo.VersionString;
         }
 
         ICommand _loggoutCommand;

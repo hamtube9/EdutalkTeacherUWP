@@ -5,6 +5,7 @@ using EdutalkTeacherUWP.Api.Extensions;
 using EdutalkTeacherUWP.Api.Utils;
 using EdutalkTeacherUWP.Authentication.Models;
 using EdutalkTeacherUWP.Common.Extensions;
+using EdutalkTeacherUWP.Settings.Models;
 using Refit;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace EdutalkTeacherUWP.Settings.Service
         Task<UserModel> GetCurrentUserAsync();
         Task<bool> GetPinCodeVerify(string phone);
         Task<bool> VerifyPhone(VerifyPhoneRequestDto request);
-        Task<bool> ChangePasswordAsync(string oldpassword, string newpassword);
+        Task<ChangePasswordResult> ChangePasswordAsync(string oldpassword, string newpassword);
     }
 
     public class AccountService : IAccountService
@@ -41,13 +42,38 @@ namespace EdutalkTeacherUWP.Settings.Service
             Api = RestService.For<IEdutalkApi>(new HttpClient(new AuthenticatedHttpClientHandler(() => authHeader.GetBearerToken())) { BaseAddress = new Uri(apiBase.ServerApi) }, RefitSetting.SnakeCaseNaming);
 
         }
-        public async Task<bool> ChangePasswordAsync(string oldpassword, string newpassword)
+        public async Task<ChangePasswordResult> ChangePasswordAsync(string oldpassword, string newpassword)
         {
-            return false;
+            try
+            {
+                var result = await Api.ChangePassword(new UpdatePasswordRequestDto
+                {
+                    PasswordOld = oldpassword,
+                    Password = newpassword,
+                    PasswordConfirmation = newpassword
+                });
+                return new ChangePasswordResult()
+                {
+                    Messenger = result.Message,
+                    Success = !result.Error.Value
+                };
+            }
+            catch (Exception e)
+            {
+            }
+            return null;
         }
 
         public async Task<UserModel> GetCurrentUserAsync()
         {
+            try
+            {
+                var result = await Api.GetCurrentUser();
+                return result?.Data?.ToModel();
+            }
+            catch (Exception e)
+            {
+            }
             return null;
         }
 

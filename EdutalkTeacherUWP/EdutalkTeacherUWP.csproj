@@ -220,6 +220,7 @@
     <Compile Include="Message\Models\ConversationModel.cs" />
     <Compile Include="Message\Models\MessageModel.cs" />
     <Compile Include="Settings\IMessageService.cs" />
+    <Compile Include="Settings\Models\ChangePasswordResult.cs" />
     <Compile Include="Settings\Service\IAccountService.cs" />
     <Compile Include="ViewModels\AttendancePageViewModel.cs" />
     <Compile Include="ViewModels\ChangePasswordPageViewModel.cs" />
