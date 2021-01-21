@@ -99,5 +99,14 @@ namespace EdutalkTeacherUWP.Api.Base
 
         [Post("/api/v3/mobile/verify-pin-code")]
         Task<DataDto<VerifyPhoneResultDto>> VerifyPhone([Body] VerifyPhoneRequestDto request);
+
+
+        //FEEDBACK
+        //feedback
+        [Get("/api/v3/mobile/teacher/class/feedback/list?classroom_id={classroomId}&lesson={lesson}")]
+        Task<DataDto<FeedbackResultDto[]>> GetFeedbacks(long classroomId, int lesson);
+
+        [Post("/api/v3/mobile/teacher/class/feedback/send")]
+        Task<ErrorResultDto> SendFeedback([Body] SendFeedbackRequestDto request);
     }
 }

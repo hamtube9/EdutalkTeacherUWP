@@ -70,6 +70,11 @@ namespace EdutalkTeacherUWP.Views
         {
             var obj = (Border)sender;
             var dataContext = (RouteModel)obj.DataContext;
+            SplitViewFrame.Navigate(typeof(FeedbackPage), new ParamsAttendanceModel()
+            {
+                Route = dataContext,
+                ClassroomId = (int)vm.Classroom?.Id
+            });
         }
 
         bool IsOpen { set; get; }

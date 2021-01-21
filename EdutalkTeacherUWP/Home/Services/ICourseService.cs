@@ -21,14 +21,15 @@ namespace EdutalkTeacherUWP.Home.Services
     {
         //Task<HomeworkResultModel[]> GetMarksAsync(int lesson, long classroomId);
         //Task<HomeworkResultModel[]> GetHomeworksAsync(int lesson, long classroomId);
-        //Task<CommentModel[]> GetFeedbacksAsync(int lesson, long classroomId);
+        Task<CommentModel[]> GetFeedbacksAsync(int lesson, long classroomId);
+        Task<CommentModel[]> GetFeedbacksSupportClassAsync(long tutoringId);
         Task<AttendanceModel[]> GetAttendancesAsync(int lesson, long classroomId);
         Task<AttendanceModel[]> GetAttendancesAsync(long tutoringId);
         //Task<UserModel[]> GetStudentsAsync(long classroomId);
         Task<ClassModel[]> GetAllClassesAsync();
         Task<bool> AttendanceAsync(AttendanceModel[] attendance, int lesson, long classroomId, long? tutorId);
         Task<bool> AttendanceTutoringAsync(AttendanceModel[] attendance, long tutoringId, long classroomId, long? tutorId);
-        //Task<bool> FeedbackAsync(CommentModel[] comments, int lesson, long classroomId);
+        Task<bool> FeedbackAsync(CommentModel[] comments, int lesson, long classroomId);
         Task<ScheduleModel> GetRoutesAsync(long classroomId);
         //Task<ScheduleModel> GetRoutesAsync(long classroomId, long tutorId);
         //Task<bool> OffClassAsync(int lesson, long classroomId);
@@ -101,31 +102,37 @@ namespace EdutalkTeacherUWP.Home.Services
         //    return false;
         //}
 
-        //public async Task<bool> FeedbackAsync(CommentModel[] comments, int lesson, long classroomId)
-        //{
-        //    try
-        //    {
-        //        var result = await Api.SendFeedback(new SendFeedbackRequestDto
-        //        {
-        //            Lesson = lesson,
-        //            ClassroomId = classroomId,
-        //            ListFeedback = comments.Where(d => !string.IsNullOrEmpty(d.Comment)).Select(d => new FeedbackRequestDto
-        //            {
-        //                CourseStudentId = d.User.Id,
-        //                Content = d.Comment
+        public async Task<bool> FeedbackAsync(CommentModel[] comments, int lesson, long classroomId)
+        {
 
-        //            }).ToArray()
-        //        });
+            var listFeedback = comments.Where(d => !string.IsNullOrEmpty(d.Comment)).Select(d => new FeedbackRequestDto
+            {
+                CourseStudentId = d.User.Id,
+                Content = d.Comment
 
-        //        return result.ToResult();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        logService.Log(e, new Dictionary<string, string>() { { $"Feedback student error . classroom id {classroomId}, lesson {lesson}", e.Message } });
+            }).ToArray();
+            try
+            {
+                var result = await Api.SendFeedback(new SendFeedbackRequestDto
+                {
+                    Lesson = lesson,
+                    ClassroomId = classroomId,
+                    ListFeedback = comments.Where(d => !string.IsNullOrEmpty(d.Comment)).Select(d => new FeedbackRequestDto
+                    {
+                        CourseStudentId = d.User.Id,
+                        Content = d.Comment
 
-        //    }
-        //    return false;
-        //}
+                    }).ToArray()
+                });
+
+                return result.ToResult();
+            }
+            catch (Exception e)
+            {
+
+            }
+            return false;
+        }
 
         public async Task<ClassModel[]> GetAllClassesAsync()
         {
@@ -204,23 +211,22 @@ namespace EdutalkTeacherUWP.Home.Services
             return false;
         }
 
-        //public async Task<CommentModel[]> GetFeedbacksAsync(int lesson, long classroomId)
-        //{
-        //    try
-        //    {
-        //        var result = await Api.GetFeedbacks(classroomId, lesson);
-        //        if (result?.Data?.Length > 0)
-        //        {
-        //            return result.Data.Select(d => d.ToFeedbackModel()).ToArray();
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        logService.Log(e, new Dictionary<string, string>() { { $"Get all feedback error . classroom id {classroomId}, lesson {lesson}", e.Message } });
+        public async Task<CommentModel[]> GetFeedbacksAsync(int lesson, long classroomId)
+        {
+            try
+            {
+                var result = await Api.GetFeedbacks(classroomId, lesson);
+                if (result?.Data?.Length > 0)
+                {
+                    return result.Data.Select(d => d.ToFeedbackModel()).ToArray();
+                }
+            }
+            catch (Exception e)
+            {
 
-        //    }
-        //    return new CommentModel[0];
-        //}
+            }
+            return new CommentModel[0];
+        }
 
         //public async Task<HomeworkResultModel[]> GetHomeworksAsync(int lesson, long classroomId)
         //{
@@ -374,6 +380,23 @@ namespace EdutalkTeacherUWP.Home.Services
                 //logService.Log(e, new Dictionary<string, string>() { { $"Get all Tutoring class error . class id :{classId}", e.Message } });
             }
             return new UserModel[0];
+        }
+
+        public async Task<CommentModel[]> GetFeedbacksSupportClassAsync(long tutoringId)
+        {
+            try
+            {
+                var result = await Api.GetTutoring(tutoringId);
+                if (result?.Data?.Length > 0)
+                {
+                    return result.Data.Select(d => d.ToFeedbackModel()).ToArray();
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+            return new CommentModel[0];
         }
 
         //public async Task<ScheduleModel> GetRoutesAsync(long classroomId, long tutorId)

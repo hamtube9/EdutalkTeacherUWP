@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    VerticalAlignment="Stretch" VerticalContentAlignment="Stretch"
     xmlns:prismMvvm="using:Prism.Windows.Mvvm" xmlns:convert="using:EdutalkTeacherUWP.Common.Converts"
     prismMvvm:ViewModelLocator.AutoWireViewModel="True"
     Background="#040927">
@@ -80,6 +81,8 @@
     </Page.Resources>
 
     <NavigationView
+        VerticalAlignment="Stretch"
+        VerticalContentAlignment="Stretch"
             PaneOpening="NavigationViewControl_PaneOpening"
             Background="{StaticResource NavigationViewDefaultPaneBackground}"
             x:Name="NavigationViewControl"

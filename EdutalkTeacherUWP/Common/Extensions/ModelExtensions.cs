@@ -294,31 +294,31 @@ namespace EdutalkTeacherUWP.Common.Extensions
             }
         }
 
-        //public static CommentModel ToFeedbackModel(this FeedbackResultDto d)
-        //{
-        //    if (d == null)
-        //    {
-        //        return null;
-        //    }
-        //    return new CommentModel
-        //    {
-        //        User = d.ToModel(),
-        //        Comment = d.Content
-        //    };
-        //}
+        public static CommentModel ToFeedbackModel(this FeedbackResultDto d)
+        {
+            if (d == null)
+            {
+                return null;
+            }
+            return new CommentModel
+            {
+                User = d.ToModel(),
+                Comment = d.Content
+            };
+        }
 
-        //public static CommentModel ToFeedbackModel(this TutoringResultDto d)
-        //{
-        //    if (d == null)
-        //    {
-        //        return null;
-        //    }
-        //    return new CommentModel
-        //    {
-        //        User = d.ToModel(),
-        //        Comment = d.Feedback
-        //    };
-        //}
+        public static CommentModel ToFeedbackModel(this TutoringResultDto d)
+        {
+            if (d == null)
+            {
+                return null;
+            }
+            return new CommentModel
+            {
+                User = d.ToModel(),
+                Comment = d.Feedback
+            };
+        }
 
         public static AttendanceModel ToAttendanceModel(this TutoringResultDto d)
         {

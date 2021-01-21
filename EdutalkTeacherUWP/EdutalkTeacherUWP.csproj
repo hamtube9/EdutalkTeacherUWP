@@ -135,6 +135,7 @@
     <Compile Include="Api\Dtos\ClassDtos\AttendanceResultDto.cs" />
     <Compile Include="Api\Dtos\ClassDtos\ClassroomResultDto.cs" />
     <Compile Include="Api\Dtos\ClassDtos\CreateTutoringRequestDto.cs" />
+    <Compile Include="Api\Dtos\ClassDtos\SendFeedbackRequestDto.cs" />
     <Compile Include="Api\Dtos\ClassDtos\SubmitAttendanceRequestDto.cs" />
     <Compile Include="Api\Dtos\ClassDtos\SubmitAttendanceTutoringRequestDto.cs" />
     <Compile Include="Api\Dtos\ClassDtos\TutoringResultDto.cs" />
@@ -209,6 +210,8 @@
     <Compile Include="Exam\Service\IExamService.cs" />
     <Compile Include="Home\Models\AttendanceModel.cs" />
     <Compile Include="Home\Models\ClassModel.cs" />
+    <Compile Include="Home\Models\CommentModel.cs" />
+    <Compile Include="Home\Models\FeedbackParams.cs" />
     <Compile Include="Home\Models\InfoStudentModel.cs" />
     <Compile Include="Home\Models\RouteDataTemplateSelector.cs" />
     <Compile Include="Home\Models\RouteModel.cs" />
@@ -226,6 +229,7 @@
     <Compile Include="ViewModels\ChangePasswordPageViewModel.cs" />
     <Compile Include="ViewModels\ClassPageViewModel.cs" />
     <Compile Include="ViewModels\ConversationPageViewModel.cs" />
+    <Compile Include="ViewModels\FeedbackPageViewModel.cs" />
     <Compile Include="ViewModels\HomeworkPageViewModel.cs" />
     <Compile Include="ViewModels\LoginPageViewModel.cs" />
     <Compile Include="Common\Base\AppContants.cs" />
@@ -256,6 +260,9 @@
     </Compile>
     <Compile Include="Views\ConversationPage.xaml.cs">
       <DependentUpon>ConversationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FeedbackPage.xaml.cs">
+      <DependentUpon>FeedbackPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HomeworkPage.xaml.cs">
       <DependentUpon>HomeworkPage.xaml</DependentUpon>
@@ -425,6 +432,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ConversationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FeedbackPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
