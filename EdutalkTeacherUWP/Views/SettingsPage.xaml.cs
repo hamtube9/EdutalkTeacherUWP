@@ -89,5 +89,11 @@ namespace EdutalkTeacherUWP.Views
         {
             FrameContent.Navigate(typeof(UpdatePhonePage), null);
         }
+
+        private void NavigationViewControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            var settings = (NavigationViewItem)NavigationViewControl.SettingsItem;
+            settings.Visibility = Visibility.Collapsed;
+        }
     }
 }

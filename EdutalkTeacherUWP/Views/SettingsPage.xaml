@@ -81,6 +81,7 @@
     </Page.Resources>
 
     <NavigationView
+        Loaded="NavigationViewControl_Loaded"
         VerticalAlignment="Stretch"
         VerticalContentAlignment="Stretch"
             PaneOpening="NavigationViewControl_PaneOpening"

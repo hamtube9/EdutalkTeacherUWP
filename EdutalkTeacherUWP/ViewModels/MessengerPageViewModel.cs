@@ -35,7 +35,7 @@ namespace EdutalkTeacherUWP.ViewModels
         private async void SetData()
         { await LoadConversation(); }
 
-        async Task LoadConversation()
+        public async Task LoadConversation()
         {
             var result = await messengerServices.GetAllConversationsAsync();
             Conversations = new List<ConversationModel>(result);

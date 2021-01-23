@@ -1,5 +1,4 @@
-﻿using EdutalkTeacherUWP.Message.Models;
-using EdutalkTeacherUWP.ViewModels;
+﻿using EdutalkTeacherUWP.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,33 +21,34 @@ namespace EdutalkTeacherUWP.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MessengerPage : Page
+    public sealed partial class VerifyPhonePage : Page
     {
-        MessengerPageViewModel binding;
-        public MessengerPage()
+        public VerifyPhonePage()
         {
             this.InitializeComponent();
-            binding = (MessengerPageViewModel)DataContext;
-            if (binding == null)
-            {
-                return;
-            }
         }
 
-        private async void ListView_ItemClick(object sender, ItemClickEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (binding == null)
+            base.OnNavigatedTo(e);
+            var vm = (VerifyPhonePageViewModel)DataContext;
+            if (!string.IsNullOrEmpty((string)e.Parameter))
             {
-
-                return;
+                vm.Phone = (string)e.Parameter;
             }
-            var arr = await binding.SelectedConversation((ConversationModel)e.ClickedItem);
-            ConversationFrame.Navigate(typeof(ConversationPage), new ParamConversationModel()
+        }
+        private async void TextBox_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            var binding = (VerifyPhonePageViewModel)this.DataContext;
+            if (e.Key == Windows.System.VirtualKey.Enter)
             {
-                ConversationId = ((ConversationModel)e.ClickedItem).Id,
-                Messages = arr
-            }) ;
+               await binding.VerifyAsync();
+            }
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

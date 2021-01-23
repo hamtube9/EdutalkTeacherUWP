@@ -81,7 +81,7 @@
 
         </ResourceDictionary>
     </Page.Resources>
-    <Grid Margin="0,40,0,80" x:Name="gridContent">
+    <Grid Margin="0,40,0,0" x:Name="gridContent">
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
@@ -118,7 +118,6 @@
                                         <TextBlock Margin="16,0" Text="{Binding LastMessage.Message}" Style="{StaticResource LabelBase}"  Grid.Row="1" VerticalAlignment="Center"/>
                                         <TextBlock Margin="16,0" Text="{Binding LastMessage.Time}" Style="{StaticResource LabelBase}" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                                     </StackPanel>
-
 
                                 </Border>
 

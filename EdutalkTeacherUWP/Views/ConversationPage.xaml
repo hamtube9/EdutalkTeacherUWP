@@ -6,11 +6,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:convert="using:EdutalkTeacherUWP.Common.Converts"
     mc:Ignorable="d"
+    xmlns:prims="using:Prism.Windows.Mvvm" xmlns:Core="using:Microsoft.Xaml.Interactions.Core" xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+    prims:ViewModelLocator.AutoWireViewModel="True"
     Background="Transparent">
 
     <Page.Resources>
         <ResourceDictionary>
             <convert:BoolToVisibilityConverter x:Key="BoolConvert"/>
+            <convert:TypeMessageConverter x:Key="TypeMessageConvert"/>
 
             <Style
         x:Key="LabelBase"
@@ -90,24 +93,41 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <Grid >
-                            <Border HorizontalAlignment="Left" Background="{StaticResource PresentColor}" CornerRadius="12" Margin="16,0">
-                                <TextBlock Text="{Binding Message}" Style="{StaticResource LabelBase}" HorizontalAlignment="Left" Visibility="{Binding IsMine,Converter={StaticResource BoolConvert}}" Padding="8" MaxLines="10"/>
-                            </Border>
+                        <Grid Margin="4">
+                            <Grid x:Name="Gmess">
+                                <Interactivity:Interaction.Behaviors>
+                                    <Core:DataTriggerBehavior Binding="{Binding Type,Converter={StaticResource TypeMessageConvert}}" Value="True">
+                                        <Core:ChangePropertyAction TargetObject="{Binding ElementName=Gmess}" PropertyName="Visibility" Value="Collapsed"/>
+                                    </Core:DataTriggerBehavior>
+                                </Interactivity:Interaction.Behaviors>
+                                <Border HorizontalAlignment="Left" Background="{StaticResource FutureColor}" CornerRadius="12" Margin="16,0">
+                                    <TextBlock Text="{Binding Message}" Style="{StaticResource LabelBase}" HorizontalAlignment="Left" Visibility="{Binding IsMine,Converter={StaticResource BoolConvert}}" Padding="8" MaxLines="10"/>
+                                </Border>
 
-                            <Border HorizontalAlignment="Right" Background="{StaticResource TestColor}" CornerRadius="12">
-                                <TextBlock Text="{Binding Message}" Style="{StaticResource LabelBase}" HorizontalAlignment="Right" HorizontalTextAlignment="Right" Visibility="{Binding IsMine}" Padding="8" MaxLines="10"/>
-                            </Border>
+                                <Border HorizontalAlignment="Right" Background="{StaticResource PrimaryColor}" CornerRadius="12">
+                                    <TextBlock Text="{Binding Message}" Style="{StaticResource LabelBase}" HorizontalAlignment="Right" HorizontalTextAlignment="Right" Visibility="{Binding IsMine}" Padding="8" MaxLines="10"/>
+                                </Border>
+                            </Grid>
+
+                            <Grid Visibility="{Binding Type,Converter={StaticResource TypeMessageConvert}}" Margin="0,8">
+                                <StackPanel>
+                                    <Border Padding="0" Background="{StaticResource GreenColor}" HorizontalAlignment="Center" CornerRadius="12">
+                                        <TextBlock Text="Feedback Từ giáo viên" Style="{StaticResource LabelBase}" FontWeight="Bold" HorizontalAlignment="Center" Padding="4"/>
+                                    </Border>
+                                    <TextBlock Text="{Binding Message}" Style="{StaticResource LabelBase}" HorizontalAlignment="Center"  TextDecorations="Underline"  MaxLines="10"/>
+                                </StackPanel>
+                            </Grid>
                         </Grid>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
-        <StackPanel Visibility="{Binding IsVisible}" VerticalAlignment="Center"  Grid.Row="1" >
-            <Border CornerRadius="12" Padding="0" VerticalAlignment="Center" >
-                <TextBox PlaceholderText="Messenger" VerticalAlignment="Center" VerticalContentAlignment="Center" BorderThickness="0" Height="40" />
+        <Grid Visibility="{Binding IsVisible}" VerticalAlignment="Center"  Grid.Row="1" Margin="16,0">
+                <TextBox PlaceholderText="Messenger"  x:Name="txtMessage" KeyDown="txtMessage_KeyDown" TextChanged="TextBox_TextChanged" VerticalAlignment="Center" CornerRadius="12" VerticalContentAlignment="Center" BorderThickness="0" Height="40" />
+            <Border Height="24" Width="24" CornerRadius="12" VerticalAlignment="Center" Padding="0" Tapped="Border_Tapped" HorizontalAlignment="Right" Margin="8,4">
+                <Image Source="/Assets/ic_send.png"/>
             </Border>
-        </StackPanel>
+        </Grid>
     </Grid>
 </Page>

@@ -4,6 +4,7 @@ using EdutalkTeacherUWP.Api.Dtos.Authorizations;
 using EdutalkTeacherUWP.Api.Dtos.ClassDtos;
 using EdutalkTeacherUWP.Api.Dtos.Exam;
 using EdutalkTeacherUWP.Api.Dtos.Messenger;
+using EdutalkTeacherUWP.Api.Dtos.Report;
 using EdutalkTeacherUWP.Api.Dtos.RoomDto;
 using EdutalkTeacherUWP.Api.Dtos.Route;
 using Refit;
@@ -108,5 +109,16 @@ namespace EdutalkTeacherUWP.Api.Base
 
         [Post("/api/v3/mobile/teacher/class/feedback/send")]
         Task<ErrorResultDto> SendFeedback([Body] SendFeedbackRequestDto request);
+
+
+        //report
+
+        [Get("/api/v3/mobile/teacher/class/report-all?month={month}&year={year}")]
+        Task<ReportAllClassResultDto> GetReportAllClass(int? month, int? year);
+
+        [Get("/api/v3/mobile/teacher/class/report?id={id}&lesson={lesson}&month={month}&year={year}")]
+        Task<ReportClassDto> GetReportClass(long id, int? lesson, int? month, int? year);
+
+        
     }
 }

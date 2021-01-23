@@ -305,7 +305,10 @@ namespace EdutalkTeacherUWP.Home.Services
                         var next = lessons[i + 1];
                         first.Next = next.Date;
                     }
-                    routes.FirstOrDefault(q => q.Date <= DateTime.Now && DateTime.Now <= q.Next).IsPresent = true;
+                    if(routes.FirstOrDefault(q => q.Date <= DateTime.Now && DateTime.Now <= q.Next) != null)
+                    {
+                        routes.FirstOrDefault(q => q.Date <= DateTime.Now && DateTime.Now <= q.Next).IsPresent = true;
+                    }
 
                     return new ScheduleModel()
                     {

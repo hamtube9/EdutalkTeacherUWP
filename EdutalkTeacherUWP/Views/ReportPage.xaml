@@ -21,6 +21,17 @@
             Value="{StaticResource OnBackgroundColor}" />
             </Style>
 
+            <Style
+        x:Key="LabelBaseLage"
+        TargetType="TextBlock">
+                <Setter
+            Property="Foreground"
+            Value="{StaticResource OnBackgroundColor}" />
+                <Setter
+            Property="FontSize"
+            Value="18" />
+            </Style>
+
             <Color
         x:Key="PrimaryColor">#455EA9</Color>
             <Color
@@ -66,9 +77,124 @@
         </ResourceDictionary>
     </Page.Resources>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="60"/>
-            
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="60"/>
+            </Grid.ColumnDefinitions>
+            <Image
+                    Height="24"
+                HorizontalAlignment="Right"
+                Tapped="PrevTapped"
+                Visibility="{Binding VisiblePrev}"
+                Source="/Assets/left_chevron_white.png"/>
+            <TextBlock
+                Style="{StaticResource LabelBase}"
+                HorizontalAlignment="Center"
+                Grid.Column="1"
+                Text="{Binding MonthCurrent}"
+                Foreground="{StaticResource OnBackgroundColor}"
+                VerticalAlignment="Center">
+            </TextBlock>
+            <Image
+                Height="24"
+                Grid.Column="2"
+                Tapped="NextTapped"
+                HorizontalAlignment="Left"
+                Visibility="{Binding  VisibleNext}"
+                Source="/Assets/ic_right_chevron.png"/>
+            <Image
+                Source="/Assets/ic_report.png"
+                Stretch="Fill"
+                Grid.Column="3" />
+
+        </Grid> 
+        <StackPanel  Grid.Row="2">
+            <Grid Tapped="Grid_Tapped">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border Background="{StaticResource PrimaryColor}" Margin="16,8" Padding="0" CornerRadius="12">
+                    <StackPanel  Padding="8">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Số lớp học :" Style="{StaticResource LabelBase}"/>
+                            <TextBlock Text="{Binding ReportClass.NumberOfClasses}" Style="{StaticResource LabelBase}"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Điểm trung bình :" Style="{StaticResource LabelBase}"/>
+                            <TextBlock Text="{Binding ReportClass.MediumScore}" Style="{StaticResource LabelBase}"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Tỉ lệ đi học :" Style="{StaticResource LabelBase}"/>
+                            <TextBlock Text="{Binding SchoolAttendanceRate}" Style="{StaticResource LabelBase}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Phản hồi trung bình :" Style="{StaticResource LabelBase}"/>
+                            <TextBlock Text="{Binding ReportClass.FeedbackNormal}" Style="{StaticResource LabelBase}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                <Image
+                Height="28"
+                Grid.Column="1"
+                HorizontalAlignment="Center"
+                Source="/Assets/ic_right_chevron.png"/>
+
+            </Grid>
+        
+        </StackPanel>
+
+        <ContentDialog
+            Grid.Row="2" Grid.ColumnSpan="2" CornerRadius="12"  x:Name="popupClass" CloseButtonClick="ContentDialog_CloseButtonClick" CloseButtonCommandParameter="{Binding RoomSelected}" Padding="0" CloseButtonText="Chọn" Margin="16"  HorizontalAlignment="Center" VerticalAlignment="Center" Background="{StaticResource PrimaryColor}">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                         Height="40"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Lớp học" HorizontalAlignment="Center" Style="{StaticResource LabelBase}"/>
+                <ListView   Grid.Row="1" x:Name="listRoom" IsItemClickEnabled="True" ItemClick="listRoom_ItemClick">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" Padding="0" Style="{StaticResource LabelBase}" HorizontalAlignment="Stretch" HorizontalTextAlignment="Center"  VerticalAlignment="Stretch" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+
+        </ContentDialog>
+
+        <Frame x:Name="ReportFrame" Grid.Column="1" Grid.Row="2" >
+            <Frame.ContentTransitions>
+                <TransitionCollection>
+                    <NavigationThemeTransition>
+                        <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                            <EntranceNavigationTransitionInfo />
+                        </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    </NavigationThemeTransition>
+                </TransitionCollection>
+            </Frame.ContentTransitions>
+        </Frame>
+
     </Grid>
 </Page>

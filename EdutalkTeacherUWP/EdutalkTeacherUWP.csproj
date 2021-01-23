@@ -145,6 +145,8 @@
     <Compile Include="Api\Dtos\Exam\HomeworkResultDto.cs" />
     <Compile Include="Api\Dtos\Messenger\ConversationResultDto.cs" />
     <Compile Include="Api\Dtos\Messenger\MessageResultDto.cs" />
+    <Compile Include="Api\Dtos\Report\ReportAllClassResultDto.cs" />
+    <Compile Include="Api\Dtos\Report\ReportClassDto.cs" />
     <Compile Include="Api\Dtos\RoomDto\RoomResultDto.cs" />
     <Compile Include="Api\Dtos\Route\ScheduleResultDto.cs" />
     <Compile Include="Api\Extensions\StringExtensions.cs" />
@@ -173,8 +175,10 @@
     </Compile>
     <Compile Include="Common\Converts\BoolToVisibilityConverter.cs" />
     <Compile Include="Common\Converts\EnumToVisibilityConverter.cs" />
+    <Compile Include="Common\Converts\TypeMessageConverter.cs" />
     <Compile Include="Common\Converts\VisibilityConverter.cs" />
     <Compile Include="Common\Extensions\ModelExtensions.cs" />
+    <Compile Include="Common\Util\DateTimeUtil.cs" />
     <Compile Include="Exam\Controls\PlayButtonControl.xaml.cs">
       <DependentUpon>PlayButtonControl.xaml</DependentUpon>
     </Compile>
@@ -222,6 +226,10 @@
     <Compile Include="Localization\IResourceManagerProvider.cs" />
     <Compile Include="Message\Models\ConversationModel.cs" />
     <Compile Include="Message\Models\MessageModel.cs" />
+    <Compile Include="Message\Models\ParamConversationModel.cs" />
+    <Compile Include="Report\Models\ReportClassModel.cs" />
+    <Compile Include="Report\Models\ReportModel.cs" />
+    <Compile Include="Report\Service\IReportAllService.cs" />
     <Compile Include="Settings\Service\IMessageService.cs" />
     <Compile Include="Settings\Models\ChangePasswordResult.cs" />
     <Compile Include="Settings\Service\IAccountService.cs" />
@@ -242,12 +250,14 @@
     </Compile>
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\MessengerPageViewModel.cs" />
+    <Compile Include="ViewModels\ReportDetailPageViewModel.cs" />
     <Compile Include="ViewModels\ReportPageViewModel.cs" />
     <Compile Include="ViewModels\RoutesPageViewModel.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel.cs" />
     <Compile Include="ViewModels\StudentSupportClassPageViewModel.cs" />
     <Compile Include="ViewModels\SupportClassPageViewModel.cs" />
     <Compile Include="ViewModels\UpdatePhonePageViewModel.cs" />
+    <Compile Include="ViewModels\VerifyPhonePageViewModel.cs" />
     <Compile Include="ViewModels\ViewExamPageViewModel.cs" />
     <Compile Include="Views\AttendancePage.xaml.cs">
       <DependentUpon>AttendancePage.xaml</DependentUpon>
@@ -276,6 +286,9 @@
     <Compile Include="Views\MessengerPage.xaml.cs">
       <DependentUpon>MessengerPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ReportDetailPage.xaml.cs">
+      <DependentUpon>ReportDetailPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ReportPage.xaml.cs">
       <DependentUpon>ReportPage.xaml</DependentUpon>
     </Compile>
@@ -293,6 +306,9 @@
     </Compile>
     <Compile Include="Views\UpdatePhonePage.xaml.cs">
       <DependentUpon>UpdatePhonePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VerifyPhonePage.xaml.cs">
+      <DependentUpon>VerifyPhonePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ViewExamPage.xaml.cs">
       <DependentUpon>ViewExamPage.xaml</DependentUpon>
@@ -322,11 +338,14 @@
     <Content Include="Assets\ic_phone.png" />
     <Content Include="Assets\ic_play_solid.png" />
     <Content Include="Assets\ic_plus.png" />
+    <Content Include="Assets\ic_report.png" />
     <Content Include="Assets\ic_right_chevron.png" />
+    <Content Include="Assets\ic_send.png" />
     <Content Include="Assets\ic_setting.png" />
     <Content Include="Assets\ic_support_small.png" />
     <Content Include="Assets\image_line.png" />
     <Content Include="Assets\im_logo_splash.png" />
+    <Content Include="Assets\im_verification.png" />
     <Content Include="Assets\left_chevron_white.png" />
     <Content Include="Assets\plus.png" />
     <Content Include="Assets\right-chevron.png" />
@@ -455,6 +474,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ReportDetailPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ReportPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -476,6 +499,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UpdatePhonePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\VerifyPhonePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

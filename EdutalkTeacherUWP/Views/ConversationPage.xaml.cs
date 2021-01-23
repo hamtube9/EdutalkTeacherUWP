@@ -28,17 +28,48 @@ namespace EdutalkTeacherUWP.Views
         public ConversationPage()
         {
             this.InitializeComponent();
-            vm = new ConversationPageViewModel();
+            vm = (ConversationPageViewModel)DataContext;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            if((MessageModel[])e.Parameter != null || ((MessageModel[])e.Parameter).Length > 0)
+            if ((ParamConversationModel)e.Parameter != null)
             {
-                vm.SetData(((MessageModel[])e.Parameter));
+                vm?.SetData(((ParamConversationModel)e.Parameter).Messages);
+                vm.ConversationId = ((ParamConversationModel)e.Parameter).ConversationId;
             }
         }
 
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var obj = (TextBox)sender;
+            vm.Message = obj.Text;
+        }
+
+        private async void Border_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            var result = await vm.SendMessageAsync();
+            if (result)
+            {
+                txtMessage.Text = string.Empty;
+            }
+        }
+
+        private async void txtMessage_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            var messVM = (MessengerPageViewModel)Frame.DataContext;
+
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                var result = await vm.SendMessageAsync();
+                if (result)
+                {
+                    txtMessage.Text = string.Empty;
+                   await messVM.LoadConversation();
+                }
+            }
+         
+        }
     }
 }

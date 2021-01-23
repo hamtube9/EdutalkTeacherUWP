@@ -4,12 +4,14 @@ using EdutalkTeacherUWP.Api.Dtos.Authorizations;
 using EdutalkTeacherUWP.Api.Dtos.ClassDtos;
 using EdutalkTeacherUWP.Api.Dtos.Exam;
 using EdutalkTeacherUWP.Api.Dtos.Messenger;
+using EdutalkTeacherUWP.Api.Dtos.Report;
 using EdutalkTeacherUWP.Api.Dtos.RoomDto;
 using EdutalkTeacherUWP.Api.Dtos.Route;
 using EdutalkTeacherUWP.Authentication.Models;
 using EdutalkTeacherUWP.Exam.Models;
 using EdutalkTeacherUWP.Home.Models;
 using EdutalkTeacherUWP.Message.Models;
+using EdutalkTeacherUWP.Report.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -534,93 +536,124 @@ namespace EdutalkTeacherUWP.Common.Extensions
         }
 
 
-        //public static ReportModel ToModel(this ReportClassDto dto)
-        //{
+        public static ReportModel ToModel(this ReportClassDto dto)
+        {
 
-        //    if (dto == null)
-        //    {
-        //        return null;
-        //    }
-        //    return new ReportModel()
-        //    {
-        //        Attendance = dto.Attendance.ToModel(),
-        //        Feedback = dto.Feedback.ToModel(),
-        //        Homework = dto.Homework.ToModel(),
-        //        Test = dto.Test.ToModel()
-        //    };
-        //}
+            if (dto == null)
+            {
+                return null;
+            }
+            return new ReportModel()
+            {
+                Attendance = dto.Attendance.ToModel(),
+                Feedback = dto.Feedback.ToModel(),
+                Homework = dto.Homework.ToModel(),
+                Test = dto.Test.ToModel()
+            };
+        }
 
-        //public static TestReportModel ToModel(this TestReportDto dto)
-        //{
-        //    if (dto == null)
-        //    {
-        //        return null;
-        //    }
+        public static TestReportModel[] ToModel(this TestReportDto[] dto)
+        {
+            if (dto == null)
+            {
+                return new TestReportModel[0];
+            }
+            return dto.Select(d => d.ToModel()).ToArray();
+        }
 
-        //    return null;
-        //}
+        public static TestReportModel ToModel(this TestReportDto dto)
+        {
+            if (dto == null)
+            {
+                return null;
+            }
+            return new TestReportModel()
+            {
+                Count = dto.Count,
+                Description = dto.Description,
+                Level = dto.Level,
+                Total = dto.Total
+            };
+        }
 
-        //public static AttendanceReportModel ToModel(this AttendanceReportDto dto)
-        //{
-        //    if (dto == null)
-        //    {
-        //        return null;
-        //    }
-        //    return new AttendanceReportModel()
-        //    {
-        //        Attendance = dto.CoMat,
-        //        Off = dto.CoPhep,
-        //        Total = dto.Total
-        //    };
-        //}
+        public static ReportClassModel ToModel(this ReportAllClassResultDto d)
+        {
+            if (d == null)
+            {
+                return new ReportClassModel();
+            }
 
-        //public static FeedbackReportModel[] ToModel(this FeedbackReportDto[] dto)
-        //{
-        //    if (dto == null)
-        //    {
-        //        return new FeedbackReportModel[0];
-        //    }
-        //    return dto.Select(d => d.ToModel()).ToArray();
-        //}
-
-        //public static FeedbackReportModel ToModel(this FeedbackReportDto dto)
-        //{
-        //    if (dto == null)
-        //    {
-        //        return null;
-        //    }
-        //    return new FeedbackReportModel()
-        //    {
-        //        Total = dto.Total,
-        //        CountMark = dto.CountMark,
-        //        Mark = dto.Mark
-        //    };
-        //}
+            return new ReportClassModel
+            {
+                FeedbackNormal = d.AvgRating,
+                NumberOfClasses = d.TotalClass,
+                MediumScore = d.AvgMark,
+                SchoolAttendanceRate = d.PerAttendance
+            };
+        }
 
 
-        //public static HomeWorkReportModel[] ToModel(this HomeWorkReportDto[] dto)
-        //{
-        //    if (dto == null)
-        //    {
-        //        return new HomeWorkReportModel[0];
-        //    }
-        //    return dto.Select(d => d.ToModel()).ToArray();
-        //}
+        public static AttendanceReportModel ToModel(this AttendanceReportDto dto)
+        {
+            if (dto == null)
+            {
+                return null;
+            }
+            return new AttendanceReportModel()
+            {
+                Attendance = dto.CoMat,
+                Off = dto.CoPhep,
+                Total = dto.Total
+            };
+        }
 
-        //public static HomeWorkReportModel ToModel(this HomeWorkReportDto dto)
-        //{
-        //    if (dto == null)
-        //    {
-        //        return null;
-        //    }
-        //    return new HomeWorkReportModel()
-        //    {
-        //        Count = dto.Count,
-        //        Description = dto.Description,
-        //        Level = dto.Level,
-        //        Total = dto.Total
-        //    };
-        //}
+        public static FeedbackReportModel[] ToModel(this FeedbackReportDto[] dto)
+        {
+            if (dto == null)
+            {
+                return new FeedbackReportModel[0];
+            }
+            return dto.Select(d => d.ToModel()).ToArray();
+        }
+
+        public static FeedbackReportModel ToModel(this FeedbackReportDto dto)
+        {
+            if (dto == null)
+            {
+                return null;
+            }
+            return new FeedbackReportModel()
+            {
+                Total = dto.Total,
+                CountMark = dto.CountMark,
+                Mark = dto.Mark
+            };
+        }
+
+
+        public static HomeWorkReportModel[] ToModel(this HomeWorkReportDto[] dto)
+        {
+            if (dto == null)
+            {
+                return new HomeWorkReportModel[0];
+            }
+            return dto.Select(d => d.ToModel()).ToArray();
+        }
+
+        public static HomeWorkReportModel ToModel(this HomeWorkReportDto dto)
+        {
+            if (dto == null)
+            {
+                return null;
+            }
+            return new HomeWorkReportModel()
+            {
+                Count = dto.Count,
+                Description = dto.Description,
+                Level = dto.Level,
+                Total = dto.Total
+            };
+        }
 
     }
 }

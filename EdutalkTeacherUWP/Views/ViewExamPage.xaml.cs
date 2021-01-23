@@ -24,20 +24,19 @@ namespace EdutalkTeacherUWP.Views
     /// </summary>
     public sealed partial class ViewExamPage : Page
     {
-        ViewExamPageViewModel vm;
         public ViewExamPage()
         {
-                this.InitializeComponent();
-            vm = new ViewExamPageViewModel();
+            this.InitializeComponent();
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             var param = (ViewHomeworkParam)e.Parameter;
+            var binding = (ViewExamPageViewModel)DataContext;
             if (param != null)
             {
-                await vm.LoadHomework(param.CourseStudentId, param.ClassroomId,param.Lesson,param.IsHomework);
+                await binding.LoadHomework(param.CourseStudentId, param.ClassroomId, param.Lesson, param.IsHomework);
             }
         }
     }

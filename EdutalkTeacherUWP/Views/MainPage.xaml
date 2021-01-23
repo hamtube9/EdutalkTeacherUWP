@@ -479,9 +479,7 @@
                 </StackPanel>
             </PivotItem.Header>
             <PivotItem.Content>
-                <ItemsControl>
-                    <view:ClassPage />
-                </ItemsControl>
+                <view:ClassPage VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" />
             </PivotItem.Content>
         </PivotItem>
  
@@ -493,9 +491,7 @@
                 </StackPanel>
             </PivotItem.Header>
             <PivotItem.Content>
-                <ItemsControl>
-                    <view:ReportPage/>
-                </ItemsControl>
+                    <view:ReportPage VerticalAlignment="Stretch" VerticalContentAlignment="Stretch"/>
             </PivotItem.Content>
         </PivotItem>
 
@@ -507,9 +503,7 @@
                 </StackPanel>
             </PivotItem.Header>
             <PivotItem.Content>
-                <ItemsControl>
-                    <view:MessengerPage/>
-                </ItemsControl>
+                    <view:MessengerPage VerticalAlignment="Stretch" VerticalContentAlignment="Stretch"/>
             </PivotItem.Content>
         </PivotItem>
 
@@ -521,11 +515,7 @@
                 </StackPanel>
             </PivotItem.Header>
             <PivotItem.Content>
-                <ItemsControl>
-                    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                        <view:SettingsPage VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
-                    </Grid>
-                </ItemsControl>
+                        <view:SettingsPage VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" />
             </PivotItem.Content>
         </PivotItem>
     </Pivot>

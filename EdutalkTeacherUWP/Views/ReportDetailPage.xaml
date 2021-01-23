@@ -1,0 +1,264 @@
+﻿<Page
+    x:Class="EdutalkTeacherUWP.Views.ReportDetailPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EdutalkTeacherUWP.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:conver="using:EdutalkTeacherUWP.Common.Converts"
+    xmlns:prism="using:Prism.Windows.Mvvm" xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    Background="#040927">
+    <Page.Resources>
+        <ResourceDictionary>
+
+            <conver:BoolToVisibilityConverter x:Key="ConvertBool"/>
+            <conver:VisibilityConverter x:Key="ConverVisible"/>
+            <Style
+        x:Key="LabelBase"
+        TargetType="TextBlock">
+                <Setter
+            Property="Foreground"
+            Value="{StaticResource OnBackgroundColor}" />
+            </Style>
+
+            <Style
+        x:Key="LabelBaseLage"
+        TargetType="TextBlock">
+                <Setter
+            Property="Foreground"
+            Value="{StaticResource OnBackgroundColor}" />
+                <Setter
+            Property="FontSize"
+            Value="18" />
+            </Style>
+
+            <Color
+        x:Key="PrimaryColor">#455EA9</Color>
+            <Color
+        x:Key="BackgroundColor">#040927</Color>
+            <Color
+        x:Key="PopupBackgroundColor">#B3040927</Color>
+            <Color
+        x:Key="OnBackgroundColor">#DEE5FF</Color>
+            <Color
+        x:Key="SurfaceColor">#252E69</Color>
+            <Color
+        x:Key="OnSurfaceColor">#DBDBDB</Color>
+            <Color
+        x:Key="TestColor">#982D2D</Color>
+            <Color
+        x:Key="OnTestColor">#FFEDED</Color>
+            <Color
+        x:Key="PassColor">#1EA218</Color>
+            <Color
+        x:Key="OnPassColor">#E4F2DF</Color>
+            <Color
+        x:Key="FutureColor">#585B69</Color>
+            <Color
+        x:Key="OnFutureColor">#C7C7C7</Color>
+            <Color
+        x:Key="PresentColor">#31428D</Color>
+            <Color
+        x:Key="OnPresentColor">#D1E3F2</Color>
+            <Color
+        x:Key="RedColor">#C34742</Color>
+            <Color
+        x:Key="GreenColor">#128D16</Color>
+            <Color
+        x:Key="AbsentColor">#454545</Color>
+            <Color
+        x:Key="HighLightColor">#364064</Color>
+            <Color
+        x:Key="OnLightColor">#191E3E</Color>
+            <Color
+        x:Key="OnBackgroundGreenColor">#DFF4C3</Color>
+
+
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+            <StackPanel  Margin="0,8">
+                <Border Margin="16,8" Height="48" Background="{StaticResource PrimaryColor}" CornerRadius="24">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Tapped="txtLesson_Tapped" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Background="Transparent">
+                            <TextBlock Text="Theo bài" x:Name="txtLesson" Tapped="txtLesson_Tapped"  FontSize="18"  HorizontalAlignment="Center" VerticalAlignment="Center" >
+                          <Interactivity:Interaction.Behaviors>
+                                <Core:DataTriggerBehavior Binding="{Binding IsLesson}" Value="True">
+                                    <Core:ChangePropertyAction TargetObject="{Binding ElementName=txtLesson}" PropertyName="Foreground" Value="White"/>
+                                </Core:DataTriggerBehavior>
+                                <Core:DataTriggerBehavior Binding="{Binding IsLesson}" Value="False">
+                                    <Core:ChangePropertyAction TargetObject="{Binding ElementName=txtLesson}" PropertyName="Foreground" Value="Black"/>
+                                </Core:DataTriggerBehavior>
+                            </Interactivity:Interaction.Behaviors>
+                            </TextBlock>
+
+                        </Border >
+
+                        <Line
+                    Y2="100" HorizontalAlignment="Right"
+                        Stroke="White"
+                        StrokeThickness="1" />
+
+                        <Border Grid.Column="1" Tapped="txtMonth_Tapped"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Background="Transparent">
+                            <TextBlock Text="Theo tháng" x:Name="txtMonth" Tapped="txtMonth_Tapped"   FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center">
+                       <Interactivity:Interaction.Behaviors>
+                                <Core:DataTriggerBehavior Binding="{Binding IsMonth}" Value="True">
+                                    <Core:ChangePropertyAction TargetObject="{Binding ElementName=txtMonth}" PropertyName="Foreground" Value="White"/>
+                                </Core:DataTriggerBehavior>
+                                <Core:DataTriggerBehavior Binding="{Binding IsMonth}" Value="False">
+                                    <Core:ChangePropertyAction TargetObject="{Binding ElementName=txtMonth}" PropertyName="Foreground" Value="Black"/>
+                                </Core:DataTriggerBehavior>
+                            </Interactivity:Interaction.Behaviors>
+                            </TextBlock>
+                        </Border>
+                        <Line
+                    Grid.Column="1"
+                    Y2="100" HorizontalAlignment="Right"
+                        Stroke="White"
+                        StrokeThickness="1" />
+
+
+                        <Border Grid.Column="2" Tapped="txtAll_Tapped"   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent">
+                            <TextBlock Text="Tất cả" x:Name="txtAll"  Tapped="txtAll_Tapped" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center">
+                     <Interactivity:Interaction.Behaviors>
+                                <Core:DataTriggerBehavior Binding="{Binding IsAll}" Value="True">
+                                    <Core:ChangePropertyAction TargetObject="{Binding ElementName=txtAll}" PropertyName="Foreground" Value="White"/>
+                                </Core:DataTriggerBehavior>
+                                <Core:DataTriggerBehavior Binding="{Binding IsAll}" Value="False">
+                                    <Core:ChangePropertyAction TargetObject="{Binding ElementName=txtAll}" PropertyName="Foreground" Value="Black"/>
+                                </Core:DataTriggerBehavior>
+                            </Interactivity:Interaction.Behaviors>
+                            </TextBlock>
+                        </Border>
+                    </Grid>
+                </Border>
+            <Border Margin="16,8" Height="48" Background="{StaticResource PrimaryColor}" CornerRadius="24" Visibility="{Binding IsAll,Converter={StaticResource ConvertBool}}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Visibility="{Binding VisiblePrev}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Background="Transparent">
+                        <Image Source="/Assets/left_chevron_white.png" HorizontalAlignment="Right" Tapped="Image_Prev" VerticalAlignment="Center" Height="24" Width="24"/>
+                    </Border >
+
+                    <Border Grid.Column="1"   HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Background="Transparent">
+                        <TextBlock Text="{Binding DateOrLesson}" Style="{StaticResource LabelBase}" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                        </TextBlock>
+                    </Border>
+
+                    <Border Visibility="{Binding VisibleNext}"  Grid.Column="2"   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent" Tapped="Image_Next">
+                        <Image Source="/Assets/ic_right_chevron.png" HorizontalAlignment="Left" VerticalAlignment="Center" Height="24" Width="24"/>
+                    </Border>
+                </Grid>
+            </Border>
+        </StackPanel>
+            <ScrollViewer Grid.Row="1">
+                <StackPanel>
+                    <Border Visibility="{Binding Report.Homework, Converter={StaticResource ConverVisible},TargetNullValue=Fasle}" Background="{StaticResource PrimaryColor}" Padding="0" CornerRadius="12" Margin="16,0">
+
+                        <StackPanel Margin="8">
+                            <TextBlock Text="Báo cáo học tập" Style="{StaticResource LabelBase}" FontWeight="Bold" FontSize="16"/>
+                            <ListView ItemsSource="{Binding Report.Homework}" IsItemClickEnabled="False"  SelectionMode="None">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock  Style="{StaticResource LabelBase}">
+                                            <Run Text="{Binding Description}"/>
+                                            <Run Text=":"/>
+                                            <Run Text="{Binding Count}"/>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock  Text="Tổng :" Style="{StaticResource LabelBase}"/>
+                                <TextBlock  Text="{Binding Report.Homework[0].Total}" Style="{StaticResource LabelBase}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <Border  Visibility="{Binding  Report.Test, Converter={StaticResource ConverVisible},TargetNullValue=Fasle}"  Background="{StaticResource PrimaryColor}" Padding="0" CornerRadius="12" Margin="16,8">
+
+                        <StackPanel Margin="8">
+                            <TextBlock Text="Báo cáo bài kiểm tra" Style="{StaticResource LabelBase}" FontWeight="Bold" FontSize="16"/>
+                            <ListView ItemsSource="{Binding Report.Test}" IsItemClickEnabled="False"  SelectionMode="None">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock  Style="{StaticResource LabelBase}">
+                                            <Run Text="{Binding Description}"/>
+                                            <Run Text=":"/>
+                                            <Run Text="{Binding Count}"/>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Padding="4" Text="Tổng :" Style="{StaticResource LabelBase}"/>
+                                <TextBlock Padding="2,4" Text="{Binding Report.Test[0].Total}" Style="{StaticResource LabelBase}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <Border   Visibility="{Binding  Report.Attendance, Converter={StaticResource ConverVisible},TargetNullValue=Fasle}" Background="{StaticResource PrimaryColor}" Padding="0" CornerRadius="12" Margin="16,0">
+                        <StackPanel Margin="8">
+                            <TextBlock Text="Báo cáo điểm danh" Style="{StaticResource LabelBase}" FontWeight="Bold" FontSize="16"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Padding="4" Text="Điểm danh :" Style="{StaticResource LabelBase}"/>
+                                <TextBlock Padding="2,4" Text="{Binding Report.Attendance.Attendance}" Style="{StaticResource LabelBase}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Padding="4" Text="Nghỉ :" Style="{StaticResource LabelBase}"/>
+                                <TextBlock Padding="2,4" Text="{Binding Report.Attendance.Off}" Style="{StaticResource LabelBase}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Padding="4" Text="Tổng :" Style="{StaticResource LabelBase}"/>
+                                <TextBlock Padding="2,4" Text="{Binding Report.Attendance.Total}" Style="{StaticResource LabelBase}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <Border  Visibility="{Binding  Report.Feedback, Converter={StaticResource ConverVisible},TargetNullValue=Fasle}"  Background="{StaticResource PrimaryColor}" Padding="0" CornerRadius="12" Margin="16,8">
+                        <StackPanel Margin="8">
+                            <TextBlock Text="Báo cáo phản hồi" Style="{StaticResource LabelBase}" FontWeight="Bold" FontSize="16"/>
+
+                            <ListView ItemsSource="{Binding Report.Feedback}" IsItemClickEnabled="False"  SelectionMode="None">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Style="{StaticResource LabelBase}">
+                                      <Run Text="Phản hồi "/>
+                                        <Run Text="{Binding Mark}"/>
+                                        <Run Text=" sao :"/>
+                                        <Run Text="{Binding CountMark}"/>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Padding="4" Text="Tổng :" Style="{StaticResource LabelBase}"/>
+                                <TextBlock Padding="2,4" Text="{Binding Report.Feedback[0].Total}" Style="{StaticResource LabelBase}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+    </Grid>
+</Page>

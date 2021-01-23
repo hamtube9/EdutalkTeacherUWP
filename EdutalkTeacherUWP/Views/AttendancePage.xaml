@@ -141,8 +141,7 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Border CornerRadius="12" Padding="0" Grid.Row="2" Height="48" VerticalAlignment="Center" Margin="16,0" Background="White" Visibility="Visible">
-            <Button Content="Submit"  HorizontalAlignment="Stretch" Background="Transparent" Height="48" Command="{Binding SubmitAttendanceCommand}"/>
-        </Border>
+        <Button Content="Submit" CornerRadius="24" Padding="0" Grid.Row="2"  HorizontalAlignment="Stretch"  Margin="16,0" Background="{StaticResource PrimaryColor}" Foreground="White" Height="48" Command="{Binding SubmitAttendanceCommand}"/>
+
     </Grid>
 </Page>

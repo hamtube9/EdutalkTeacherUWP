@@ -149,6 +149,7 @@
                         Padding="0"
                         Text="Password" />
                         <PasswordBox
+                            KeyDown="PasswordBox_KeyDown"
                         PasswordChar="*"
                         PasswordChanged="PasswordBox_PasswordChanged"
                         SelectionHighlightColor="{StaticResource OnColorFrame}"

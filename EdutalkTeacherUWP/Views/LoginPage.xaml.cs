@@ -35,5 +35,15 @@ namespace EdutalkTeacherUWP.Views
                 binding.Email = str.Text;
             }
         }
+
+        private async  void PasswordBox_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        {
+            var binding = (LoginPageViewModel)this.DataContext;
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                 binding.LoginAsyncCommand.Execute(null);
+               
+            }
+        }
     }
 }

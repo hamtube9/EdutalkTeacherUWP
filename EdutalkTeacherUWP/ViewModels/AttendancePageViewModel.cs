@@ -90,10 +90,26 @@ namespace EdutalkTeacherUWP.ViewModels
             if (!IsSupportClass)
             {
                 result = await courseService.AttendanceAsync(Students.ToArray(), Route.Lesson, ClassroomId, HasTutor ? Tutor?.Id : null);
+                if (result)
+                {
+                    Toast("Thành công");
+                }
+                else
+                {
+                    Toast("Thất bại");
+                }
             }
             else
             {
                 result = await courseService.AttendanceTutoringAsync(Students.ToArray(), Route.Id, ClassroomId, HasTutor ? Tutor?.Id : null);
+                if (result)
+                {
+                    Toast("Thành công");
+                }
+                else
+                {
+                    Toast("Thất bại");
+                }
             }
         }
     }

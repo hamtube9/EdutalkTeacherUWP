@@ -37,7 +37,7 @@ namespace EdutalkTeacherUWP.Views
             {
                 return;
             }
-
+            Frame.Navigate(typeof(VerifyPhonePage), vm.Phone);
 
         }
     }
