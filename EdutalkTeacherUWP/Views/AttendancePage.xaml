@@ -9,7 +9,8 @@
     Width="Auto"
     Height="Auto"
     Background="#040927"
-    xmlns:prism="using:Prism.Windows.Mvvm" xmlns:convert="using:EdutalkTeacherUWP.Common.Converts"
+    xmlns:prism="using:Prism.Windows.Mvvm"
+    xmlns:convert="using:EdutalkTeacherUWP.Common.Converts"
     prism:ViewModelLocator.AutoWireViewModel="True">
     <Page.Resources>
         <ResourceDictionary>

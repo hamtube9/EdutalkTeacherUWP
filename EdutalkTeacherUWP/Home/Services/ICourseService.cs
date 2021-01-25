@@ -34,7 +34,7 @@ namespace EdutalkTeacherUWP.Home.Services
         Task<ScheduleModel> GetRoutesAsync(long classroomId);
         //Task<ScheduleModel> GetRoutesAsync(long classroomId, long tutorId);
         Task<bool> OffClassAsync(int lesson, long classroomId);
-        //Task<LessonModel> GetLessonAsync(int lesson, long classroomId);
+        Task<LessonModel> GetLessonAsync(int lesson, long classroomId);
 
         Task<bool> SetingZoomAsync(long idclas, string zoomid, string zoompassword);
         Task<UserModel[]> GetAllTutorAsync(long classId);
@@ -262,33 +262,32 @@ namespace EdutalkTeacherUWP.Home.Services
         //    return new HomeworkResultModel[0];
         //}
 
-        //public async Task<LessonModel> GetLessonAsync(int lesson, long classroomId)
-        //{
-        //    try
-        //    {
-        //        var result = await Api.Learn(classroomId, lesson);
-        //        if (result?.Data != null)
-        //        {
-        //            var d = result.Data;
-        //            return new LessonModel
-        //            {
-        //                Lesson = d.Name,
-        //                Listening = d.Listening,
-        //                Material = d.Material,
-        //                Reading = d.Reading,
-        //                Speaking = d.Speaking,
-        //                Vocabulary = d.Vocabulary,
-        //                Writing = d.Writing,
-        //                Grammar = d.Grammar
-        //            };
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        logService.Log(e, new Dictionary<string, string>() { { $"Get lesson error . classroom id {classroomId}, lesson {lesson}", e.Message } });
-        //    }
-        //    return null;
-        //}
+        public async Task<LessonModel> GetLessonAsync(int lesson, long classroomId)
+        {
+            try
+            {
+                var result = await Api.Learn(classroomId, lesson);
+                if (result?.Data != null)
+                {
+                    var d = result.Data;
+                    return new LessonModel
+                    {
+                        Lesson = d.Name,
+                        Listening = d.Listening,
+                        Material = d.Material,
+                        Reading = d.Reading,
+                        Speaking = d.Speaking,
+                        Vocabulary = d.Vocabulary,
+                        Writing = d.Writing,
+                        Grammar = d.Grammar
+                    };
+                }
+            }
+            catch (Exception e)
+            {
+            }
+            return null;
+        }
 
         public async Task<ScheduleModel> GetRoutesAsync(long classroomId)
         {

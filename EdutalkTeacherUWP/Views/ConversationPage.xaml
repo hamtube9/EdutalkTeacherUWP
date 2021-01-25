@@ -82,9 +82,9 @@
     <Grid  >
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="60"/>
+            <RowDefinition Height="48"/>
         </Grid.RowDefinitions>
-        <ListView ItemsSource="{Binding Messages}" SelectionMode="None" Margin="0,0,0,60" Visibility="{Binding IsVisible}"  >
+        <ListView ItemsSource="{Binding Messages}" SelectionMode="None"  Visibility="{Binding IsVisible}" >
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>

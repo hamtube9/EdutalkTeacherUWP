@@ -108,7 +108,7 @@
             StrokeDashOffset="2"
             StrokeThickness="3" />
 
-                    <ListView ItemsSource="{Binding Routes}"  Grid.ColumnSpan="2" IsHitTestVisible="True"   x:Name="Routes" SelectionMode="None" ContainerContentChanging="Routes_ContainerContentChanging" >
+                    <ListView ItemsSource="{Binding Routes}"  Grid.ColumnSpan="2" IsHitTestVisible="True"   x:Name="Routes" SelectionMode="None" ContainerContentChanging="Routes_ContainerContentChanging" ShowsScrollingPlaceholders="False" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Grid x:Name="dataRoute">
@@ -145,8 +145,14 @@
                                             </Border>
                                         </StackPanel>
 
-                                        <Border Grid.Column="1" CornerRadius="8" Height="40" Margin="8,0" Background="{StaticResource PassColor}">
-                                            <TextBlock Text="{Binding Lesson}" Style="{StaticResource LabelBase}" Margin="16,0"  VerticalAlignment="Center"/>
+                                        <Border Grid.Column="1" CornerRadius="8" Height="40" Margin="8,0" Background="{StaticResource PassColor}" Tapped="LessonTapped">
+                                            <Grid>
+                                                <TextBlock  Margin="16,0"  VerticalAlignment="Center">
+                                                    <Run Text="Bài" Foreground="White"/>
+                                                    <Run Text="{Binding Lesson}" Foreground="White"/>
+                                                </TextBlock>
+                                                <Image Source="/Assets/book.png" Height="24" Width="24" Margin="16,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                            </Grid>
                                         </Border>
 
                                         <Rectangle HorizontalAlignment="Center" VerticalAlignment="Top" StrokeDashArray="0.5 1.0 0.3" Stroke="White" StrokeThickness="2" RadiusX="10" RadiusY="10"/>
@@ -260,7 +266,7 @@
                                         </StackPanel>
 
                                         <Border Grid.Column="1" CornerRadius="8" Height="40" Margin="8,0" Background="{StaticResource PassColor}">
-                                            <TextBlock Text="{Binding Lesson}" Style="{StaticResource LabelBase}" Margin="16,0"  VerticalAlignment="Center"/>
+                                            <TextBlock Text="{Binding Name}" Style="{StaticResource LabelBase}" Margin="16,0"  VerticalAlignment="Center"/>
                                         </Border>
 
                                         <Rectangle HorizontalAlignment="Center" VerticalAlignment="Top" StrokeDashArray="0.5 1.0 0.3" Stroke="White" StrokeThickness="2" RadiusX="10" RadiusY="10"/>
@@ -352,8 +358,14 @@
                                             </Border>
                                         </StackPanel>
 
-                                        <Border Grid.Column="1" CornerRadius="8" Height="40" Margin="8,0" Background="{StaticResource PresentColor}">
-                                            <TextBlock Text="{Binding Lesson}" Style="{StaticResource LabelBase}" Margin="16,0"  VerticalAlignment="Center"/>
+                                        <Border Grid.Column="1" CornerRadius="8" Height="40" Margin="8,0" Background="{StaticResource PresentColor}" Tapped="LessonTapped">
+                                            <Grid>
+                                                <TextBlock  Margin="16,0"  VerticalAlignment="Center">
+                                                    <Run Text="Bài" Foreground="White"/>
+                                                    <Run Text="{Binding Lesson}" Foreground="White"/>
+                                                </TextBlock>
+                                                <Image Source="/Assets/book.png" Height="24" Width="24" Margin="16,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                            </Grid>
                                         </Border>
 
                                         <Grid Grid.Row="1" Grid.Column="1">
@@ -494,8 +506,8 @@
                                             </Border>
                                         </StackPanel>
 
-                                        <Border Grid.Column="1" CornerRadius="8" Height="40" Margin="8,0" Background="{StaticResource PresentColor}">
-                                            <TextBlock Text="{Binding Lesson}" Style="{StaticResource LabelBase}" Margin="16,0"  VerticalAlignment="Center"/>
+                                        <Border Grid.Column="1" CornerRadius="8" Height="40" Margin="8,0" Background="{StaticResource PresentColor}" >
+                                                <TextBlock Text="{Binding Name}" Style="{StaticResource LabelBase}" Margin="16,0"  VerticalAlignment="Center"/>
                                         </Border>
 
                                         <Grid Grid.Row="1" Grid.Column="1">
@@ -568,7 +580,7 @@
                                                 <TextBlock  Text="{Binding DateMonthStudy}" HorizontalAlignment="Center" Foreground="{StaticResource FutureColor}" VerticalAlignment="Center"/>
                                             </Grid>
 
-                                            <Border CornerRadius="4"  Margin="4" HorizontalAlignment="Center" MinWidth="64" MaxWidth="68">
+                                            <Border CornerRadius="4"  Margin="4" HorizontalAlignment="Center" MinWidth="64" MaxWidth="68" >
                                                 <Grid Height="40">
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="20"/>
@@ -585,8 +597,14 @@
                                             </Border>
                                         </StackPanel>
 
-                                        <Border Grid.Column="1" CornerRadius="8" Height="40" Margin="8,0" Background="{StaticResource FutureColor}">
-                                            <TextBlock Text="{Binding Lesson}" Style="{StaticResource LabelBase}" Margin="16,0"  VerticalAlignment="Center"/>
+                                        <Border Grid.Column="1" CornerRadius="8" Height="40" Margin="8,0" Background="{StaticResource FutureColor}" Tapped="LessonTapped">
+                                            <Grid>
+                                                <TextBlock  Margin="16,0"  VerticalAlignment="Center">
+                                                    <Run Text="Bài" Foreground="White"/>
+                                                    <Run Text="{Binding Lesson}" Foreground="White"/>
+                                                </TextBlock>
+                                                <Image Source="/Assets/book.png" Height="24" Width="24" Margin="16,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                            </Grid>
                                         </Border>
 
                                         <Grid Grid.Row="1" Grid.Column="1">

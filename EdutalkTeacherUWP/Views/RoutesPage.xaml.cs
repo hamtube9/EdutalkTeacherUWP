@@ -120,5 +120,16 @@ namespace EdutalkTeacherUWP.Views
             var obj = (PasswordBox)sender;
             vm.ZoomPassword = obj.Password;
         }
+
+        private void LessonTapped(object sender, TappedRoutedEventArgs e)
+        {
+            var obj = (Border)sender;
+            var data = (RouteModel)obj.DataContext;
+            SplitViewFrame.Navigate(typeof(LessonPage), new ParamsLesson()
+            {
+                ClassroomId = vm.Classroom.Id,
+                Lesson = data.Lesson
+            });
+        }
     }
 }

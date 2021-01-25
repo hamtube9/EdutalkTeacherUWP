@@ -135,6 +135,7 @@
     <Compile Include="Api\Dtos\ClassDtos\AttendanceResultDto.cs" />
     <Compile Include="Api\Dtos\ClassDtos\ClassroomResultDto.cs" />
     <Compile Include="Api\Dtos\ClassDtos\CreateTutoringRequestDto.cs" />
+    <Compile Include="Api\Dtos\ClassDtos\LessonResultDto.cs" />
     <Compile Include="Api\Dtos\ClassDtos\OffClassRequestDto.cs" />
     <Compile Include="Api\Dtos\ClassDtos\SendFeedbackRequestDto.cs" />
     <Compile Include="Api\Dtos\ClassDtos\SubmitAttendanceRequestDto.cs" />
@@ -219,6 +220,8 @@
     <Compile Include="Home\Models\CommentModel.cs" />
     <Compile Include="Home\Models\FeedbackParams.cs" />
     <Compile Include="Home\Models\InfoStudentModel.cs" />
+    <Compile Include="Home\Models\LessonModel.cs" />
+    <Compile Include="Home\Models\ParamsLesson.cs" />
     <Compile Include="Home\Models\RouteDataTemplateSelector.cs" />
     <Compile Include="Home\Models\RouteModel.cs" />
     <Compile Include="Home\Models\SupportClassParams.cs" />
@@ -241,6 +244,7 @@
     <Compile Include="ViewModels\ConversationPageViewModel.cs" />
     <Compile Include="ViewModels\FeedbackPageViewModel.cs" />
     <Compile Include="ViewModels\HomeworkPageViewModel.cs" />
+    <Compile Include="ViewModels\LessonPageViewModel.cs" />
     <Compile Include="ViewModels\LoginPageViewModel.cs" />
     <Compile Include="Common\Base\AppContants.cs" />
     <Compile Include="Common\Base\ViewModelBase.cs" />
@@ -278,6 +282,9 @@
     </Compile>
     <Compile Include="Views\HomeworkPage.xaml.cs">
       <DependentUpon>HomeworkPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LessonPage.xaml.cs">
+      <DependentUpon>LessonPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
@@ -322,6 +329,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\book.png" />
     <Content Include="Assets\chat.png" />
     <Content Include="Assets\icon.png" />
     <Content Include="Assets\ic_alert_information.png" />
@@ -336,6 +344,7 @@
     <Content Include="Assets\ic_home.png" />
     <Content Include="Assets\ic_homework.png" />
     <Content Include="Assets\ic_list_notify.png" />
+    <Content Include="Assets\ic_lock.png" />
     <Content Include="Assets\ic_messenger.png" />
     <Content Include="Assets\ic_notification.png" />
     <Content Include="Assets\ic_phone.png" />
@@ -463,6 +472,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\HomeworkPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LessonPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

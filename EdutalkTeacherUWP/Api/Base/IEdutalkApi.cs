@@ -58,6 +58,9 @@ namespace EdutalkTeacherUWP.Api.Base
         [Post("/api/v3/mobile/teacher/class/off-class")]
         Task<ErrorResultDto> OffClass(OffClassRequestDto dto);
 
+        [Get("/api/v3/mobile/teacher/class/learn?classroom_id={classroomId}&lesson={lesson}")]
+        Task<DataDto<LessonResultDto>> Learn(long classroomId, int lesson);
+
         //HOMEWORK
         [Get("/api/v3/mobile/teacher/class/list-student?id={classroomId}")]
         Task<DataDto<StudentResultDto[]>> GetStudents(long classroomId);

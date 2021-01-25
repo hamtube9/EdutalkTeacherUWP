@@ -38,13 +38,22 @@ namespace EdutalkTeacherUWP.ViewModels
             {
                 IsSupportClass = true;
                 var result = await courseService.GetAttendancesAsync(ClassroomId);
+                if(result.Length == 0)
+                {
+                    Toast("Không có học viên");
+                }
                 if (result != null || result.Length > 0)
                 {
                     Students = new ObservableCollection<AttendanceModel>(result);
                 }
+               
                 return;
             }
             var students = await courseService.GetAttendancesAsync(Route.Lesson, ClassroomId);
+            if (students.Length == 0)
+            {
+                Toast("Không có học viên");
+            }
             if (students != null || students.Length > 0)
             {
                 Students = new ObservableCollection<AttendanceModel>(students);
