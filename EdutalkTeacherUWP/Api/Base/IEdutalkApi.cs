@@ -7,6 +7,7 @@ using EdutalkTeacherUWP.Api.Dtos.Messenger;
 using EdutalkTeacherUWP.Api.Dtos.Report;
 using EdutalkTeacherUWP.Api.Dtos.RoomDto;
 using EdutalkTeacherUWP.Api.Dtos.Route;
+using EdutalkTeacherUWP.Api.Dtos.Zoom;
 using Refit;
 using System.Threading.Tasks;
 
@@ -54,6 +55,8 @@ namespace EdutalkTeacherUWP.Api.Base
         [Post("/api/v3/mobile/teacher/chats/threads/messages/send?thread_id={conversationId}&message={message}")]
         Task<MessageResultDto> SendMessage(long conversationId, string message);
 
+        [Post("/api/v3/mobile/teacher/class/off-class")]
+        Task<ErrorResultDto> OffClass(OffClassRequestDto dto);
 
         //HOMEWORK
         [Get("/api/v3/mobile/teacher/class/list-student?id={classroomId}")]
@@ -119,6 +122,9 @@ namespace EdutalkTeacherUWP.Api.Base
         [Get("/api/v3/mobile/teacher/class/report?id={id}&lesson={lesson}&month={month}&year={year}")]
         Task<ReportClassDto> GetReportClass(long id, int? lesson, int? month, int? year);
 
-        
+        //zoom
+        [Post("/api/v3/mobile/teacher/class/set-zoom")]
+        Task<ChangepassResultDto> SetingZoom([Body] SettingZoomRequestDto dto);
+
     }
 }

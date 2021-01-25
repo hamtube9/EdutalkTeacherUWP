@@ -23,6 +23,8 @@ namespace EdutalkTeacherUWP.Home.Models
         public bool IsPass { set; get; }
         public bool IsPresent { set; get; }
         public bool IsFuture { set; get; }
+        public bool IsSupportClassPass { set; get; }
+        public bool IsSupportClassPresent { set; get; }
         public string DatetimeStudy { set; get; }
         public string DateMonthStudy { set; get; }
         public DateTime Date { get; set; }

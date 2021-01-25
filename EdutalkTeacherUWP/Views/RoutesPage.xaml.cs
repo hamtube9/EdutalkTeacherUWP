@@ -37,7 +37,7 @@ namespace EdutalkTeacherUWP.Views
 
         private void Routes_ContainerContentChanging(ListViewBase sender, ContainerContentChangingEventArgs args)
         {
-            if(isScrolled == false)
+            if (isScrolled == false)
             {
                 Routes.ScrollIntoView(vm.Routes.FirstOrDefault(c => c.IsPresent == true));
                 isScrolled = true;
@@ -51,9 +51,13 @@ namespace EdutalkTeacherUWP.Views
             SplitViewFrame.Navigate(typeof(AttendancePage), new ParamsAttendanceModel()
             {
                 Route = dataContext,
-                ClassroomId = (int)vm.Classroom?.Id
+                ClassroomId = dataContext.RouteType == RouteType.SupportClass ? (int)dataContext?.Id : (int)vm.Classroom?.Id
             });
 
+        }
+        private async void Cancel_Class_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            await vm.CancelSupportClass();
         }
 
         private void Button_Click_Homework(object sender, TappedRoutedEventArgs e)
@@ -77,21 +81,16 @@ namespace EdutalkTeacherUWP.Views
             });
         }
 
-        bool IsOpen { set; get; }
-        private void Border_Tapped(object sender, TappedRoutedEventArgs e)
+        private async void Border_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            if (IsOpen == false)
+            if (vm.Classroom.Mode == OnlineMode.Offline)
             {
-                IsOpen = true;
-                var anim = FloatingButton.Rotate(45, 0, 0, 500, 0).Fade(0.5f).Blur(5);
-                anim.Start();
+                vm.Toast("Hiện tại không phải lớp Online");
+                return;
             }
-            else
-            {
-                var anim = FloatingButton.Rotate(0, 0, 0, 500, 0).Fade(1f).Blur(0);
-                anim.Start();
-                IsOpen = false;
-            }
+
+            await popupZoom.ShowAsync();
+
         }
 
         private void Button_Click_Create_AssistanceClass(object sender, TappedRoutedEventArgs e)
@@ -105,5 +104,21 @@ namespace EdutalkTeacherUWP.Views
             });
         }
 
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var obj = (TextBox)sender;
+            vm.ZoomId = obj.Text;
+        }
+
+        private async void popupRooms_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+           await vm.SettingZoom();
+        }
+
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            var obj = (PasswordBox)sender;
+            vm.ZoomPassword = obj.Password;
+        }
     }
 }

@@ -23,15 +23,17 @@ namespace EdutalkTeacherUWP.Views
     /// </summary>
     public sealed partial class VerifyPhonePage : Page
     {
+        VerifyPhonePageViewModel vm;
         public VerifyPhonePage()
         {
             this.InitializeComponent();
+             vm = (VerifyPhonePageViewModel)DataContext;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            var vm = (VerifyPhonePageViewModel)DataContext;
+          
             if (!string.IsNullOrEmpty((string)e.Parameter))
             {
                 vm.Phone = (string)e.Parameter;
@@ -42,13 +44,28 @@ namespace EdutalkTeacherUWP.Views
             var binding = (VerifyPhonePageViewModel)this.DataContext;
             if (e.Key == Windows.System.VirtualKey.Enter)
             {
-               await binding.VerifyAsync();
+              var result =   await binding.VerifyAsync();
+                if (result)
+                {
+                    Frame.GoBack();
+                }
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
+            var binding = (VerifyPhonePageViewModel)this.DataContext;
+            var result = await binding.VerifyAsync();
+            if (result)
+            {
+                Frame.GoBack();
+            }
+        }
 
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+           var obj = (TextBox)sender;
+            vm.PinCode = obj.Text;
         }
     }
 }

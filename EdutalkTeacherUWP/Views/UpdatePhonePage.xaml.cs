@@ -40,5 +40,11 @@ namespace EdutalkTeacherUWP.Views
             Frame.Navigate(typeof(VerifyPhonePage), vm.Phone);
 
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var obj = (TextBox)sender;
+            vm.Phone =  obj.Text;
+        }
     }
 }

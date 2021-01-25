@@ -48,14 +48,19 @@ namespace EdutalkTeacherUWP.Views
 
         private async void ContentDialog_CloseButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-           var  binding = (ReportPageViewModel)DataContext;
-            ReportFrame.Navigate(typeof(ReportDetailPage), binding.ClassSelected);
+         
         }
 
         private async void Grid_Tapped(object sender, TappedRoutedEventArgs e)
         {
             listRoom.ItemsSource = vm.Classes;
             await popupClass.ShowAsync();
+        }
+
+        private void popupClass_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            var binding = (ReportPageViewModel)DataContext;
+            ReportFrame.Navigate(typeof(ReportDetailPage), binding.ClassSelected);
         }
     }
 }

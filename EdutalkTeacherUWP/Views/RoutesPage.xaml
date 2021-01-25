@@ -226,6 +226,99 @@
 
                                         </Grid>
                                     </Grid>
+                                    <Grid Visibility="{Binding IsSupportClassPass}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="104"/>
+                                            <ColumnDefinition Width="360"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="56"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <StackPanel Grid.RowSpan="2" Width="80" HorizontalAlignment="Right">
+                                            <Grid Height="50">
+                                                <Image Source="/Assets/ic_cloud_white.png"/>
+                                                <TextBlock  Text="{Binding  DateMonthStudy}" HorizontalAlignment="Center" Foreground="{StaticResource PassColor}" VerticalAlignment="Center"/>
+                                            </Grid>
+
+                                            <Border CornerRadius="4"  Margin="4" HorizontalAlignment="Center" MinWidth="64" MaxWidth="68">
+                                                <Grid Height="40">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="20"/>
+                                                        <RowDefinition Height="20"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid Background="{StaticResource PassColor}">
+                                                        <TextBlock Text="{Binding Room.Name}" Foreground="White" HorizontalAlignment="Center"/>
+                                                    </Grid>
+
+                                                    <Grid Grid.Row="1" Background="White">
+                                                        <TextBlock HorizontalAlignment="Center" FontSize="12" Text="{Binding DatetimeStudy}" />
+                                                    </Grid>
+                                                </Grid>
+                                            </Border>
+                                        </StackPanel>
+
+                                        <Border Grid.Column="1" CornerRadius="8" Height="40" Margin="8,0" Background="{StaticResource PassColor}">
+                                            <TextBlock Text="{Binding Lesson}" Style="{StaticResource LabelBase}" Margin="16,0"  VerticalAlignment="Center"/>
+                                        </Border>
+
+                                        <Rectangle HorizontalAlignment="Center" VerticalAlignment="Top" StrokeDashArray="0.5 1.0 0.3" Stroke="White" StrokeThickness="2" RadiusX="10" RadiusY="10"/>
+
+                                        <Grid Grid.Row="1" Grid.Column="1">
+                                            <Border CornerRadius="12" Padding="0" Width="320">
+                                                <Grid>
+                                                    <Rectangle StrokeDashArray="4 6"
+                                            Stroke="White"
+                                            StrokeThickness="2"
+                                            Width="320" >
+
+                                                    </Rectangle>
+                                                    <StackPanel Margin="16" Spacing="8">
+                                                        <Grid>
+                                                            <Border Height="48" CornerRadius="12" Background="{StaticResource OnPassColor}" Tapped="Button_Click_Attendace">
+                                                                <Grid>
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="48"/>
+                                                                        <ColumnDefinition Width="280"/>
+                                                                    </Grid.ColumnDefinitions>
+
+                                                                    <Border Height="32" Width="32" CornerRadius="16" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                                        <Image Source="/Assets/ic_attendance.png" Height="32" Width="32"/>
+                                                                    </Border>
+
+                                                                    <TextBlock Text="Điểm danh" Grid.Column="1" VerticalAlignment="Center"/>
+                                                                </Grid>
+                                                            </Border>
+
+                                                        </Grid>
+
+                                                        <Grid>
+                                                            <Border Height="48" CornerRadius="12" Background="{StaticResource OnPassColor}" Tapped="Button_Click_Feedback">
+                                                                <Grid>
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="48"/>
+                                                                        <ColumnDefinition Width="280"/>
+                                                                    </Grid.ColumnDefinitions>
+
+                                                                    <Border Height="32" Width="32" CornerRadius="16" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                                        <Image Source="/Assets/ic_feedback.png" Height="32" Width="32"/>
+                                                                    </Border>
+
+                                                                    <TextBlock Text="Phản hồi" Grid.Column="1" VerticalAlignment="Center"/>
+                                                                </Grid>
+                                                            </Border>
+
+                                                        </Grid>
+                                                    </StackPanel>
+
+
+                                                </Grid>
+                                            </Border>
+
+
+                                        </Grid>
+                                    </Grid>
                                     <Grid Visibility="{Binding IsPresent}">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="104"/>
@@ -346,6 +439,114 @@
                                                             </Border>
 
                                                         </Grid>
+                                                        <Grid>
+                                                            <Border Height="48" CornerRadius="12" Background="{StaticResource OnPresentColor}" Visibility="{Binding IsCancelClass,Converter={StaticResource  convertBack}}" Tapped="Cancel_Class_Tapped">
+                                                                <Grid>
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="48"/>
+                                                                        <ColumnDefinition Width="280"/>
+                                                                    </Grid.ColumnDefinitions>
+
+                                                                    <Border Height="32" Width="32" CornerRadius="16" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                                        <Image Source="/Assets/ic_cancel.png" Height="32" Width="32"/>
+                                                                    </Border>
+
+                                                                    <TextBlock Text="Hủy lớp" Grid.Column="1" VerticalAlignment="Center"/>
+                                                                </Grid>
+                                                            </Border>
+
+                                                        </Grid>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Border>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid Visibility="{Binding IsSupportClassPresent}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="104"/>
+                                            <ColumnDefinition Width="360"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="56"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <StackPanel Grid.RowSpan="2" Width="80" HorizontalAlignment="Right">
+                                            <Grid Height="50">
+                                                <Image Source="/Assets/ic_cloud_white.png"/>
+                                                <TextBlock  Text="{Binding DateMonthStudy}" HorizontalAlignment="Center" Foreground="{StaticResource PresentColor}" VerticalAlignment="Center"/>
+                                            </Grid>
+
+                                            <Border CornerRadius="4"  Margin="4" HorizontalAlignment="Center" MinWidth="64" MaxWidth="68">
+                                                <Grid Height="40">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="20"/>
+                                                        <RowDefinition Height="20"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid Background="{StaticResource PresentColor}">
+                                                        <TextBlock Text="{Binding Room.Name}" Foreground="White" HorizontalAlignment="Center"/>
+                                                    </Grid>
+
+                                                    <Grid Grid.Row="1" Background="White">
+                                                        <TextBlock HorizontalAlignment="Center" FontSize="12" Text="{Binding DatetimeStudy}" />
+                                                    </Grid>
+                                                </Grid>
+                                            </Border>
+                                        </StackPanel>
+
+                                        <Border Grid.Column="1" CornerRadius="8" Height="40" Margin="8,0" Background="{StaticResource PresentColor}">
+                                            <TextBlock Text="{Binding Lesson}" Style="{StaticResource LabelBase}" Margin="16,0"  VerticalAlignment="Center"/>
+                                        </Border>
+
+                                        <Grid Grid.Row="1" Grid.Column="1">
+                                            <Rectangle HorizontalAlignment="Center" VerticalAlignment="Top" StrokeDashArray="0.5 1.0 0.3" Stroke="White" StrokeThickness="2" RadiusX="10" RadiusY="10"/>
+
+                                            <Border CornerRadius="12" Padding="0" Width="320">
+                                                <Grid>
+                                                    <Rectangle StrokeDashArray="4 6"
+                                            Stroke="White"
+                                            StrokeThickness="2"
+                                            Width="320" >
+
+                                                    </Rectangle>
+                                                    <StackPanel Margin="16" Spacing="8">
+
+                                                        <Grid>
+                                                            <Border Height="48" CornerRadius="12" Background="{StaticResource OnPresentColor}" Tapped="Button_Click_Attendace">
+                                                                <Grid>
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="48"/>
+                                                                        <ColumnDefinition Width="280"/>
+                                                                    </Grid.ColumnDefinitions>
+
+                                                                    <Border Height="32" Width="32" CornerRadius="16" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                                        <Image Source="/Assets/ic_attendance.png" Height="32" Width="32"/>
+                                                                    </Border>
+
+                                                                    <TextBlock Text="Điểm danh" Grid.Column="1" VerticalAlignment="Center"/>
+                                                                </Grid>
+                                                            </Border>
+                                                        </Grid>
+
+                                                        <Grid>
+                                                            <Border Height="48" CornerRadius="12" Background="{StaticResource OnPresentColor}" Tapped="Button_Click_Feedback">
+                                                                <Grid>
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="48"/>
+                                                                        <ColumnDefinition Width="280"/>
+                                                                    </Grid.ColumnDefinitions>
+
+                                                                    <Border Height="32" Width="32" CornerRadius="16" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                                        <Image Source="/Assets/ic_feedback.png" Height="32" Width="32"/>
+                                                                    </Border>
+
+                                                                    <TextBlock Text="Phản hồi" Grid.Column="1" VerticalAlignment="Center"/>
+                                                                </Grid>
+                                                            </Border>
+
+                                                        </Grid>
+
+                                                        
                                                     </StackPanel>
                                                 </Grid>
                                             </Border>
@@ -462,9 +663,9 @@
 
 
                     <Border x:Name="FloatingButton" Padding="0" CornerRadius="24" Height="48" Width="48" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="16" Tapped="Border_Tapped" Background="{StaticResource PrimaryColor}">
-                        <Image x:Name="imgFloatingButton" Source="/Assets/ic_plus.png" Width="24" Height="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Image x:Name="imgFloatingButton" Source="/Assets/ic_zoom.png" Width="24" Height="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
-
+ 
                 </Grid>
 
             </SplitView.Pane>
@@ -499,6 +700,23 @@
 
             </SplitView.Content>
         </SplitView>
+
+        <ContentDialog CornerRadius="12" Padding="0" CloseButtonText="Hủy" PrimaryButtonText="Save" PrimaryButtonClick="popupRooms_PrimaryButtonClick" x:Name="popupZoom" Margin="16"  HorizontalAlignment="Center" VerticalAlignment="Center" Background="{StaticResource PrimaryColor}">
+            <StackPanel >
+                <TextBox TextChanged="TextBox_TextChanged" PlaceholderForeground="White" PlaceholderText="ZoomId">
+                    <TextBox.Header>
+                        <TextBlock Text="Zoom Id :" Style="{StaticResource LabelBase}"/>
+                    </TextBox.Header>
+                </TextBox>
+                <PasswordBox PasswordChanged="PasswordBox_PasswordChanged" >
+                    <PasswordBox.Header>
+                        <TextBlock Text="Mật khẩu :" Style="{StaticResource LabelBase}"/>
+                    </PasswordBox.Header>
+                </PasswordBox>
+            </StackPanel>
+
+        </ContentDialog>
+
         <ProgressRing IsActive="True" Visibility="{Binding IsBusy}" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Height="48" Width="48"/>
 
     </Grid>

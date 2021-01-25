@@ -64,8 +64,11 @@ namespace EdutalkTeacherUWP.ViewModels
         {
             var result = await supportClassService.GetRoomAsync(ClassroomId,Date);
             Rooms = new ObservableCollection<RoomModel>(result);
-            Rooms[0].IsSelected = true;
-            Room = Rooms[0] != null ? Rooms[0].Name : "";
+            if(Rooms.Count > 0)
+            {
+                Rooms[0].IsSelected = true;
+            }
+            Room = Rooms.Count > 0 && Rooms[0] != null ? Rooms[0].Name : "không có phòng chờ";
         }
 
         public async Task LoadTutor()
@@ -95,11 +98,11 @@ namespace EdutalkTeacherUWP.ViewModels
                 Toast("Vui lòng nhập tên lớp");
                 return false;
             }
-            if (Date < DateTime.Now)
-            {
-                Toast("Thời gian không thể nhỏ hơn buổi học tiếp");
-                return false;
-            }
+            //if (Date < DateTime.Now)
+            //{
+            //    Toast("Thời gian không thể nhỏ hơn buổi học tiếp");
+            //    return false;
+            //}
             if (Students == null || Students.Count == 0)
             {
                 Toast("Vui lòng thêm học sinh vào buổi học phụ đạo");
@@ -110,6 +113,11 @@ namespace EdutalkTeacherUWP.ViewModels
 
         async Task<bool> CreateClass()
         {
+            if(Rooms.Count == 0)
+            {
+                Toast("Hiện tại không có lớp trống");
+                return false ;
+            }
             var result = await supportClassService.CreateTutoringAsync(ClassroomId, Name, Note, IsOffline == false ? null : Rooms?.FirstOrDefault(q => q.IsSelected == true).Id, Date, Students.Select(d => d.User).ToArray(), IsOffline == false ? ZoomId : null, IsOffline == false ? ZoomPassword : null, Mode, !IsTutorLead, Tutor?.Id);
             if (result)
             {

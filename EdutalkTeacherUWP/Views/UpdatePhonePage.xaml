@@ -81,7 +81,7 @@
             <Grid Margin="16,4">
                 <TextBox
                 Text="{Binding Phone}"
-                    PlaceholderText="Số điện thoại"
+                    PlaceholderText="Số điện thoại" TextChanged="TextBox_TextChanged"
                     PlaceholderForeground="White"
                         Foreground="White"
                         Background="Transparent"

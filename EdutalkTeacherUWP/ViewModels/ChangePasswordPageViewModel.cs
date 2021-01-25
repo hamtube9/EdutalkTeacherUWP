@@ -21,53 +21,54 @@ namespace EdutalkTeacherUWP.ViewModels
             accountService = new AccountService();
         }
 
-        ICommand _ChangePasswordCommand;
-        public ICommand ChangePasswordCommand => _ChangePasswordCommand = _ChangePasswordCommand ?? new DelegateCommand(ChangePassword);
+        //ICommand _ChangePasswordCommand;
+        //public ICommand ChangePasswordCommand => _ChangePasswordCommand = _ChangePasswordCommand ?? new DelegateCommand(ChangePassword);
 
-        private async void ChangePassword()
+        public async Task<bool> ChangePassword()
         {
             if (string.IsNullOrEmpty(OldPassword))
             {
                 ToastError("Mật khẩu hiện tại không thể bỏ trống");
-                return;
+                return false;
             }
 
             if (string.IsNullOrEmpty(NewPassword))
             {
                 ToastError("Mật khẩu mới không thể bỏ trống");
-                return;
+                return false;
             }
 
             if (string.IsNullOrEmpty(ConfirmNewPassword))
             {
                 ToastError("Hãy nhập lại mật khẩu mới");
-                return;
+                return false;
             }
-            if(NewPassword != ConfirmNewPassword)
+            if (NewPassword != ConfirmNewPassword)
             {
                 ToastError("Mật khẩu mới và nhập lại không trùng khớp");
-                return;
+                return false;
             }
-            await ChangePasswordAsync();
+            return await ChangePasswordAsync();
         }
 
-        async Task ChangePasswordAsync()
+        async Task<bool> ChangePasswordAsync()
         {
             var result = await accountService.ChangePasswordAsync(OldPassword, NewPassword);
             if (result == null)
             {
                 ToastError("Đổi mật khẩu không thành công");
-                return;
+                return false;
             }
-         
-            if(result.Success == true)
+
+            if (result.Success == true)
             {
                 ToastSuccess("Đổi mật khẩu thành công");
+                return true;
             }
             else
             {
                 Toast(result.Messenger);
-                return;
+                return false;
             }
 
         }

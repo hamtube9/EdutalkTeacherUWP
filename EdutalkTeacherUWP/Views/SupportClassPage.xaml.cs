@@ -46,7 +46,7 @@ namespace EdutalkTeacherUWP.Views
                     await vm.LoadRooms();
                     await vm.LoadTutor();
                     await vm.LoadStudent();
-                    txtRoom.Text = vm.Room;
+                    txtRoom.Text = vm.Room ;
                     listRoom.ItemsSource = vm.Rooms;
                 }
             }
@@ -64,6 +64,7 @@ namespace EdutalkTeacherUWP.Views
             {
                 vm.Date = new DateTime(date.Value.Year, date.Value.Month, date.Value.Day, sender.Time.Hours, sender.Time.Minutes, sender.Time.Seconds);
                 await vm.LoadRooms();
+                txtRoom.Text = vm.Room;
             }
 
         }
@@ -75,6 +76,8 @@ namespace EdutalkTeacherUWP.Views
             {
                 vm.Date = new DateTime(sender.SelectedDate.Value.Year, sender.SelectedDate.Value.Month, sender.SelectedDate.Value.Day, date.Value.Hour, date.Value.Minute, date.Value.Second);
                 await vm.LoadRooms();
+                txtRoom.Text = vm.Room;
+
             }
 
         }
@@ -82,6 +85,10 @@ namespace EdutalkTeacherUWP.Views
         private async void Border_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (vm.IsOffline == false)
+            {
+                return;
+            }
+            if(vm.Rooms.Count == 0)
             {
                 return;
             }

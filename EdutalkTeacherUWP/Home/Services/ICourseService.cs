@@ -1,6 +1,7 @@
 ﻿using EdutalkTeacherUWP.Api.Authorization;
 using EdutalkTeacherUWP.Api.Base;
 using EdutalkTeacherUWP.Api.Dtos.ClassDtos;
+using EdutalkTeacherUWP.Api.Dtos.Zoom;
 using EdutalkTeacherUWP.Api.Extensions;
 using EdutalkTeacherUWP.Api.Utils;
 using EdutalkTeacherUWP.Authentication.Models;
@@ -32,14 +33,14 @@ namespace EdutalkTeacherUWP.Home.Services
         Task<bool> FeedbackAsync(CommentModel[] comments, int lesson, long classroomId);
         Task<ScheduleModel> GetRoutesAsync(long classroomId);
         //Task<ScheduleModel> GetRoutesAsync(long classroomId, long tutorId);
-        //Task<bool> OffClassAsync(int lesson, long classroomId);
+        Task<bool> OffClassAsync(int lesson, long classroomId);
         //Task<LessonModel> GetLessonAsync(int lesson, long classroomId);
 
-        //Task<bool> SetingZoomAsync(long idclas, string zoomid, string zoompassword);
+        Task<bool> SetingZoomAsync(long idclas, string zoomid, string zoompassword);
         Task<UserModel[]> GetAllTutorAsync(long classId);
     }
 
-    public class CourseService :  ICourseService
+    public class CourseService : ICourseService
     {
         //   private readonly ILogService logService;
 
@@ -48,7 +49,7 @@ namespace EdutalkTeacherUWP.Home.Services
         readonly IApiBase apiBase;
         IEdutalkApi Api;
 
-        public CourseService()  
+        public CourseService()
         {
             apiBase = new ApiBase();
             authHeader = new AuthHeaderManager();
@@ -83,24 +84,23 @@ namespace EdutalkTeacherUWP.Home.Services
             return false;
         }
 
-        //public async Task<bool> SetingZoomAsync(long idclass, string zoomid, string zoompassword)
-        //{
-        //    try
-        //    {
-        //        var result = await Api.SetingZoom(new ApiModule.Dtos.Zoom.SettingZoomRequestDto()
-        //        {
-        //            ZoomPassword = zoompassword,
-        //            Id = idclass,
-        //            ZoomId = zoomid
-        //        });
-        //        return result?.Error == false;
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        logService.Log(e, new Dictionary<string, string>() { { $"Setting zoom error . classroom id {idclass}", e.Message } });
-        //    }
-        //    return false;
-        //}
+        public async Task<bool> SetingZoomAsync(long idclass, string zoomid, string zoompassword)
+        {
+            try
+            {
+                var result = await Api.SetingZoom(new SettingZoomRequestDto()
+                {
+                    ZoomPassword = zoompassword,
+                    Id = idclass,
+                    ZoomId = zoomid
+                });
+                return result?.Error == false;
+            }
+            catch (Exception e)
+            {
+            }
+            return false;
+        }
 
         public async Task<bool> FeedbackAsync(CommentModel[] comments, int lesson, long classroomId)
         {
@@ -147,7 +147,7 @@ namespace EdutalkTeacherUWP.Home.Services
             }
             catch (Exception e)
             {
-               // logService.Log(e, new Dictionary<string, string>() { { "Get all class error ", e.Message } });
+                // logService.Log(e, new Dictionary<string, string>() { { "Get all class error ", e.Message } });
 
             }
             return new ClassModel[0];
@@ -305,9 +305,38 @@ namespace EdutalkTeacherUWP.Home.Services
                         var next = lessons[i + 1];
                         first.Next = next.Date;
                     }
-                    if(routes.FirstOrDefault(q => q.Date <= DateTime.Now && DateTime.Now <= q.Next) != null)
+
+                    if (routes.Where(route => route.Next < DateTime.Now).ToList().Count > 0)
+                    {
+                        foreach (var item in routes.Where(route => route.Next < DateTime.Now).ToList())
+                        {
+                            item.IsPass = true;
+                        }
+                    }
+                    if (routes.Where(route => route.Date > DateTime.Now).ToList().Count > 0)
+                    {
+                        foreach (var item in routes.Where(route => route.Date > DateTime.Now).ToList())
+                        {
+                            item.IsFuture = true;
+                        }
+                    }
+                  
+                    if (routes.FirstOrDefault(q => q.Date <= DateTime.Now && DateTime.Now <= q.Next) != null)
                     {
                         routes.FirstOrDefault(q => q.Date <= DateTime.Now && DateTime.Now <= q.Next).IsPresent = true;
+                    }
+                    if (routes.Where(q => q.RouteType == RouteType.SupportClass).ToList().Count > 0)
+                    {
+                        foreach (var item in routes.Where(q => q.RouteType == RouteType.SupportClass).ToList())
+                        {
+                            item.IsSupportClassPass = true;
+                        }
+                        var data = routes.LastOrDefault(q => q.RouteType == RouteType.SupportClass && (q.Date <= DateTime.Now && q.Date >= routes.LastOrDefault(c => c.Date <= DateTime.Now).Date));
+                        if (data != null)
+                        {
+                            data.IsSupportClassPass = false;
+                            data.IsSupportClassPresent = true;
+                        }
                     }
 
                     return new ScheduleModel()
@@ -347,25 +376,24 @@ namespace EdutalkTeacherUWP.Home.Services
         //    return new UserModel[0];
         //}
 
-        //public async Task<bool> OffClassAsync(int lesson, long classroomId)
-        //{
-        //    try
-        //    {
-        //        var result = await Api.OffClass(
-        //            new OffClassRequestDto
-        //            {
-        //                Lesson = lesson,
-        //                ClassroomId = classroomId
-        //            });
+        public async Task<bool> OffClassAsync(int lesson, long classroomId)
+        {
+            try
+            {
+                var result = await Api.OffClass(
+                    new OffClassRequestDto
+                    {
+                        Lesson = lesson,
+                        ClassroomId = classroomId
+                    });
 
-        //        return result.ToResult();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        logService.Log(e, new Dictionary<string, string>() { { $"Off class error . class id : {classroomId}, lesson {lesson}", e.Message } });
-        //    }
-        //    return false;
-        //}
+                return result.ToResult();
+            }
+            catch (Exception e)
+            {
+            }
+            return false;
+        }
 
         public async Task<UserModel[]> GetAllTutorAsync(long classId)
         {

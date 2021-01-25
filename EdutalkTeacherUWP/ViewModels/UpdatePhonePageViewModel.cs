@@ -24,9 +24,7 @@ namespace EdutalkTeacherUWP.ViewModels
     
         public async Task<bool> VerifyPhone()
         {
-            if (Phone == (applicationSettings.GetCurrentUser()).Phone)
-            {
-            }
+           
             var result = await accountService.GetPinCodeVerify(Phone);
             if (result == false)
             {

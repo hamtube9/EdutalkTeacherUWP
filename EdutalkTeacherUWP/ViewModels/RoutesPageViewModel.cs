@@ -28,6 +28,8 @@ namespace EdutalkTeacherUWP.ViewModels
         public UserModel[] Tutors { set; get; }
         public bool IsBusy { set; get; }
         public bool HasTutor { get; set; }
+        public string ZoomId { set; get; }
+        public string ZoomPassword { set; get; }
         public RoutesPageViewModel(INavigationService navigationService)
         {
             this.navigationService = navigationService;
@@ -126,7 +128,63 @@ namespace EdutalkTeacherUWP.ViewModels
             }
         }
 
+        public async Task CancelSupportClass()
+        {
+            var next = Routes.FirstOrDefault(d => d.RouteType != RouteType.SupportClass && d.Date > DateTime.Now);
+            if (next == null)
+            {
+                return;
+            }
 
+            if (next.RouteType == RouteType.Exam)
+            {
 
+                IsBusy = true;
+                var result = await courseService.OffClassAsync(next.Lesson, Classroom.Id);
+                IsBusy = false;
+                if (result)
+                {
+                    Toast("Thành công");
+                    await LoadRoutes();
+                }
+                else
+                {
+                    Toast("Thất bại");
+                }
+            }
+            else
+            {
+
+                IsBusy = true;
+                var result = await courseService.OffClassAsync(next.Lesson, Classroom.Id);
+                IsBusy = false;
+                if (result)
+                {
+                    Toast("Thành công");
+                    await LoadRoutes();
+                }
+                else
+                {
+                    Toast("Thất bại");
+                }
+            }
+        }
+
+        public async Task SettingZoom()
+        {
+            IsBusy = true;
+            var result = await courseService.SetingZoomAsync(Classroom.Id, ZoomId, ZoomPassword);
+            IsBusy = false;
+            if (result == false)
+            {
+                Toast("Thiết lập thất bại");
+            }
+            else
+            {
+                Schedule.ZoomId = ZoomId;
+                Schedule.ZoomPassword = ZoomPassword;
+                Toast("Thiết lập thành công");
+            }
+        }
     }
 }

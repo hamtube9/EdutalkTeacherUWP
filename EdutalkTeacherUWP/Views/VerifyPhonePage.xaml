@@ -84,6 +84,7 @@
                 Text="{Binding Phone}"
                     PlaceholderText="Số điện thoại"
                     PlaceholderForeground="White"
+                    TextChanged="TextBox_TextChanged"
                         Foreground="White"
                         Background="Transparent"
                         BorderBrush="Transparent"

@@ -45,5 +45,16 @@ namespace EdutalkTeacherUWP.Views
         {
             vm.ConfirmNewPassword = ((PasswordBox)sender).Password;
         }
+
+        private async void Button_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+           var result =  await vm.ChangePassword();
+            if(result == true)
+            {
+                txtConfirm.Password = string.Empty;
+                txtNew.Password = string.Empty;
+                txtOld.Password = string.Empty;
+            }
+        }
     }
 }

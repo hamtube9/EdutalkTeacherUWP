@@ -149,18 +149,21 @@
                         </StackPanel>
                     </StackPanel>
                 </Border>
-                <Image
+                <Grid Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent">
+                    <Image
                 Height="28"
                 Grid.Column="1"
                 HorizontalAlignment="Center"
                 Source="/Assets/ic_right_chevron.png"/>
+                </Grid>
+               
 
             </Grid>
         
         </StackPanel>
 
         <ContentDialog
-            Grid.Row="2" Grid.ColumnSpan="2" CornerRadius="12"  x:Name="popupClass" CloseButtonClick="ContentDialog_CloseButtonClick" CloseButtonCommandParameter="{Binding RoomSelected}" Padding="0" CloseButtonText="Chọn" Margin="16"  HorizontalAlignment="Center" VerticalAlignment="Center" Background="{StaticResource PrimaryColor}">
+            Grid.Row="2"  Grid.ColumnSpan="2" CornerRadius="12"  x:Name="popupClass" CloseButtonClick="ContentDialog_CloseButtonClick" CloseButtonCommandParameter="{Binding RoomSelected}" Padding="0" CloseButtonText="Hủy" PrimaryButtonText="Chọn" PrimaryButtonClick="popupClass_PrimaryButtonClick" Margin="16"  HorizontalAlignment="Center" VerticalAlignment="Center" Background="{StaticResource PrimaryColor}">
             <Grid >
                 <Grid.RowDefinitions>
                     <RowDefinition

@@ -33,15 +33,15 @@ namespace EdutalkTeacherUWP.Views
             Students.ItemClick += Students_ItemClick;
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             var param = (ParamsAttendanceModel)e.Parameter;
-            if ( param!= null)
+            if (param != null)
             {
                 vm.ClassroomId = param.ClassroomId;
                 vm.Route = param.Route;
-                vm.LoadAttendance();
+                await vm.LoadAttendance();
             }
         }
 
@@ -71,5 +71,5 @@ namespace EdutalkTeacherUWP.Views
         }
     }
 
-   
+
 }
