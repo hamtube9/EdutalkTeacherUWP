@@ -116,9 +116,9 @@
                     <DataTemplate >
                         <Grid ColumnSpacing="0" RowSpacing="0" Margin="24,8">
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="16"/>
+                                <RowDefinition Height="16"/>
                                 <RowDefinition Height="24"/>
-                                <RowDefinition Height="12"/>
-                                <RowDefinition Height="12"/>
                                 <RowDefinition Height="144"/>
                             </Grid.RowDefinitions>
                            

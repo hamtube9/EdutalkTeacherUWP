@@ -7,6 +7,8 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -52,7 +54,7 @@ namespace EdutalkTeacherUWP.Views
             var result = await vm.SendMessageAsync();
             if (result)
             {
-                txtMessage.Text = string.Empty;
+                txtMessage.Text= string.Empty;
             }
         }
 
@@ -60,16 +62,35 @@ namespace EdutalkTeacherUWP.Views
         {
             var messVM = (MessengerPageViewModel)Frame.DataContext;
 
-            if (e.Key == Windows.System.VirtualKey.Enter)
+            if (e.Key == VirtualKey.Control || e.Key == VirtualKey.Shift)
+            {
+                txtMessage.AcceptsReturn = true;
+            }
+            else if (e.Key == Windows.System.VirtualKey.Enter)
             {
                 var result = await vm.SendMessageAsync();
                 if (result)
                 {
                     txtMessage.Text = string.Empty;
-                   await messVM.LoadConversation();
+                    await messVM.LoadConversation();
                 }
+                e.Handled = true;
+            }
+            else
+            {
+                e.Handled = false;
             }
          
+        }
+
+     
+
+        private void txtMessage_KeyUp(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Control || e.Key == VirtualKey.Shift)
+            {
+                txtMessage.AcceptsReturn = false;
+            }
         }
     }
 }

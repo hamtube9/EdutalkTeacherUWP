@@ -319,10 +319,13 @@ namespace EdutalkTeacherUWP.Home.Services
                             item.IsFuture = true;
                         }
                     }
-                  
+
                     if (routes.FirstOrDefault(q => q.Date <= DateTime.Now && DateTime.Now <= q.Next) != null)
                     {
                         routes.FirstOrDefault(q => q.Date <= DateTime.Now && DateTime.Now <= q.Next).IsPresent = true;
+
+                        var nextLesson = routes.FirstOrDefault(c => c.IsPresent == true).Lesson + 1;
+                        routes.FirstOrDefault(c => c.Lesson == nextLesson).IsNextLesson = true;
                     }
                     if (routes.Where(q => q.RouteType == RouteType.SupportClass).ToList().Count > 0)
                     {

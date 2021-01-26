@@ -111,7 +111,7 @@
 
                             <Grid Visibility="{Binding Type,Converter={StaticResource TypeMessageConvert}}" Margin="0,8">
                                 <StackPanel>
-                                    <Border Padding="0" Background="{StaticResource GreenColor}" HorizontalAlignment="Center" CornerRadius="12">
+                                    <Border Padding="2" Background="{StaticResource GreenColor}" HorizontalAlignment="Center" CornerRadius="4">
                                         <TextBlock Text="Feedback Từ giáo viên" Style="{StaticResource LabelBase}" FontWeight="Bold" HorizontalAlignment="Center" Padding="4"/>
                                     </Border>
                                     <TextBlock Text="{Binding Message}" Style="{StaticResource LabelBase}" HorizontalAlignment="Center"  TextDecorations="Underline"  MaxLines="10"/>
@@ -124,7 +124,7 @@
         </ListView>
 
         <Grid Visibility="{Binding IsVisible}" VerticalAlignment="Center"  Grid.Row="1" Margin="16,0">
-                <TextBox PlaceholderText="Messenger"  x:Name="txtMessage" KeyDown="txtMessage_KeyDown" TextChanged="TextBox_TextChanged" VerticalAlignment="Center" CornerRadius="12" VerticalContentAlignment="Center" BorderThickness="0" Height="40" />
+                <TextBox PlaceholderText="Messenger"  x:Name="txtMessage" KeyDown="txtMessage_KeyDown" TextChanged="TextBox_TextChanged" KeyUp="txtMessage_KeyUp" VerticalAlignment="Center" CornerRadius="12" VerticalContentAlignment="Center" BorderThickness="0" Height="40" TextWrapping="Wrap" />
             <Border Height="24" Width="24" CornerRadius="12" VerticalAlignment="Center" Padding="0" Tapped="Border_Tapped" HorizontalAlignment="Right" Margin="8,4">
                 <Image Source="/Assets/ic_send.png"/>
             </Border>

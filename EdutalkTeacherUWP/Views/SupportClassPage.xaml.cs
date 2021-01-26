@@ -46,13 +46,14 @@ namespace EdutalkTeacherUWP.Views
                     await vm.LoadRooms();
                     await vm.LoadTutor();
                     await vm.LoadStudent();
-                    txtRoom.Text = vm.Room ;
+                    txtRoom.Text = vm.Room;
                     listRoom.ItemsSource = vm.Rooms;
                 }
             }
             if (e.NavigationMode == NavigationMode.Back)
             {
                 var dataStudent = await applicationSettings.GetStudentSupportClass();
+                if(dataStudent != null)
                 vm.Students = new List<InfoStudentModel>(dataStudent.Where(q => q.IsChoose == true).ToList());
             }
 
@@ -88,7 +89,7 @@ namespace EdutalkTeacherUWP.Views
             {
                 return;
             }
-            if(vm.Rooms.Count == 0)
+            if (vm.Rooms.Count == 0)
             {
                 return;
             }
@@ -129,8 +130,13 @@ namespace EdutalkTeacherUWP.Views
 
         private void Image_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            if(vm.SourceStudents != null)
-            Frame.Navigate(typeof(StudentSupportClassPage), vm.SourceStudents.ToArray());
+            if(vm.SourceStudents.Count == 0)
+            {
+                vm.Toast("Không có danh sách học viên");
+                return;
+            }
+            if (vm.SourceStudents != null)
+                Frame.Navigate(typeof(StudentSupportClassPage), vm.SourceStudents.ToArray());
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -145,7 +151,8 @@ namespace EdutalkTeacherUWP.Views
             if (result == true)
             {
                 var obj = (RoutesPageViewModel)Frame.DataContext;
-               await obj.LoadRoutes();
+                await obj.LoadRoutes();
+                await applicationSettings.SetStudentSupportClass(null);
             }
 
         }

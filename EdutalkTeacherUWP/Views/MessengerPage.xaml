@@ -81,7 +81,7 @@
 
         </ResourceDictionary>
     </Page.Resources>
-    <Grid Margin="0,40,0,0" x:Name="gridContent">
+    <Grid  x:Name="gridContent">
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
@@ -127,6 +127,20 @@
                 </ListView.ItemTemplate>
             </ListView>
 
+
+        <Line
+            x:Name="line"
+            HorizontalAlignment="Right"
+            Grid.RowSpan="2"
+            Stroke="White"
+            X1="0"
+            Y1="0"
+            X2="0"
+            Y2="2000"
+            StrokeLineJoin="Round"
+            StrokeDashArray="3,6"
+            StrokeDashOffset="2"
+            StrokeThickness="3" />
         <Frame x:Name="ConversationFrame" Grid.Column="1" Grid.Row="1" >
             <Frame.ContentTransitions>
                 <TransitionCollection>

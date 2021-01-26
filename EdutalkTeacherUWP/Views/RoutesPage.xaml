@@ -19,7 +19,7 @@
         <ResourceDictionary>
 
             <convert:BoolToVisibilityConverter x:Key="convertBack"/>
-            <convert:EnumToVisibilityConverter x:Key="convertEnum"/> 
+            <convert:EnumToVisibilityConverter x:Key="convertEnum"/>
             <Style
         x:Key="LabelBase"
         TargetType="TextBlock">
@@ -91,11 +91,22 @@
            OpenPaneLength="500">
             <SplitView.Pane>
                 <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="148"/>
                         <ColumnDefinition Width="342"/>
                     </Grid.ColumnDefinitions>
+
+                    <TextBlock HorizontalAlignment="Center" Grid.ColumnSpan="2" VerticalAlignment="Center">
+                            <Run Text="Lớp"  Foreground="White"/>
+                            <Run  Text="{Binding Classroom.Name}" Foreground="White"/>
+                    </TextBlock>
+                    
                     <Line
+                        Grid.Row="1"
             x:Name="line"
             HorizontalAlignment="Center"
             Stroke="White"
@@ -108,7 +119,7 @@
             StrokeDashOffset="2"
             StrokeThickness="3" />
 
-                    <ListView ItemsSource="{Binding Routes}"  Grid.ColumnSpan="2" IsHitTestVisible="True"   x:Name="Routes" SelectionMode="None" ContainerContentChanging="Routes_ContainerContentChanging" ShowsScrollingPlaceholders="False" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                    <ListView  Grid.Row="1" ItemsSource="{Binding Routes}"  Grid.ColumnSpan="2" IsHitTestVisible="True"   x:Name="Routes" SelectionMode="None" ContainerContentChanging="Routes_ContainerContentChanging" ShowsScrollingPlaceholders="False" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Grid x:Name="dataRoute">
@@ -128,7 +139,7 @@
                                                 <TextBlock  Text="{Binding  DateMonthStudy}" HorizontalAlignment="Center" Foreground="{StaticResource PassColor}" VerticalAlignment="Center"/>
                                             </Grid>
 
-                                            <Border CornerRadius="4"  Margin="4" HorizontalAlignment="Center" MinWidth="64" MaxWidth="68">
+                                            <Border CornerRadius="4"  Margin="4" HorizontalAlignment="Center"  Width="72" Padding="0">
                                                 <Grid Height="40">
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="20"/>
@@ -145,7 +156,7 @@
                                             </Border>
                                         </StackPanel>
 
-                                        <Border Grid.Column="1" CornerRadius="8" Height="40" Margin="8,0" Background="{StaticResource PassColor}" Tapped="LessonTapped">
+                                        <Border  Grid.Column="1" CornerRadius="8" Height="40" Margin="16,0" Background="{StaticResource PassColor}" Tapped="LessonTapped">
                                             <Grid>
                                                 <TextBlock  Margin="16,0"  VerticalAlignment="Center">
                                                     <Run Text="Bài" Foreground="White"/>
@@ -158,7 +169,7 @@
                                         <Rectangle HorizontalAlignment="Center" VerticalAlignment="Top" StrokeDashArray="0.5 1.0 0.3" Stroke="White" StrokeThickness="2" RadiusX="10" RadiusY="10"/>
 
                                         <Grid Grid.Row="1" Grid.Column="1">
-                                            <Border CornerRadius="12" Padding="0" Width="320">
+                                            <Border CornerRadius="8" Padding="0" Width="320">
                                                 <Grid>
                                                     <Rectangle StrokeDashArray="4 6"
                                             Stroke="White"
@@ -169,7 +180,7 @@
                                                     <StackPanel Margin="16" Spacing="8">
 
                                                         <Grid>
-                                                            <Border Height="48" CornerRadius="12" Background="{StaticResource OnPassColor}" Tapped="Button_Click_Attendace">
+                                                            <Border Height="48" CornerRadius="8" Background="{StaticResource OnPassColor}" Tapped="Button_Click_Attendace">
                                                                 <Grid>
                                                                     <Grid.ColumnDefinitions>
                                                                         <ColumnDefinition Width="48"/>
@@ -187,7 +198,7 @@
                                                         </Grid>
 
                                                         <Grid>
-                                                            <Border Height="48" CornerRadius="12" Background="{StaticResource OnPassColor}" Tapped="Button_Click_Feedback">
+                                                            <Border Height="48" CornerRadius="8" Background="{StaticResource OnPassColor}" Tapped="Button_Click_Feedback">
                                                                 <Grid>
                                                                     <Grid.ColumnDefinitions>
                                                                         <ColumnDefinition Width="48"/>
@@ -205,7 +216,7 @@
                                                         </Grid>
 
                                                         <Grid Visibility="{Binding RouteType,Converter={StaticResource convertEnum}}">
-                                                            <Border Height="48" CornerRadius="12" Background="{StaticResource OnPassColor}" Tapped="Button_Click_Homework">
+                                                            <Border Height="48" CornerRadius="8" Background="{StaticResource OnPassColor}" Tapped="Button_Click_Homework">
                                                                 <Grid>
                                                                     <Grid.ColumnDefinitions>
                                                                         <ColumnDefinition Width="48"/>
@@ -248,7 +259,7 @@
                                                 <TextBlock  Text="{Binding  DateMonthStudy}" HorizontalAlignment="Center" Foreground="{StaticResource PassColor}" VerticalAlignment="Center"/>
                                             </Grid>
 
-                                            <Border CornerRadius="4"  Margin="4" HorizontalAlignment="Center" MinWidth="64" MaxWidth="68">
+                                            <Border CornerRadius="4"  Margin="4" HorizontalAlignment="Center" Width="72">
                                                 <Grid Height="40">
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="20"/>
@@ -265,14 +276,14 @@
                                             </Border>
                                         </StackPanel>
 
-                                        <Border Grid.Column="1" CornerRadius="8" Height="40" Margin="8,0" Background="{StaticResource PassColor}">
+                                        <Border Grid.Column="1" CornerRadius="8" Height="40" Margin="16,0" Background="{StaticResource PassColor}">
                                             <TextBlock Text="{Binding Name}" Style="{StaticResource LabelBase}" Margin="16,0"  VerticalAlignment="Center"/>
                                         </Border>
 
                                         <Rectangle HorizontalAlignment="Center" VerticalAlignment="Top" StrokeDashArray="0.5 1.0 0.3" Stroke="White" StrokeThickness="2" RadiusX="10" RadiusY="10"/>
 
                                         <Grid Grid.Row="1" Grid.Column="1">
-                                            <Border CornerRadius="12" Padding="0" Width="320">
+                                            <Border CornerRadius="8" Padding="0" Width="320">
                                                 <Grid>
                                                     <Rectangle StrokeDashArray="4 6"
                                             Stroke="White"
@@ -282,7 +293,7 @@
                                                     </Rectangle>
                                                     <StackPanel Margin="16" Spacing="8">
                                                         <Grid>
-                                                            <Border Height="48" CornerRadius="12" Background="{StaticResource OnPassColor}" Tapped="Button_Click_Attendace">
+                                                            <Border Height="48" CornerRadius="8" Background="{StaticResource OnPassColor}" Tapped="Button_Click_Attendace">
                                                                 <Grid>
                                                                     <Grid.ColumnDefinitions>
                                                                         <ColumnDefinition Width="48"/>
@@ -300,7 +311,7 @@
                                                         </Grid>
 
                                                         <Grid>
-                                                            <Border Height="48" CornerRadius="12" Background="{StaticResource OnPassColor}" Tapped="Button_Click_Feedback">
+                                                            <Border Height="48" CornerRadius="8" Background="{StaticResource OnPassColor}" Tapped="Button_Click_Feedback">
                                                                 <Grid>
                                                                     <Grid.ColumnDefinitions>
                                                                         <ColumnDefinition Width="48"/>
@@ -341,7 +352,7 @@
                                                 <TextBlock  Text="{Binding DateMonthStudy}" HorizontalAlignment="Center" Foreground="{StaticResource PresentColor}" VerticalAlignment="Center"/>
                                             </Grid>
 
-                                            <Border CornerRadius="4"  Margin="4" HorizontalAlignment="Center" MinWidth="64" MaxWidth="68">
+                                            <Border CornerRadius="4"  Margin="4" HorizontalAlignment="Center" Width="72">
                                                 <Grid Height="40">
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="20"/>
@@ -358,7 +369,7 @@
                                             </Border>
                                         </StackPanel>
 
-                                        <Border Grid.Column="1" CornerRadius="8" Height="40" Margin="8,0" Background="{StaticResource PresentColor}" Tapped="LessonTapped">
+                                        <Border Grid.Column="1" CornerRadius="8" Height="40" Margin="16,0" Background="{StaticResource PresentColor}" Tapped="LessonTapped">
                                             <Grid>
                                                 <TextBlock  Margin="16,0"  VerticalAlignment="Center">
                                                     <Run Text="Bài" Foreground="White"/>
@@ -371,7 +382,7 @@
                                         <Grid Grid.Row="1" Grid.Column="1">
                                             <Rectangle HorizontalAlignment="Center" VerticalAlignment="Top" StrokeDashArray="0.5 1.0 0.3" Stroke="White" StrokeThickness="2" RadiusX="10" RadiusY="10"/>
 
-                                            <Border CornerRadius="12" Padding="0" Width="320">
+                                            <Border CornerRadius="8" Padding="0" Width="320">
                                                 <Grid>
                                                     <Rectangle StrokeDashArray="4 6"
                                             Stroke="White"
@@ -382,7 +393,7 @@
                                                     <StackPanel Margin="16" Spacing="8">
 
                                                         <Grid>
-                                                            <Border Height="48" CornerRadius="12" Background="{StaticResource OnPresentColor}" Tapped="Button_Click_Attendace">
+                                                            <Border Height="48" CornerRadius="8" Background="{StaticResource OnPresentColor}" Tapped="Button_Click_Attendace">
                                                                 <Grid>
                                                                     <Grid.ColumnDefinitions>
                                                                         <ColumnDefinition Width="48"/>
@@ -399,7 +410,7 @@
                                                         </Grid>
 
                                                         <Grid>
-                                                            <Border Height="48" CornerRadius="12" Background="{StaticResource OnPresentColor}" Tapped="Button_Click_Feedback">
+                                                            <Border Height="48" CornerRadius="8" Background="{StaticResource OnPresentColor}" Tapped="Button_Click_Feedback">
                                                                 <Grid>
                                                                     <Grid.ColumnDefinitions>
                                                                         <ColumnDefinition Width="48"/>
@@ -417,7 +428,7 @@
                                                         </Grid>
 
                                                         <Grid  Visibility="{Binding RouteType,Converter={StaticResource convertEnum}}">
-                                                            <Border Height="48" CornerRadius="12" Background="{StaticResource OnPresentColor}" Tapped="Button_Click_Homework">
+                                                            <Border Height="48" CornerRadius="8" Background="{StaticResource OnPresentColor}" Tapped="Button_Click_Homework">
                                                                 <Grid>
                                                                     <Grid.ColumnDefinitions>
                                                                         <ColumnDefinition Width="48"/>
@@ -435,7 +446,7 @@
                                                         </Grid>
 
                                                         <Grid>
-                                                            <Border Height="48" CornerRadius="12" Background="{StaticResource OnPresentColor}" Tapped="Button_Click_Create_AssistanceClass">
+                                                            <Border Height="48" CornerRadius="8" Background="{StaticResource OnPresentColor}" Tapped="Button_Click_Create_AssistanceClass">
                                                                 <Grid>
                                                                     <Grid.ColumnDefinitions>
                                                                         <ColumnDefinition Width="48"/>
@@ -451,23 +462,7 @@
                                                             </Border>
 
                                                         </Grid>
-                                                        <Grid>
-                                                            <Border Height="48" CornerRadius="12" Background="{StaticResource OnPresentColor}" Visibility="{Binding IsCancelClass,Converter={StaticResource  convertBack}}" Tapped="Cancel_Class_Tapped">
-                                                                <Grid>
-                                                                    <Grid.ColumnDefinitions>
-                                                                        <ColumnDefinition Width="48"/>
-                                                                        <ColumnDefinition Width="280"/>
-                                                                    </Grid.ColumnDefinitions>
 
-                                                                    <Border Height="32" Width="32" CornerRadius="16" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                                                        <Image Source="/Assets/ic_cancel.png" Height="32" Width="32"/>
-                                                                    </Border>
-
-                                                                    <TextBlock Text="Hủy lớp" Grid.Column="1" VerticalAlignment="Center"/>
-                                                                </Grid>
-                                                            </Border>
-
-                                                        </Grid>
                                                     </StackPanel>
                                                 </Grid>
                                             </Border>
@@ -489,7 +484,7 @@
                                                 <TextBlock  Text="{Binding DateMonthStudy}" HorizontalAlignment="Center" Foreground="{StaticResource PresentColor}" VerticalAlignment="Center"/>
                                             </Grid>
 
-                                            <Border CornerRadius="4"  Margin="4" HorizontalAlignment="Center" MinWidth="64" MaxWidth="68">
+                                            <Border CornerRadius="4"  Margin="4" HorizontalAlignment="Center" Width="72">
                                                 <Grid Height="40">
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="20"/>
@@ -506,14 +501,14 @@
                                             </Border>
                                         </StackPanel>
 
-                                        <Border Grid.Column="1" CornerRadius="8" Height="40" Margin="8,0" Background="{StaticResource PresentColor}" >
-                                                <TextBlock Text="{Binding Name}" Style="{StaticResource LabelBase}" Margin="16,0"  VerticalAlignment="Center"/>
+                                        <Border Grid.Column="1" CornerRadius="8" Height="40" Margin="16,0" Background="{StaticResource PresentColor}" >
+                                            <TextBlock Text="{Binding Name}" Style="{StaticResource LabelBase}" Margin="16,0"  VerticalAlignment="Center"/>
                                         </Border>
 
                                         <Grid Grid.Row="1" Grid.Column="1">
                                             <Rectangle HorizontalAlignment="Center" VerticalAlignment="Top" StrokeDashArray="0.5 1.0 0.3" Stroke="White" StrokeThickness="2" RadiusX="10" RadiusY="10"/>
 
-                                            <Border CornerRadius="12" Padding="0" Width="320">
+                                            <Border CornerRadius="8" Padding="0" Width="320">
                                                 <Grid>
                                                     <Rectangle StrokeDashArray="4 6"
                                             Stroke="White"
@@ -524,7 +519,7 @@
                                                     <StackPanel Margin="16" Spacing="8">
 
                                                         <Grid>
-                                                            <Border Height="48" CornerRadius="12" Background="{StaticResource OnPresentColor}" Tapped="Button_Click_Attendace">
+                                                            <Border Height="48" CornerRadius="8" Background="{StaticResource OnPresentColor}" Tapped="Button_Click_Attendace">
                                                                 <Grid>
                                                                     <Grid.ColumnDefinitions>
                                                                         <ColumnDefinition Width="48"/>
@@ -541,7 +536,7 @@
                                                         </Grid>
 
                                                         <Grid>
-                                                            <Border Height="48" CornerRadius="12" Background="{StaticResource OnPresentColor}" Tapped="Button_Click_Feedback">
+                                                            <Border Height="48" CornerRadius="8" Background="{StaticResource OnPresentColor}" Tapped="Button_Click_Feedback">
                                                                 <Grid>
                                                                     <Grid.ColumnDefinitions>
                                                                         <ColumnDefinition Width="48"/>
@@ -558,7 +553,7 @@
 
                                                         </Grid>
 
-                                                        
+
                                                     </StackPanel>
                                                 </Grid>
                                             </Border>
@@ -574,13 +569,14 @@
                                             <RowDefinition Height="*"/>
                                         </Grid.RowDefinitions>
 
+
                                         <StackPanel Grid.RowSpan="2" Width="80" HorizontalAlignment="Right">
                                             <Grid Height="50">
                                                 <Image Source="/Assets/ic_cloud_white.png"/>
                                                 <TextBlock  Text="{Binding DateMonthStudy}" HorizontalAlignment="Center" Foreground="{StaticResource FutureColor}" VerticalAlignment="Center"/>
                                             </Grid>
 
-                                            <Border CornerRadius="4"  Margin="4" HorizontalAlignment="Center" MinWidth="64" MaxWidth="68" >
+                                            <Border CornerRadius="4"  Margin="4" HorizontalAlignment="Center" Width="72" >
                                                 <Grid Height="40">
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="20"/>
@@ -597,20 +593,20 @@
                                             </Border>
                                         </StackPanel>
 
-                                        <Border Grid.Column="1" CornerRadius="8" Height="40" Margin="8,0" Background="{StaticResource FutureColor}" Tapped="LessonTapped">
+                                        <Border Grid.Column="1" CornerRadius="8" Height="40" Margin="16,0" Background="{StaticResource FutureColor}" >
                                             <Grid>
                                                 <TextBlock  Margin="16,0"  VerticalAlignment="Center">
                                                     <Run Text="Bài" Foreground="White"/>
                                                     <Run Text="{Binding Lesson}" Foreground="White"/>
                                                 </TextBlock>
-                                                <Image Source="/Assets/book.png" Height="24" Width="24" Margin="16,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                                <Image Source="/Assets/ic_lock.png" Height="24" Width="24" Margin="16,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                                             </Grid>
                                         </Border>
 
                                         <Grid Grid.Row="1" Grid.Column="1">
                                             <Rectangle HorizontalAlignment="Center" VerticalAlignment="Top" StrokeDashArray="0.5 1.0 0.3" Stroke="White" StrokeThickness="2" RadiusX="10" RadiusY="10"/>
 
-                                            <Border CornerRadius="12" Padding="0" Width="320">
+                                            <Border CornerRadius="8" Padding="0" Width="320">
                                                 <Grid>
                                                     <Rectangle StrokeDashArray="4 6"
                                             Stroke="White"
@@ -621,7 +617,7 @@
                                                     <StackPanel Margin="16" Spacing="8">
 
                                                         <Grid>
-                                                            <Border Height="48" CornerRadius="12" Background="{StaticResource OnFutureColor}">
+                                                            <Border Height="48" CornerRadius="8" Background="{StaticResource OnFutureColor}">
                                                                 <Grid>
                                                                     <Grid.ColumnDefinitions>
                                                                         <ColumnDefinition Width="48"/>
@@ -639,7 +635,7 @@
 
                                                         </Grid>
 
-                                                        <Border Height="48" CornerRadius="12" Background="{StaticResource OnFutureColor}" >
+                                                        <Border Height="48" CornerRadius="8" Background="{StaticResource OnFutureColor}" >
                                                             <Grid>
                                                                 <Grid.ColumnDefinitions>
                                                                     <ColumnDefinition Width="48"/>
@@ -654,7 +650,7 @@
                                                             </Grid>
                                                         </Border>
 
-                                                        <Border Height="48" CornerRadius="12" Background="{StaticResource OnFutureColor}"  Visibility="{Binding RouteType,Converter={StaticResource convertEnum}}">
+                                                        <Border Height="48" CornerRadius="8" Background="{StaticResource OnFutureColor}"  Visibility="{Binding RouteType,Converter={StaticResource convertEnum}}">
                                                             <Grid>
                                                                 <Grid.ColumnDefinitions>
                                                                     <ColumnDefinition Width="48"/>
@@ -669,6 +665,22 @@
                                                             </Grid>
                                                         </Border>
 
+                                                        <Border Height="48" CornerRadius="8" Background="{StaticResource OnPresentColor}" Visibility="{Binding IsNextLesson}" Tapped="Cancel_Class_Tapped">
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="48"/>
+                                                                    <ColumnDefinition Width="280"/>
+                                                                </Grid.ColumnDefinitions>
+
+                                                                <Border Height="32" Width="32" CornerRadius="16" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                                    <Image Source="/Assets/ic_cancel.png" Height="32" Width="32"/>
+                                                                </Border>
+
+                                                                <TextBlock Text="Hủy lớp" Grid.Column="1" VerticalAlignment="Center"/>
+                                                            </Grid>
+                                                        </Border>
+
+
                                                     </StackPanel>
                                                 </Grid>
                                             </Border>
@@ -680,10 +692,10 @@
                     </ListView>
 
 
-                    <Border x:Name="FloatingButton" Padding="0" CornerRadius="24" Height="48" Width="48" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="16" Tapped="Border_Tapped" Background="{StaticResource PrimaryColor}">
+                    <Border Grid.Row="1" x:Name="FloatingButton" Padding="0" CornerRadius="24" Height="48" Width="48" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="16" Tapped="Border_Tapped" Background="{StaticResource PrimaryColor}">
                         <Image x:Name="imgFloatingButton" Source="/Assets/ic_zoom.png" Width="24" Height="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
- 
+
                 </Grid>
 
             </SplitView.Pane>
